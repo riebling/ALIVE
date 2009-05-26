@@ -1,0 +1,55 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\obj\Debug\MyBot.BotControlForm1.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\obj\Debug\MyBot.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\MyBot.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\MyBot.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\log4net.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\obj\Debug\MyBot.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\obj\Debug\MyBot.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverseTypes.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\Mono.Security.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\HttpServer.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.Http.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.StructuredData.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\HttpServer.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.xml
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.Http.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.Http.xml
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.StructuredData.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.StructuredData.xml
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverseTypes.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\OpenMetaverseTypes.xml
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\MyBot.exe.manifest
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\bin\Debug\MyBot.application
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\obj\Debug\MyBot.exe.manifest
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\MyBot\MyBot\obj\Debug\MyBot.application
+D:\Projects\MyBot\MyBot\obj\Debug\MyBot.exe
+D:\Projects\MyBot\MyBot\obj\Debug\MyBot.pdb
+D:\Projects\MyBot\MyBot\bin\Debug\MyBot.exe.manifest
+D:\Projects\MyBot\MyBot\bin\Debug\MyBot.application
+D:\Projects\MyBot\MyBot\bin\Debug\MyBot.exe
+D:\Projects\MyBot\MyBot\bin\Debug\MyBot.pdb
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.dll
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverseTypes.dll
+D:\Projects\MyBot\MyBot\bin\Debug\XMLRPC.dll
+D:\Projects\MyBot\MyBot\bin\Debug\Mono.Security.dll
+D:\Projects\MyBot\MyBot\bin\Debug\HttpServer.dll
+D:\Projects\MyBot\MyBot\bin\Debug\log4net.dll
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.Http.dll
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.StructuredData.dll
+D:\Projects\MyBot\MyBot\bin\Debug\HttpServer.pdb
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.pdb
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.xml
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.Http.pdb
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.Http.xml
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.StructuredData.pdb
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverse.StructuredData.xml
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverseTypes.pdb
+D:\Projects\MyBot\MyBot\bin\Debug\OpenMetaverseTypes.xml
+D:\Projects\MyBot\MyBot\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\MyBot\MyBot\obj\Debug\MyBot.BotControlForm1.resources
+D:\Projects\MyBot\MyBot\obj\Debug\MyBot.csproj.GenerateResource.Cache
+D:\Projects\MyBot\MyBot\obj\Debug\MyBot.exe.manifest
+D:\Projects\MyBot\MyBot\obj\Debug\MyBot.application
