@@ -1,0 +1,11 @@
+D:\Projects\ALIVE\PythonBot\bin\Debug\PythonBot.exe
+D:\Projects\ALIVE\PythonBot\bin\Debug\PythonBot.pdb
+D:\Projects\ALIVE\PythonBot\bin\Debug\IronPython.dll
+D:\Projects\ALIVE\PythonBot\bin\Debug\OpenMetaverseTypes.dll
+D:\Projects\ALIVE\PythonBot\bin\Debug\OpenMetaverse.StructuredData.dll
+D:\Projects\ALIVE\PythonBot\bin\Debug\OpenMetaverse.Http.dll
+D:\Projects\ALIVE\PythonBot\bin\Debug\IronMath.dll
+D:\Projects\ALIVE\PythonBot\bin\Debug\XMLRPC.dll
+D:\Projects\ALIVE\PythonBot\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\ALIVE\PythonBot\obj\Debug\PythonBot.exe
+D:\Projects\ALIVE\PythonBot\obj\Debug\PythonBot.pdb
