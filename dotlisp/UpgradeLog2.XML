@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="DotLisp">
+</Property><Property Name="Solution File" Value="C:\dev\dotlisp\DotLisp.sln">
+</Property><Property Name="User Options File" Value="C:\dev\dotlisp\DotLisp.suo">
+</Property><Property Name="Date" Value="Thursday, July 24, 2008">
+</Property><Property Name="Time" Value="10:50 AM">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="DotLisp.sln" Description="File successfully backed up as C:\dev\dotlisp\Backup1\DotLisp.sln">
+</Event><Event ErrorLevel="0" Project="" Source="DotLisp.suo" Description="File successfully backed up as C:\dev\dotlisp\Backup1\DotLisp.suo">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="DotLisp.csproj" Description="Project file successfully backed up as C:\dev\dotlisp\Backup1\DotLisp.csproj">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="DotLisp.csproj.user" Description="Project user file successfully backed up as C:\dev\dotlisp\Backup1\DotLisp.csproj.user">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="AssemblyInfo.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="BacktraceException.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\BacktraceException.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Closure.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Closure.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="CLSConstructor.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\CLSConstructor.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="CLSField.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\CLSField.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="CLSLateBoundMember.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\CLSLateBoundMember.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="CLSMember.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\CLSMember.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="CLSMethod.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\CLSMethod.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="CLSProperty.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\CLSProperty.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="CLSSymbols.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\CLSSymbols.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Cons.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Cons.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="DynamicEnvironment.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\DynamicEnvironment.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Environment.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Environment.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Expressions.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Expressions.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="FnEnumerator.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\FnEnumerator.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Function.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Function.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="GenericFunction.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\GenericFunction.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Interpreter.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Interpreter.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Keyword.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Keyword.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="LocalVariable.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\LocalVariable.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Macro.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Macro.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Param.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Param.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Primitives.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Primitives.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Reader.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Reader.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Record.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Record.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Symbol.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Symbol.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="Util.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\Util.cs">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="boot.lisp" Description="File successfully backed up as C:\dev\dotlisp\Backup1\boot.lisp">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="DotLisp.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="DotLisp" Source="DotLisp.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="DotLispREPL" Source="DotLispREPL\DotLispREPL.csproj" Description="Project file successfully backed up as C:\dev\dotlisp\Backup1\DotLispREPL\DotLispREPL.csproj">
+</Event><Event ErrorLevel="0" Project="DotLispREPL" Source="DotLispREPL\DotLispREPL.csproj.user" Description="Project user file successfully backed up as C:\dev\dotlisp\Backup1\DotLispREPL\DotLispREPL.csproj.user">
+</Event><Event ErrorLevel="0" Project="DotLispREPL" Source="DotLispREPL\AssemblyInfo.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\DotLispREPL\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="DotLispREPL" Source="DotLispREPL\REPL.cs" Description="File successfully backed up as C:\dev\dotlisp\Backup1\DotLispREPL\REPL.cs">
+</Event><Event ErrorLevel="0" Project="DotLispREPL" Source="DotLispREPL\App.ico" Description="File successfully backed up as C:\dev\dotlisp\Backup1\DotLispREPL\App.ico">
+</Event><Event ErrorLevel="0" Project="DotLispREPL" Source="DotLispREPL\DotLispREPL.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="DotLispREPL" Source="DotLispREPL\DotLispREPL.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="DotLisp.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="DotLisp.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="DotLisp" Source="DotLisp.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="DotLispREPL" Source="DotLispREPL\DotLispREPL.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

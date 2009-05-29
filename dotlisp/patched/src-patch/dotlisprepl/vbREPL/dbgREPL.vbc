@@ -1,0 +1,9 @@
+-optimize-
+-removeintchecks-
+-debug:full
+-out:..\bin\dbgREPL.exe
+REPL.vb
+AssemblyInfo.vb
+-r:..\bin\dbgDotLisp.dll
+-win32icon:..\App.ico
+

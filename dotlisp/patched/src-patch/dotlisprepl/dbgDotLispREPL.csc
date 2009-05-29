@@ -1,0 +1,12 @@
+-target:exe
+-out:bin\dbgREPL.exe
+-checked+
+-unsafe-
+-optimize-
+-debug+
+-debug:full
+-win32icon:App.ico
+-r:System.dll
+-r:bin\dbgDotLisp.dll
+AssemblyInfo.cs
+REPL.cs

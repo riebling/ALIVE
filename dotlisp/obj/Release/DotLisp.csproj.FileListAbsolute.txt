@@ -1,0 +1,3 @@
+D:\Projects\opensim4opencog\bin\DotLisp.dll
+D:\Projects\opensim4opencog\dotlisp\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\opensim4opencog\dotlisp\obj\Release\DotLisp.dll

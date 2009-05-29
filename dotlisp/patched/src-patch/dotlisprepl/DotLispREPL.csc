@@ -1,0 +1,11 @@
+-target:exe
+-out:bin\REPL.exe
+-debug-
+-checked+
+-unsafe-
+-optimize+
+-win32icon:App.ico
+-r:System.dll
+-r:bin\DotLisp.dll
+AssemblyInfo.cs
+REPL.cs

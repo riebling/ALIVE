@@ -1,0 +1,8 @@
+-optimize+
+-removeintchecks+
+-out:..\bin\vbREPL.exe
+REPL.vb
+AssemblyInfo.vb
+-r:..\bin\DotLisp.dll
+-win32icon:..\App.ico
+
