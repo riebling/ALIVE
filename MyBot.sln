@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C# Express 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBot", "MyBot\MyBot.csproj", "{5E682113-8F88-441E-A178-23904A194C79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALIVE", "ALIVE\ALIVE.csproj", "{15F2CCA4-38BA-4D19-8054-36EC4E515E61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +18,12 @@ Global
 		{5E682113-8F88-441E-A178-23904A194C79}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E682113-8F88-441E-A178-23904A194C79}.Release-docs|Any CPU.ActiveCfg = Release|Any CPU
 		{5E682113-8F88-441E-A178-23904A194C79}.Release-docs|Any CPU.Build.0 = Release|Any CPU
+		{15F2CCA4-38BA-4D19-8054-36EC4E515E61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F2CCA4-38BA-4D19-8054-36EC4E515E61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15F2CCA4-38BA-4D19-8054-36EC4E515E61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F2CCA4-38BA-4D19-8054-36EC4E515E61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15F2CCA4-38BA-4D19-8054-36EC4E515E61}.Release-docs|Any CPU.ActiveCfg = Release|Any CPU
+		{15F2CCA4-38BA-4D19-8054-36EC4E515E61}.Release-docs|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

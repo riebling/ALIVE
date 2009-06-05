@@ -1,42 +1,27 @@
-import clr
-import sys
-import time
 
-# libraries have to be loaded dynamically at run time
-clr.AddReferenceToFile("OpenMetaverse.dll")
-import OpenMetaverse
+import alive
 
-# OpenMetaverse client instance
-
-client=OpenMetaverse.GridClient()
-manager=OpenMetaverse.NetworkManager(client)
-
-# Callbacks
-
-def Network_OnConnected(sender):
-    print "I'm connected to the simulator...\n"
-
-# Register connected callback
-
-client.Network.OnConnected += manager.ConnectedCallback(Network_OnConnected)
-
-# Log in
-client.Settings.LOGIN_SERVER="http://osmort.lti.cs.cmu.edu:9000";
-params=client.Network.DefaultLoginParams('Test','User','test','ALIVE','alive')
-
-if client.Network.Login(params):
- print "Success!\n"
-else:
- print ("ERROR: " + client.Network.LoginMessage + "\n")
- client.Network.Logout()
- 
-respo = raw_input("Press any key")
-
-client.Self.Chat("Hello Grid!", 0, OpenMetaverse.ChatType.Normal)
+def my_chat_callback(message, audible, type, sourcetype, fromname, id, ownerid, position):
+    print "Chat message: " + message
+    #print "Audible: " + audible
+    #print "Type: " + type
+    #print "Sourcetype: " + sourcetype
+    print "Fromname: " + fromname
+    print "Id: " + id.GetULong()
+    print "Ownerid: " + ownerid.GetULong()
+    #print "Position: " + position
     
-#resp = raw_input("Press any key")
-print "Now I am going to logout of SL.. Goodbye!"
+alive.Initialize(my_chat_callback)
 
-client.Network.Logout()
+if alive.Login("Test", "User", "test"):
+    print "Logged in!"
+else:
+	print "Failure"
 
-resp = raw_input("Press any key")
+raw_input("Press any key")
+
+alive.Chat("Hello World")
+
+raw_input("Press any key")
+
+
