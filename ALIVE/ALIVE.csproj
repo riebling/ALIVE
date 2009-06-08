@@ -31,14 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenMetaverse, Version=0.6.3.26113, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libopenmetaverse\bin\OpenMetaverse.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenMetaverseTypes, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libopenmetaverse\bin\OpenMetaverseTypes.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -55,6 +47,16 @@
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libopenmetaverse\OpenMetaverse\OpenMetaverse.csproj">
+      <Project>{3ADC8734-E1FC-49AE-920A-9A960CC98DF3}</Project>
+      <Name>OpenMetaverse</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libopenmetaverse\OpenMetaverse\Types\OpenMetaverseTypes.csproj">
+      <Project>{11CADB86-E721-4778-9FCB-79B92CF1245F}</Project>
+      <Name>OpenMetaverseTypes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

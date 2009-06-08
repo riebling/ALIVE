@@ -7,11 +7,70 @@ using OpenMetaverse;
 
 namespace ALIVE
 {
+    //public struct ID : UUID { };
+
+    /// <summary>
+    /// Used in a helper function to roughly determine prim shape
+    /// </summary>
+    public enum primType : int {
+    };
+
+    public class Prim
+    {
+        public static ulong ID;
+        public static uint LocalID;
+        public float X;
+        public float Y;
+        public primType pType;
+        public bool movable;
+        public string color;
+        public string name;
+        public string description;
+        public float angle;
+        public float sizeX, sizeY, sizeZ;
+
+        // Constructor
+        public Prim (Primitive p)
+        {
+            ID = p.ID.GetULong();
+            LocalID = p.LocalID;
+            X = p.Position.X;
+            Y = p.Position.Y;
+            movable = (p.Flags | PrimFlags.ObjectMove) != 0;
+            pType = (primType) p.Type;
+            // Not sure how to derive this yet
+            color = "white";
+
+            name = "";
+            description = "";
+            if (p.Properties != null) {
+                if (p.Properties.Name != null)
+                    name = p.Properties.Name;
+                if (p.Properties.Description != null)
+                    description = p.Properties.Description;
+            }
+
+            angle = Avatar.ZrotFromQuaternion(p.Rotation);
+            sizeX = p.Scale.X;
+            sizeY = p.Scale.Y;
+            sizeZ = p.Scale.Z;
+        }
+
+        public string toString()
+        {
+            return ID.ToString() + " " + LocalID.ToString() + " <" + X + "," + Y + ">" + pType + " " +
+                angle + " [" + sizeX + "," + sizeY + "," + sizeZ + "] " +
+                movable + " " + name + " " + description;
+        }
+
+    };
+
     public class Avatar
     {
         public string FirstName;
         public string LastName;
         public string Password;
+        private Boolean loggedIn = false;
         const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         private GridClient client;
@@ -25,9 +84,10 @@ namespace ALIVE
             client = new GridClient();
 
             client.Network.OnConnected +=new NetworkManager.ConnectedCallback(Network_OnConnected);
-            //client.Self.OnMeanCollision += new AgentManager.MeanCollisionCallback(Self_OnMeanCollision);
             client.Self.OnChat += new AgentManager.ChatCallback(Self_OnChat);
+
             //client.Objects.OnNewAvatar += new ObjectManager.NewAvatarCallback(Self_OnNewAvatar);
+            //client.Self.OnMeanCollision += new AgentManager.MeanCollisionCallback(Self_OnMeanCollision);
 
             // Register callback to catch Object properties events
             client.Objects.OnObjectProperties += new ObjectManager.ObjectPropertiesCallback(Objects_OnObjectProperties);
@@ -51,7 +111,7 @@ namespace ALIVE
             if (LoginSuccess)
             {
                 // update location, avatars, objects nearby here?
-                
+                loggedIn = true;
             }
             else
             {
@@ -67,7 +127,7 @@ namespace ALIVE
 
         public void Logout() 
         {
-            client.Network.Logout();
+            if (loggedIn) client.Network.Logout();
         }
 
         // Movement commands
@@ -83,15 +143,9 @@ namespace ALIVE
         {
             float angle = (float)Math.PI * (float) degrees / -360f;
 
-            Console.Out.WriteLine("ANGLE: " + angle);
-            //Vector3 vec = new Vector3(0, 0, angle);
-            //Quaternion rot = new Quaternion(x);
             Quaternion rot = new Quaternion(0, 0, (float)Math.Cos(angle/2), (float)Math.Sin(angle/2));
-            
-            Console.Out.WriteLine("ROT: " + rot.ToString());
-            rot.Normalize();
-            Console.Out.WriteLine("ROT: " + rot.ToString());
-            
+
+            // I don't know why but doing it twice makes it work            
             Quaternion q = client.Self.Movement.BodyRotation * rot * rot;
 
             client.Self.Movement.BodyRotation = q;
@@ -120,8 +174,8 @@ namespace ALIVE
         public void GoBackward(int meters) {
             client.Self.Movement.AtNeg = true;
             client.Self.Movement.SendUpdate(true);
-            // 6 meters per second, so 166 msec per meter
-            Thread.Sleep(166 * meters);
+            // 3 meters per second, so 333 msec per meter
+            Thread.Sleep(333 * meters);
             client.Self.Movement.AtNeg = false;
             client.Self.Movement.SendUpdate(true);
         }
@@ -133,6 +187,16 @@ namespace ALIVE
 
             pos = client.Self.SimPosition;
 
+            // We don't know how long it takes the auto pilot to
+            // complete.  Does it block until completed?
+
+            Console.Out.WriteLine("Completed autopilot at: " + pos.X + "," + pos.Y);
+            Vector3 v = client.Self.Velocity;
+            while (v.Length() > 0)
+            {
+                Console.Out.WriteLine("Velocity: " + v.ToString());
+                Thread.Sleep(100);
+            }
             if ((int)pos.X == x && (int)pos.Y == y)
                 return true;
             else
@@ -148,17 +212,22 @@ namespace ALIVE
             y = (int)pos.Y;
         }
 
+
+        // Given a Quaternion, return the rotation around the Z
+        // (vertical) axis in degrees
+        public static float ZrotFromQuaternion(Quaternion q) {
+            // Borrowed code works MUCH better than GetEulerAngles()
+            // or other GetAxisAngle()
+            Vector3 v3 = Vector3.Transform(Vector3.UnitX, Matrix4.CreateFromQuaternion(q));
+            float newangle = (float)Math.Atan2(v3.Y, v3.X);
+            return newangle * 180 / (float)Math.PI;
+        }
+
+        // Return rotation of bot avatar in degrees
+        // (due East is zero, results are from -180 to +180)
         public float MyOrientation()
         {
-            // This may be BROKEN until we determine
-            // what is going on with GetAxisAngle and GetEulerAngles
-            // since they return bizarro values
-
-            Vector3 axis;
-            float angle;
-            client.Self.SimRotation.GetAxisAngle(out axis, out angle);
-            // 2*pi radians = 360 degrees
-            return angle * 180 / (float)Math.PI;
+            return ZrotFromQuaternion(client.Self.RelativeRotation);
         }
 
         // Object commands
@@ -178,7 +247,7 @@ namespace ALIVE
         //Tube = 6,
         //Ring = 7,
         //Sculpt = 8,
-        public List<Primitive> ObjectsAround(float radius)
+        public List<Prim> ObjectsAround(float radius)
         {
             Vector3 location = client.Self.SimPosition;
             
@@ -199,26 +268,46 @@ namespace ALIVE
             //    prettySize(prim.Scale) + " " +
             //    properties.Name + " " + properties.Description + "\r\n";
 
-            return prims;
+            List<Prim> returnPrims = new List<Prim>();
+            foreach (Primitive p in prims) {
+                returnPrims.Add(new Prim(p));
+            }
+            return returnPrims;
         }
 
-        public void DropObject() {}
+        public void DropObject(uint item) 
+        {
+            client.Objects.DropObject(client.Network.CurrentSim, item);
+        }
 
-        public void PickupObject(UUID item) {}
+        // We will use "attach" to pick up an object by
+        // carrying it by hand, i.e. attach to left or right hand
+        public void PickupObject(uint item) 
+        {
+            client.Objects.AttachObject(client.Network.CurrentSim, item, AttachmentPoint.LeftHand, Quaternion.Identity);
+        }
+
 
         // CHAT COMMANDS HERE
 
         // World Master message
-        public string GetMessage () { return "hello"; }
-        public void SayMessage () { }
+        public string GetMessage () 
+        { 
+            return "hello"; 
+        }
+        
+        public void SayMessage () 
+        {
+        }
 
         // Chat message
         public string GetChat () 
         {
             string temp = cb;
             cb = "";
-            return cb;
+            return temp;
         }
+
         public void SayChat(string message) 
         {
             // Chat on channel 0 = nearby 20 m
