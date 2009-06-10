@@ -5,9 +5,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBot", "MyBot\MyBot.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALIVE", "ALIVE\ALIVE.csproj", "{15F2CCA4-38BA-4D19-8054-36EC4E515E61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenMetaverse", "..\libopenmetaverse\OpenMetaverse\OpenMetaverse.csproj", "{3ADC8734-E1FC-49AE-920A-9A960CC98DF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenMetaverse", "OpenMetaverse\OpenMetaverse\OpenMetaverse.csproj", "{3ADC8734-E1FC-49AE-920A-9A960CC98DF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenMetaverseTypes", "..\libopenmetaverse\OpenMetaverse\Types\OpenMetaverseTypes.csproj", "{11CADB86-E721-4778-9FCB-79B92CF1245F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenMetaverseTypes", "OpenMetaverse\OpenMetaverse\Types\OpenMetaverseTypes.csproj", "{11CADB86-E721-4778-9FCB-79B92CF1245F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

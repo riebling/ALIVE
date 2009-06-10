@@ -7,18 +7,25 @@ using OpenMetaverse;
 
 namespace ALIVE
 {
-    //public struct ID : UUID { };
-
     /// <summary>
     /// Used in a helper function to roughly determine prim shape
+    //Unknown = 0,
+    //Box = 1,
+    //Cylinder = 2,
+    //Prism = 3,
+    //Sphere = 4,
+    //Torus = 5,
+    //Tube = 6,
+    //Ring = 7,
+    //Sculpt = 8,
     /// </summary>
     public enum primType : int {
     };
 
     public class Prim
     {
-        public static ulong ID;
-        public static uint LocalID;
+        public ulong ID;
+        public uint LocalID;
         public float X;
         public float Y;
         public primType pType;
@@ -34,11 +41,16 @@ namespace ALIVE
         {
             ID = p.ID.GetULong();
             LocalID = p.LocalID;
+
             X = p.Position.X;
             Y = p.Position.Y;
+            sizeX = p.Scale.X;
+            sizeY = p.Scale.Y;
+            sizeZ = p.Scale.Z;
             movable = (p.Flags | PrimFlags.ObjectMove) != 0;
             pType = (primType) p.Type;
-            // Not sure how to derive this yet
+
+            // Not sure how to do colors
             color = "white";
 
             name = "";
@@ -50,10 +62,7 @@ namespace ALIVE
                     description = p.Properties.Description;
             }
 
-            angle = Avatar.ZrotFromQuaternion(p.Rotation);
-            sizeX = p.Scale.X;
-            sizeY = p.Scale.Y;
-            sizeZ = p.Scale.Z;
+            angle = Bot.ZrotFromQuaternion(p.Rotation);
         }
 
         public string toString()
@@ -65,28 +74,35 @@ namespace ALIVE
 
     };
 
-    public class Avatar
+    public class Bot
     {
+        const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
+        const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
+        const string WORLD_MASTER_NAME = "Juicy Babii";
+        private Dictionary<String, UUID> AvatarNames;
+        private UUID WorldMasterUUID = new UUID(0L);
+
         public string FirstName;
         public string LastName;
         public string Password;
         private Boolean loggedIn = false;
-        const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
-        const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
+
         private GridClient client;
 
         // constructor
-        public Avatar(string fn, string ln, string pw) {
+        public Bot(string fn, string ln, string pw) {
             FirstName = fn;
             LastName = ln;
             Password = pw;
 
+            AvatarNames = new Dictionary<String, UUID>();
             client = new GridClient();
 
             client.Network.OnConnected +=new NetworkManager.ConnectedCallback(Network_OnConnected);
             client.Self.OnChat += new AgentManager.ChatCallback(Self_OnChat);
+            client.Self.OnInstantMessage += new AgentManager.InstantMessageCallback(Self_OnInstantMessage);
 
-            //client.Objects.OnNewAvatar += new ObjectManager.NewAvatarCallback(Self_OnNewAvatar);
+            client.Objects.OnNewAvatar += new ObjectManager.NewAvatarCallback(Self_OnNewAvatar);
             //client.Self.OnMeanCollision += new AgentManager.MeanCollisionCallback(Self_OnMeanCollision);
 
             // Register callback to catch Object properties events
@@ -121,6 +137,8 @@ namespace ALIVE
 
             // This is what seems to have solved the cloud avatar problem
             client.Appearance.SetPreviousAppearance(false);
+
+            //client.Network.CurrentSim.ObjectsAvatars.ForEach(OpenMetaverse.Avatar.AvatarProperties.Equals);
 
             return true;
         }
@@ -183,21 +201,32 @@ namespace ALIVE
         public bool GoTo(int x, int y)
         {
             Vector3 pos = client.Self.SimPosition;
-            client.Self.AutoPilotLocal(x, y, pos.Z);
+            float Z = 0;
+            //int tries = 0;
+            //bool success = false;
+            //while ( !success) {
+            //success = 
+            //    client.Terrain.TerrainHeightAtPoint(client.Network.CurrentSim.Handle, x, y, out Z);
+            //Thread.Sleep(1000);
+            //Console.Out.WriteLine("try: " + tries++ + " " + Z);
+            //}
 
+            //if (!success)
+                Z = client.Self.SimPosition.Z;
+
+            float distance = Vector3.Distance(pos, new Vector3(x, y, Z));
+            client.Self.AutoPilotLocal(x, y, Z);
+
+            // Guess that avatar travels at 3m/sec
+            // wait for them to get there
+            Thread.Sleep(Convert.ToInt32(333 *distance) + 500);
             pos = client.Self.SimPosition;
 
-            // We don't know how long it takes the auto pilot to
-            // complete.  Does it block until completed?
-
             Console.Out.WriteLine("Completed autopilot at: " + pos.X + "," + pos.Y);
-            Vector3 v = client.Self.Velocity;
-            while (v.Length() > 0)
-            {
-                Console.Out.WriteLine("Velocity: " + v.ToString());
-                Thread.Sleep(100);
-            }
-            if ((int)pos.X == x && (int)pos.Y == y)
+            
+            // Need to make these fuzzy
+            float fuzz = 0.8f;
+            if (Math.Abs(pos.X - x) < fuzz &&  Math.Abs(pos.Y - y) < fuzz)
                 return true;
             else
                 return false;
@@ -205,11 +234,11 @@ namespace ALIVE
 
         // Avatar properties
 
-        public void MyCoordinates(out int x, out int y)
+        public void MyCoordinates(out float x, out float y)
         {
             Vector3 pos = client.Self.SimPosition;
-            x = (int)pos.X;
-            y = (int)pos.Y;
+            x = pos.X;
+            y = pos.Y;
         }
 
 
@@ -238,15 +267,7 @@ namespace ALIVE
         // name:        string   prim.Properties.Name
         // description: string   prim.Properties.Description
         // type:        PrimType prim.Type
-        //Unknown = 0,
-        //Box = 1,
-        //Cylinder = 2,
-        //Prism = 3,
-        //Sphere = 4,
-        //Torus = 5,
-        //Tube = 6,
-        //Ring = 7,
-        //Sculpt = 8,
+
         public List<Prim> ObjectsAround(float radius)
         {
             Vector3 location = client.Self.SimPosition;
@@ -262,14 +283,10 @@ namespace ALIVE
             // *** request properties of (only) these objects ***
             bool complete = RequestObjectProperties(prims, 250, true);
 
-            // convert Primitives to ALIVE objects here
-            
-            //string objs = objectsBox.Text + prettyLocation(prim.Position) + "  " + 
-            //    prettySize(prim.Scale) + " " +
-            //    properties.Name + " " + properties.Description + "\r\n";
-
             List<Prim> returnPrims = new List<Prim>();
             foreach (Primitive p in prims) {
+                // convert OpenMetaverse Primitive to ALIVE Prim
+                Console.Out.WriteLine("ID: " + p.ID + " LocalID: " + p.LocalID);
                 returnPrims.Add(new Prim(p));
             }
             return returnPrims;
@@ -292,12 +309,18 @@ namespace ALIVE
 
         // World Master message
         public string GetMessage () 
-        { 
-            return "hello"; 
+        {
+            string temp = imb;
+            imb = "";
+            return temp; 
         }
         
-        public void SayMessage () 
+        public void SayMessage (string message) 
         {
+            ulong id = WorldMasterUUID.GetULong();
+            // Find out UUID of World master by avatar name lookup
+            if (WorldMasterUUID.GetULong() != 0L)
+                client.Self.InstantMessage(WorldMasterUUID, message);
         }
 
         // Chat message
@@ -418,7 +441,30 @@ namespace ALIVE
             System.Console.WriteLine("Successfully connected");
         }
 
+        public void Self_OnInstantMessage(InstantMessage im, Simulator sim)
+        {
+            System.Console.WriteLine("Instant Message: " + im.Message);
+            if (im.Message != "typing")
+            imb = imb + im.FromAgentName + ": " + im.Message + "\r\n";
+        }
+
+        // Keep track of avatar names to find World Master UUID
+        
+        public void Self_OnNewAvatar(Simulator sim, Avatar av, ulong regionHandle, ushort timeDilation)
+        {
+            string avatarName = av.FirstName + " " + av.LastName;
+
+            if (AvatarNames.ContainsKey(avatarName)) 
+                return;
+            AvatarNames.Add(avatarName, av.ID);
+            if (avatarName == WORLD_MASTER_NAME)
+                WorldMasterUUID = av.ID;
+        }
+
+        // Chat buffers
         private static string cb;
+        private static string imb;
+
         public void Self_OnChat(string message, ChatAudibleLevel audible, ChatType type, ChatSourceType sourceType, string fromName, UUID id, UUID ownerid, Vector3 position)
         {
             System.Console.WriteLine("Chat message: " + message);
@@ -435,7 +481,7 @@ namespace ALIVE
             if (sourceType == ChatSourceType.Object) 
                 return;
 
-            cb = cb + "\r\n" + fromName + ": " + message;
+            cb = cb + fromName + ": " + message + "\r\n";
         }
 
 

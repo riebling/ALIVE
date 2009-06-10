@@ -21,14 +21,20 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,11 +55,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libopenmetaverse\OpenMetaverse\OpenMetaverse.csproj">
+    <ProjectReference Include="..\OpenMetaverse\OpenMetaverse\OpenMetaverse.csproj">
       <Project>{3ADC8734-E1FC-49AE-920A-9A960CC98DF3}</Project>
       <Name>OpenMetaverse</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\libopenmetaverse\OpenMetaverse\Types\OpenMetaverseTypes.csproj">
+    <ProjectReference Include="..\OpenMetaverse\OpenMetaverse\Types\OpenMetaverseTypes.csproj">
       <Project>{11CADB86-E721-4778-9FCB-79B92CF1245F}</Project>
       <Name>OpenMetaverseTypes</Name>
     </ProjectReference>
