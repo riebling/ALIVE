@@ -7,28 +7,23 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
-using OpenMetaverse;
+//using OpenMetaverse;
+using ALIVE;
 
-using HttpServer;
+//using HttpServer;
 using System.Net;
-using HttpListener = HttpServer.HttpListener;
+//using HttpListener = HttpServer.HttpListener;
 
 namespace MyBot
 {
 
     public partial class BotControlForm1 : Form
     {
-        private static GridClient client;
         private static bool LoginSuccess = false;
-        private static int chnum = 0;
-        private string msg;
-        private string BotAvatarName = "";
-        private static List<String> AvatarNames = new List<String>();
+        private ALIVE.Bot myAvatar;
 
-        Dictionary<UUID, Primitive> PrimsWaiting = new Dictionary<UUID, Primitive>();
+        //Dictionary<UUID, Primitive> PrimsWaiting = new Dictionary<UUID, Primitive>();
         AutoResetEvent AllPropertiesReceived = new AutoResetEvent(false);
-
-        //int[,] Map;
 
         // The delegate and the funny-looking method solved an annoying problem of
         // not being able to update the ChatBox from another thread – the one that
@@ -51,167 +46,55 @@ namespace MyBot
         public BotControlForm1()
         {
             InitializeComponent();
-            client = new GridClient();
 
-            SendButton.Click += new EventHandler(SendButton_Click);
             QuitButton.Click += new EventHandler(QuitButton_Click);
             MoveButton.Click += new EventHandler(MoveButton_Click);
+
             LookButton.Click += new EventHandler(LookButton_Click);
+            dropobjectbutton.Click += new EventHandler(dropobjectbutton_Click);
+            takeobjectbutton.Click += new EventHandler(takeobjectbutton_Click);
 
-            client.Self.OnMeanCollision += new AgentManager.MeanCollisionCallback(Self_OnMeanCollision);
-            client.Self.OnChat += new AgentManager.ChatCallback(Self_OnChat);
-            client.Objects.OnNewAvatar += new ObjectManager.NewAvatarCallback(Self_OnNewAvatar);
+            turnleftbutton.Click += new EventHandler(turnleftbutton_Click);
+            turnrightbutton.Click += new EventHandler(turnrightbutton_Click);
+            goforwardbutton.Click += new EventHandler(goforwardbutton_Click);
+            gobackwardbutton.Click += new EventHandler(gobackwardbutton_Click);
 
-            // Register callback to catch Object properties events
-            client.Objects.OnObjectProperties += new ObjectManager.ObjectPropertiesCallback(Objects_OnObjectProperties);
+            readchatbutton.Click += new EventHandler(readchatbutton_Click);
+            readmessagebutton.Click += new EventHandler(readmessagebutton_Click);
+            saychatbutton.Click += new EventHandler(saychatbutton_Click);
+            saymessagebutton.Click += new EventHandler(saymessagebutton_Click);
+
+            turntowardbutton.Click += new EventHandler(turntowardbutton_Click);
+            mycoordinatesbutton.Click +=new EventHandler(mycoordinatesbutton_Click);
+            myrotationbutton.Click += new EventHandler(rotationbutton_Click);
+
+            //// Register callback to catch Object properties events
+            //client.Objects.OnObjectProperties += new ObjectManager.ObjectPropertiesCallback(Objects_OnObjectProperties);
 
             //force logout and exit when form is closed
             this.FormClosing += new FormClosingEventHandler(BotControl_FormClosing);
         }
 
+        void turntowardbutton_Click(object sender, EventArgs e)
+        {
+            if (Xbox.Text == "" || Ybox.Text == "") return;
+            myAvatar.TurnTo(Convert.ToInt32(Xbox.Text), Convert.ToInt32(Ybox.Text));
+        }
+
 /////// SUBROUTINES
 
-        // Return a list of prims within radius
-        List<Primitive> lookAroundYou(float radius)
-        {
-            Vector3 location = client.Self.SimPosition;
-            
-            List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
-                delegate(Primitive prim)
-                {
-                    Vector3 pos = prim.Position;
-                    return ((prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < radius));
-                });
-
-            //// Attempt to fill a grid with stuff found
-            //int width = Convert.ToInt32(radius);
-            //int[,] grid = new int[width*2+1,width*2+1];
-
-            //// Save the global for path planning to "see"
-            //Map = grid;
-
-            //for (int i = 0; i < prims.Count; i++)
-            //{
-            //    int gridX = Convert.ToInt32(prims[i].Position.X - location.X + width) - 1;
-            //    int gridY = Convert.ToInt32(prims[i].Position.Y - location.Y + width) - 1;
-            //    grid[gridX, gridY] = -1;
-            //}
-            //for (int i = 0; i < width * 2; i++)
-            //{
-            //    for (int j = 0; j < width * 2; j++)
-            //    {
-            //        if (grid[i, j] != -1)
-            //        {
-            //            Console.Write(".");
-            //            grid[i, j] = 1;
-            //        }
-            //        else Console.Write("*");
-            //    }
-            //    Console.WriteLine();
-            //}
-             //   Console.WriteLine("Prim " + i + prettyLocation(prims[i].Position));
-
-            Logger.Log("Found " + prims.Count + " objects within " + radius + "m", Helpers.LogLevel.Info);
-
-            // *** request properties of (only) these objects ***
-            bool complete = RequestObjectProperties(prims, 250, false);
-
-            return (prims);
-        }
-
-        // Request Object properties
-        // if synchronous == false, the msPerRequest is not needed
-        // and it returns immediately, letting event handlers deal
-        // with the results
-        private bool RequestObjectProperties(List<Primitive> objects, int msPerRequest, bool synchronous)
-        {
-            // Create an array of the local IDs of all the prims we are requesting properties for
-            uint[] localids = new uint[objects.Count];
-
-            lock (PrimsWaiting)
-            {
-                PrimsWaiting.Clear();
-
-                for (int i = 0; i < objects.Count; ++i)
-                {
-                    localids[i] = objects[i].LocalID;
-                    PrimsWaiting.Add(objects[i].ID, objects[i]);
-                }
-            }
-
-            client.Objects.SelectObjects(client.Network.CurrentSim, localids);
-
-            if (synchronous)
-                return AllPropertiesReceived.WaitOne(2000 + msPerRequest * objects.Count, false);
-            else
-                return true;
-        }
-
-
-        // Attempt to wear the inventory item named by the argument itemName
-        // Does not report error on failure
-        void wearNamedItem(string itemName)
-        {
-            //initialize our list to store the folder contents
-            UUID inventoryItems;
-
-            //make a string array to put our folder names in.
-            String[] SearchFolders = { "" };
-
-            //Next we grab a full copy of the entire inventory and get it stored into the Inventory Manager
-            client.Inventory.RequestFolderContents(client.Inventory.Store.RootFolder.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
-
-            //Next we want to step through the directory structure until we get to the item.
-            SearchFolders[0] = "Objects";
-
-            //Now we can grab the details of that folder and store it to our list.
-            inventoryItems = client.Inventory.FindObjectByPath(client.Inventory.Store.RootFolder.UUID, client.Self.AgentID, SearchFolders[0], 1000);
-
-            //now that we have the details of the objects folder, we need to grab the details of our torch.
-            SearchFolders[0] = itemName;
-            inventoryItems = client.Inventory.FindObjectByPath(inventoryItems, client.Self.AgentID, SearchFolders[0], 1000);
-
-            InventoryItem myitem;
-
-            // Convert the LLUUID to an inventory item
-            myitem = client.Inventory.FetchItem(inventoryItems, client.Self.AgentID, 1000);
-
-            //finally we attach the object to it's default position
-            try
-            {
-                // Catch any errors that may occur (not having the "Torch!" item in your inventory for example)
-                client.Appearance.Attach(myitem as InventoryItem, AttachmentPoint.Default);
-            }
-            catch
-            {
-                // Put any code that handles any errors :)
-                System.Console.WriteLine("Error attaching " + itemName);
-            }
-        }
-
-
-        string prettyLocation(Vector3 p)
-        {
-            return ("<" + p.X.ToString("0") + "," +
-                          p.Y.ToString("0") + "," +
-                          p.Z.ToString("0") + ">");
-        }
-
-        string prettySize(Vector3 p) {
-            return(
-            "(" + p.X.ToString("0.0") + ","
-            + p.Y.ToString("0.0") + ","
-            + p.Z.ToString("0.0") + ")"
-            );
-        }
 
         void displayMyLocation()
         {
-            string myLocation = prettyLocation(client.Self.SimPosition);
-            textBoxUpdate(locationBox, myLocation);
+            //string myLocation = prettyLocation(client.Self.SimPosition);
+            float x, y;
+            myAvatar.MyCoordinates(out x, out y);
+            textBoxUpdate(locationBox, "<" + x.ToString("0.0") + "," + y.ToString("0.0") + ">");
         }
 
-
+        // Just for fun: Connect to a Pandora chatbot (ALICE)
+        // uses fromName as a unique ID for Pandora to 'remember'
+        // the conversation thread
         String GetBotAnswer(String inputstring, String fromName)
         {
             const String botID = "f5d922d97e345aa1"; // this is the Loebner prizewinning ALICE chatbot
@@ -284,11 +167,11 @@ namespace MyBot
             msglines = msglines.Replace("&lt;", "<");
             msglines = msglines.Replace("&gt;", ">");
 
-            // Delay 7 seconds
+            // Delay 7 seconds to simulate conversational pause
             Thread.Sleep(7000);
 
             // log and return response
-            Console.WriteLine(msglines);
+            //Console.WriteLine(msglines);
             return msglines;
         }
 
@@ -307,58 +190,41 @@ namespace MyBot
             if (QuitButton.Text == "Login")
             {
 
-                LoginParams loginParams = new LoginParams();
-                loginParams = client.Network.DefaultLoginParams(FNtextBox.Text, LNtextBox.Text, PWtextBox.Text, "My Bot", "Test User");
-                loginParams.FirstName = FNtextBox.Text;
-                loginParams.LastName = LNtextBox.Text;
-                loginParams.Password = PWtextBox.Text;
-                loginParams.Start = URIbox.Text;
-                if (OpenSimCheckbox.Checked)
-                    loginParams.URI = "http://localhost:9000";
-                else
-                    loginParams.URI = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
-                LoginSuccess = client.Network.Login(loginParams);
-
+                myAvatar = new ALIVE.Bot(FNtextBox.Text, LNtextBox.Text, PWtextBox.Text);
+                LoginSuccess = myAvatar.Login();
                 //client.Network.CurrentSim.ObjectsAvatars.ForEach();
                 //client.Network.CurrentSim.ObjectsPrimitives.ForEach();
                 
                 if (LoginSuccess)
                 {
+                    //client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
+
                     QuitButton.Text = "Logout";
                     ChatBox.Visible = true;
                     InputBox.Visible = true;
-                    SendButton.Visible = true;
+                    saychatbutton.Visible = true;
                     PWtextBox.Text = "";
-                    BotAvatarName = FNtextBox.Text + " " + LNtextBox.Text;
-                    //ChatBox.Text = "Chat around " + fname;
-                    displayMyLocation();
-                }
+                    }
                 else
                 {
-                    MessageBox.Show("Din't work! " + client.Network.LoginMessage);
+                    //MessageBox.Show("Din't work! " + client.Network.LoginMessage);
                     return;
                 }
-
-                // This is what seems to have solved the Rez problem
-                client.Appearance.SetPreviousAppearance(false);
-
-                // Object Sensor attachment test
-                //wearNamedItem("Object Sensor 3");
 
                 displayMyLocation();
             }
             else
             {
-                client.Network.Logout();
+                //client.Network.Logout();
+                myAvatar.Logout();
                 QuitButton.Text = "Login";
                 ChatBox.Visible = false;
                 InputBox.Visible = false;
-                SendButton.Visible = false;
+                saychatbutton.Visible = false;
 
                 objectsBox.Text = "";
                 locationBox.Text = "";
-                avatarsBox.Text = "";
-            }
+                }
         }
 
 
@@ -368,145 +234,111 @@ namespace MyBot
             LookButton.Enabled = false;
 
             float radius = Convert.ToInt32(radiusBox.Text);
-            List<Primitive> prims = lookAroundYou(radius);
-
-            Logger.Log("Got " + prims.Count + " objects back", Helpers.LogLevel.Info);
+            //List<Primitive> prims = lookAroundYou(radius);
+            List<Prim> prims = myAvatar.ObjectsAround(10);
+            
+            Console.Out.WriteLine("Got " + prims.Count + " objects back");
 
             // Synchronous object info update
-            //String message ="";
-            //for (int i = 0; i < prims.Count; i++)
-            //    message += prims[i].Properties.Name + " " + prims[i].Position.ToString() + "\r\n";
+            String message ="";
+            for (int i = 0; i < prims.Count; i++)
+                message += prims[i].toString() + "\r\n";
 
-            //textBoxUpdate(objectsBox, message);
+            textBoxUpdate(objectsBox, message);
 
             LookButton.Enabled = true;
         }
 
-
-        void SendButton_Click(object sender, EventArgs e)
+        void MoveButton_Click(object sender, EventArgs e)
         {
-            msg = InputBox.Text;
-            client.Self.Chat(msg, chnum, ChatType.Normal);
+            if (Xbox.Text == "" || Ybox.Text == "") return;
+            Boolean success = myAvatar.GoTo(Convert.ToInt32(Xbox.Text), Convert.ToInt32(Ybox.Text));
+        }
+
+        private void rotationbutton_Click(object Sender, EventArgs e)
+        {
+            float rot = myAvatar.MyOrientation();
+            textBoxUpdate(rotationBox, rot.ToString());
+        }
+
+        private void turnleftbutton_Click(object sender, EventArgs e)
+        {
+            if (turnleftbox.Text == "") return;
+            myAvatar.TurnLeft(Convert.ToInt32(turnleftbox.Text));
+        }
+        private void turnrightbutton_Click(object sender, EventArgs e)
+        {
+            if (turnrightbox.Text == "") return;
+            myAvatar.TurnRight(Convert.ToInt32(turnrightbox.Text));
+        }
+        private void goforwardbutton_Click(object sender, EventArgs e)
+        {
+            if (goforwardbox.Text == "") return;
+            myAvatar.GoForward(Convert.ToInt32(goforwardbox.Text));
+        }
+
+        private void gobackwardbutton_Click(object sender, EventArgs e)
+        {
+            if (gobackwardbox.Text == "") return;
+            myAvatar.GoBackward(Convert.ToInt32(gobackwardbox.Text));
+        }
+
+        private void mycoordinatesbutton_Click(object sender, EventArgs e)
+        {
+            //string myLocation = prettyLocation(client.Self.SimPosition);
+            float x, y;
+            myAvatar.MyCoordinates(out x, out y);
+            textBoxUpdate(locationBox, "<" + x.ToString("0.0") + "," + y.ToString("0.0") + ">");
+
+        }
+
+        private void readchatbutton_Click(object sender, EventArgs e)
+        {
+            chatboxlabel.Text = "chat";
+            textBoxUpdate(ChatBox, myAvatar.GetChat());
+        }
+
+        private void readmessagebutton_Click(object sender, EventArgs e)
+        {
+            chatboxlabel.Text = "message";
+            textBoxUpdate(ChatBox, myAvatar.GetMessage());
+        }
+
+        private void saychatbutton_Click(object sender, EventArgs e)
+        {
+            myAvatar.SayChat(InputBox.Text);
             InputBox.Text = "";
         }
 
-
-        void MoveButton_Click(object sender, EventArgs e)
+        private void saymessagebutton_Click(object sender, EventArgs e)
         {
-            Vector3 pos = client.Self.SimPosition;
-            int goalX = Convert.ToInt32(Xbox.Text);
-            int goalY = Convert.ToInt32(Ybox.Text);
-
-            int x = Convert.ToInt32(pos.X) + goalX;
-            int y = Convert.ToInt32(pos.Y) + goalY;
-            client.Self.AutoPilotLocal(x, y, pos.Z);
-
-            displayMyLocation();
+            myAvatar.SayMessage(InputBox.Text);
+            InputBox.Text = "";
         }
+
+        private void dropobjectbutton_Click(object sender, EventArgs e)
+        {
+            myAvatar.DropObject(Convert.ToUInt32(objectidbox.Text));
+        }
+
+        private void takeobjectbutton_Click(object sender, EventArgs e)
+        {
+            myAvatar.PickupObject(Convert.ToUInt32(objectidbox.Text));
+        }
+
+
 
 
 ////  CALLBACKS
 
-        // Other ways to detect objects/avatars within view radius:
-        //client.Network.CurrentSim.ObjectsAvatars.ForEach();
-        //client.Network.CurrentSim.ObjectsPrimitives.ForEach();
-
-        public void Self_OnNewAvatar(Simulator sim, Avatar av, ulong regionHandle, ushort timeDilation)
-        {
-            string cb;
-            string ncb;
-            cb = avatarsBox.Text;
-            string avatarName = av.FirstName + " " + av.LastName;
-
-            if (AvatarNames.Contains(avatarName)) return;
-            AvatarNames.Add(avatarName);
-
-            Vector3 loc = client.Self.SimPosition;
-            float dist = Vector3.Distance(av.Position, client.Self.SimPosition);
-            if (dist <= 20)
-            {
-                ncb = cb + "\r\n" + dist.ToString("0") + "m" + " " + avatarName;
-                textBoxUpdate(avatarsBox, ncb);
-
-                if (ChatBotCheckbox.Checked && BotAvatarName != avatarName)
-                {
-                    String msg = GetBotAnswer("My name is " + av.FirstName, avatarName);
-                    if (msg != "")
-                    client.Self.Chat(msg, chnum, ChatType.Normal);
-                }
-            }
-        }
-
-        public void Self_OnChat(string message, ChatAudibleLevel audible, ChatType type, ChatSourceType sourceType, string fromName, UUID id, UUID ownerid, Vector3 position)
-        {
-            System.Console.WriteLine("Chat message: " + message);
-            //if (ChatType.OwnerSay == type && sourceType == ChatSourceType.Object)
-            //// scripted object in world talking; we assume object scanner
-            //{
-            //    message = message.Replace("\n", "\r\n");
-            //    textBoxUpdate(objectsBox, message);
-            //    return;
-            //}
-            //else 
-            if (audible != ChatAudibleLevel.Fully || type == ChatType.StartTyping || type == ChatType.StopTyping)
-                return;
-            if (sourceType == ChatSourceType.Object) 
-                return;
-
-            string cb;
-            string ncb;
-            cb = ChatBox.Text;
-            ncb = cb + "\r\n" + fromName + ": " + message;
-            textBoxUpdate(ChatBox, ncb);
-
-            if (ChatBotCheckbox.Checked && fromName != BotAvatarName)
-            {
-                String msg = GetBotAnswer(message, fromName);
-                if (msg != "")
-                {
-                    client.Self.Movement.TurnToward(position);
-                    client.Self.Chat(msg, chnum, ChatType.Normal);
-                }
-            }
-        }
-
-        public void Self_OnMeanCollision(MeanCollisionType type, UUID perp, UUID victim, float magnitude, DateTime time)
-        {
-            MessageBox.Show("Bump! " + type.ToString() + ":" + magnitude);
-        }
-
-        // Callback for ObjectProperties request received
-        void Objects_OnObjectProperties(Simulator simulator, Primitive.ObjectProperties properties)
-        {
-
-            lock (PrimsWaiting)
-            {
-                Primitive prim;
-                if (PrimsWaiting.TryGetValue(properties.ObjectID, out prim))
-                {
-                    prim.Properties = properties;
-
-                    // Dynamically update the objects display
-
-                    string objs = objectsBox.Text + prettyLocation(prim.Position) + "  " + 
-                        prettySize(prim.Scale) + " " +
-                        properties.Name + " " + properties.Description + "\r\n";
-                    textBoxUpdate(objectsBox, objs);
-                }
-                PrimsWaiting.Remove(properties.ObjectID);
-
-                if (PrimsWaiting.Count == 0)
-                    AllPropertiesReceived.Set();
-            }
-        }
-
-
         private void BotControl_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            if (client != null && client.Network.Connected) client.Network.Logout();
+            if (myAvatar != null)
+                myAvatar.Logout();
             Environment.Exit(0);
         }
+
 
     }
 }

@@ -30,7 +30,7 @@
         {
             this.ChatBox = new System.Windows.Forms.TextBox();
             this.InputBox = new System.Windows.Forms.TextBox();
-            this.SendButton = new System.Windows.Forms.Button();
+            this.saychatbutton = new System.Windows.Forms.Button();
             this.FNtextBox = new System.Windows.Forms.TextBox();
             this.PWtextBox = new System.Windows.Forms.TextBox();
             this.LNtextBox = new System.Windows.Forms.TextBox();
@@ -43,22 +43,39 @@
             this.MoveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.chatboxlabel = new System.Windows.Forms.Label();
             this.objectsBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.avatarsBox = new System.Windows.Forms.TextBox();
             this.OpenSimCheckbox = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.LookButton = new System.Windows.Forms.Button();
-            this.radiusBox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.locationBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.URIbox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.ChatBotCheckbox = new System.Windows.Forms.CheckBox();
+            this.turnleftbutton = new System.Windows.Forms.Button();
+            this.turnleftbox = new System.Windows.Forms.TextBox();
+            this.turnrightbutton = new System.Windows.Forms.Button();
+            this.turnrightbox = new System.Windows.Forms.TextBox();
+            this.mycoordinatesbutton = new System.Windows.Forms.Button();
+            this.readchatbutton = new System.Windows.Forms.Button();
+            this.goforwardbutton = new System.Windows.Forms.Button();
+            this.goforwardbox = new System.Windows.Forms.TextBox();
+            this.gobackwardbox = new System.Windows.Forms.TextBox();
+            this.gobackwardbutton = new System.Windows.Forms.Button();
+            this.turntowardbutton = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radiusBox = new System.Windows.Forms.TextBox();
+            this.LookButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.myrotationbutton = new System.Windows.Forms.Button();
+            this.rotationBox = new System.Windows.Forms.TextBox();
+            this.readmessagebutton = new System.Windows.Forms.Button();
+            this.saymessagebutton = new System.Windows.Forms.Button();
+            this.objectidbox = new System.Windows.Forms.TextBox();
+            this.dropobjectbutton = new System.Windows.Forms.Button();
+            this.takeobjectbutton = new System.Windows.Forms.Button();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ChatBox
@@ -70,7 +87,7 @@
             this.ChatBox.Multiline = true;
             this.ChatBox.Name = "ChatBox";
             this.ChatBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ChatBox.Size = new System.Drawing.Size(260, 138);
+            this.ChatBox.Size = new System.Drawing.Size(470, 138);
             this.ChatBox.TabIndex = 0;
             // 
             // InputBox
@@ -80,19 +97,19 @@
             this.InputBox.Location = new System.Drawing.Point(15, 174);
             this.InputBox.MinimumSize = new System.Drawing.Size(227, 20);
             this.InputBox.Name = "InputBox";
-            this.InputBox.Size = new System.Drawing.Size(227, 20);
+            this.InputBox.Size = new System.Drawing.Size(295, 20);
             this.InputBox.TabIndex = 1;
             // 
-            // SendButton
+            // saychatbutton
             // 
-            this.SendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SendButton.Location = new System.Drawing.Point(248, 172);
-            this.SendButton.MinimumSize = new System.Drawing.Size(75, 23);
-            this.SendButton.Name = "SendButton";
-            this.SendButton.Size = new System.Drawing.Size(75, 23);
-            this.SendButton.TabIndex = 2;
-            this.SendButton.Text = "Send";
-            this.SendButton.UseVisualStyleBackColor = true;
+            this.saychatbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saychatbutton.Location = new System.Drawing.Point(235, 216);
+            this.saychatbutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.saychatbutton.Name = "saychatbutton";
+            this.saychatbutton.Size = new System.Drawing.Size(75, 23);
+            this.saychatbutton.TabIndex = 2;
+            this.saychatbutton.Text = "SayChat";
+            this.saychatbutton.UseVisualStyleBackColor = true;
             // 
             // FNtextBox
             // 
@@ -102,6 +119,7 @@
             this.FNtextBox.Name = "FNtextBox";
             this.FNtextBox.Size = new System.Drawing.Size(100, 20);
             this.FNtextBox.TabIndex = 3;
+            this.FNtextBox.Text = "test";
             // 
             // PWtextBox
             // 
@@ -112,6 +130,7 @@
             this.PWtextBox.PasswordChar = '*';
             this.PWtextBox.Size = new System.Drawing.Size(100, 20);
             this.PWtextBox.TabIndex = 5;
+            this.PWtextBox.Text = "test";
             this.PWtextBox.UseSystemPasswordChar = true;
             // 
             // LNtextBox
@@ -122,6 +141,7 @@
             this.LNtextBox.Name = "LNtextBox";
             this.LNtextBox.Size = new System.Drawing.Size(100, 20);
             this.LNtextBox.TabIndex = 4;
+            this.LNtextBox.Text = "user";
             // 
             // QuitButton
             // 
@@ -171,7 +191,7 @@
             // 
             // Xbox
             // 
-            this.Xbox.Location = new System.Drawing.Point(140, 226);
+            this.Xbox.Location = new System.Drawing.Point(45, 12);
             this.Xbox.MinimumSize = new System.Drawing.Size(37, 20);
             this.Xbox.Name = "Xbox";
             this.Xbox.Size = new System.Drawing.Size(37, 20);
@@ -180,7 +200,7 @@
             // 
             // Ybox
             // 
-            this.Ybox.Location = new System.Drawing.Point(203, 226);
+            this.Ybox.Location = new System.Drawing.Point(235, 311);
             this.Ybox.MinimumSize = new System.Drawing.Size(37, 20);
             this.Ybox.Name = "Ybox";
             this.Ybox.Size = new System.Drawing.Size(37, 20);
@@ -189,19 +209,19 @@
             // 
             // MoveButton
             // 
-            this.MoveButton.Location = new System.Drawing.Point(248, 224);
+            this.MoveButton.Location = new System.Drawing.Point(134, 337);
             this.MoveButton.MinimumSize = new System.Drawing.Size(75, 23);
             this.MoveButton.Name = "MoveButton";
             this.MoveButton.Size = new System.Drawing.Size(75, 23);
             this.MoveButton.TabIndex = 10;
-            this.MoveButton.Text = "Move";
+            this.MoveButton.Text = "GoTo";
             this.MoveButton.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.CausesValidation = false;
-            this.label4.Location = new System.Drawing.Point(120, 229);
+            this.label4.Location = new System.Drawing.Point(152, 314);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(14, 13);
             this.label4.TabIndex = 11;
@@ -211,38 +231,27 @@
             // 
             this.label5.AutoSize = true;
             this.label5.CausesValidation = false;
-            this.label5.Location = new System.Drawing.Point(183, 229);
+            this.label5.Location = new System.Drawing.Point(215, 314);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(14, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "Y";
             // 
-            // label6
+            // chatboxlabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.CausesValidation = false;
-            this.label6.Location = new System.Drawing.Point(12, 5);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(28, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "chat";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.CausesValidation = false;
-            this.label7.Location = new System.Drawing.Point(12, 272);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "objects within radius";
+            this.chatboxlabel.AutoSize = true;
+            this.chatboxlabel.CausesValidation = false;
+            this.chatboxlabel.Location = new System.Drawing.Point(12, 5);
+            this.chatboxlabel.Name = "chatboxlabel";
+            this.chatboxlabel.Size = new System.Drawing.Size(28, 13);
+            this.chatboxlabel.TabIndex = 13;
+            this.chatboxlabel.Text = "chat";
             // 
             // objectsBox
             // 
-            this.objectsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
+            this.objectsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.objectsBox.Location = new System.Drawing.Point(12, 301);
+            this.objectsBox.Location = new System.Drawing.Point(12, 374);
             this.objectsBox.MinimumSize = new System.Drawing.Size(473, 258);
             this.objectsBox.Multiline = true;
             this.objectsBox.Name = "objectsBox";
@@ -250,32 +259,12 @@
             this.objectsBox.Size = new System.Drawing.Size(473, 258);
             this.objectsBox.TabIndex = 14;
             // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.CausesValidation = false;
-            this.label8.Location = new System.Drawing.Point(278, 5);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(95, 13);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "avatars within 20m";
-            // 
-            // avatarsBox
-            // 
-            this.avatarsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.avatarsBox.Location = new System.Drawing.Point(281, 21);
-            this.avatarsBox.MinimumSize = new System.Drawing.Size(204, 138);
-            this.avatarsBox.Multiline = true;
-            this.avatarsBox.Name = "avatarsBox";
-            this.avatarsBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.avatarsBox.Size = new System.Drawing.Size(204, 138);
-            this.avatarsBox.TabIndex = 16;
-            // 
             // OpenSimCheckbox
             // 
             this.OpenSimCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpenSimCheckbox.AutoSize = true;
+            this.OpenSimCheckbox.Checked = true;
+            this.OpenSimCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.OpenSimCheckbox.Location = new System.Drawing.Point(388, 278);
             this.OpenSimCheckbox.Name = "OpenSimCheckbox";
             this.OpenSimCheckbox.Size = new System.Drawing.Size(15, 14);
@@ -294,38 +283,9 @@
             this.label9.TabIndex = 19;
             this.label9.Text = "OpenSim";
             // 
-            // LookButton
-            // 
-            this.LookButton.Location = new System.Drawing.Point(140, 267);
-            this.LookButton.Name = "LookButton";
-            this.LookButton.Size = new System.Drawing.Size(75, 23);
-            this.LookButton.TabIndex = 20;
-            this.LookButton.Text = "Look";
-            this.LookButton.UseVisualStyleBackColor = true;
-            // 
-            // radiusBox
-            // 
-            this.radiusBox.Location = new System.Drawing.Point(113, 269);
-            this.radiusBox.Name = "radiusBox";
-            this.radiusBox.Size = new System.Drawing.Size(21, 20);
-            this.radiusBox.TabIndex = 21;
-            this.radiusBox.Text = "10";
-            this.radiusBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.CausesValidation = false;
-            this.label10.Location = new System.Drawing.Point(45, 210);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(44, 13);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "location";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // locationBox
             // 
-            this.locationBox.Location = new System.Drawing.Point(15, 226);
+            this.locationBox.Location = new System.Drawing.Point(12, 205);
             this.locationBox.MinimumSize = new System.Drawing.Size(100, 20);
             this.locationBox.Name = "locationBox";
             this.locationBox.ReadOnly = true;
@@ -370,7 +330,7 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.CausesValidation = false;
-            this.label12.Location = new System.Drawing.Point(255, 200);
+            this.label12.Location = new System.Drawing.Point(330, 298);
             this.label12.MinimumSize = new System.Drawing.Size(52, 13);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 13);
@@ -381,38 +341,265 @@
             // 
             this.ChatBotCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ChatBotCheckbox.AutoSize = true;
-            this.ChatBotCheckbox.Checked = true;
-            this.ChatBotCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChatBotCheckbox.Location = new System.Drawing.Point(303, 200);
+            this.ChatBotCheckbox.Location = new System.Drawing.Point(378, 298);
             this.ChatBotCheckbox.Name = "ChatBotCheckbox";
             this.ChatBotCheckbox.Size = new System.Drawing.Size(15, 14);
             this.ChatBotCheckbox.TabIndex = 27;
             this.ChatBotCheckbox.UseVisualStyleBackColor = true;
             // 
+            // turnleftbutton
+            // 
+            this.turnleftbutton.Location = new System.Drawing.Point(46, 303);
+            this.turnleftbutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.turnleftbutton.Name = "turnleftbutton";
+            this.turnleftbutton.Size = new System.Drawing.Size(75, 23);
+            this.turnleftbutton.TabIndex = 30;
+            this.turnleftbutton.Text = "Turn Left";
+            this.turnleftbutton.UseVisualStyleBackColor = true;
+            // 
+            // turnleftbox
+            // 
+            this.turnleftbox.Location = new System.Drawing.Point(12, 307);
+            this.turnleftbox.MinimumSize = new System.Drawing.Size(37, 20);
+            this.turnleftbox.Name = "turnleftbox";
+            this.turnleftbox.Size = new System.Drawing.Size(37, 20);
+            this.turnleftbox.TabIndex = 29;
+            this.turnleftbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // turnrightbutton
+            // 
+            this.turnrightbutton.Location = new System.Drawing.Point(46, 332);
+            this.turnrightbutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.turnrightbutton.Name = "turnrightbutton";
+            this.turnrightbutton.Size = new System.Drawing.Size(75, 23);
+            this.turnrightbutton.TabIndex = 32;
+            this.turnrightbutton.Text = "Turn Right";
+            this.turnrightbutton.UseVisualStyleBackColor = true;
+            // 
+            // turnrightbox
+            // 
+            this.turnrightbox.Location = new System.Drawing.Point(12, 335);
+            this.turnrightbox.MinimumSize = new System.Drawing.Size(37, 20);
+            this.turnrightbox.Name = "turnrightbox";
+            this.turnrightbox.Size = new System.Drawing.Size(37, 20);
+            this.turnrightbox.TabIndex = 31;
+            this.turnrightbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // mycoordinatesbutton
+            // 
+            this.mycoordinatesbutton.Location = new System.Drawing.Point(12, 225);
+            this.mycoordinatesbutton.Name = "mycoordinatesbutton";
+            this.mycoordinatesbutton.Size = new System.Drawing.Size(99, 23);
+            this.mycoordinatesbutton.TabIndex = 33;
+            this.mycoordinatesbutton.Text = "MyCoordinates";
+            this.mycoordinatesbutton.UseVisualStyleBackColor = true;
+            // 
+            // readchatbutton
+            // 
+            this.readchatbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.readchatbutton.Location = new System.Drawing.Point(235, 194);
+            this.readchatbutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.readchatbutton.Name = "readchatbutton";
+            this.readchatbutton.Size = new System.Drawing.Size(75, 23);
+            this.readchatbutton.TabIndex = 34;
+            this.readchatbutton.Text = "ReadChat";
+            this.readchatbutton.UseVisualStyleBackColor = true;
+            // 
+            // goforwardbutton
+            // 
+            this.goforwardbutton.Location = new System.Drawing.Point(136, 269);
+            this.goforwardbutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.goforwardbutton.Name = "goforwardbutton";
+            this.goforwardbutton.Size = new System.Drawing.Size(75, 23);
+            this.goforwardbutton.TabIndex = 35;
+            this.goforwardbutton.Text = "Go Forward";
+            this.goforwardbutton.UseVisualStyleBackColor = true;
+            // 
+            // goforwardbox
+            // 
+            this.goforwardbox.Location = new System.Drawing.Point(159, 249);
+            this.goforwardbox.MinimumSize = new System.Drawing.Size(37, 20);
+            this.goforwardbox.Name = "goforwardbox";
+            this.goforwardbox.Size = new System.Drawing.Size(37, 20);
+            this.goforwardbox.TabIndex = 36;
+            this.goforwardbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // gobackwardbox
+            // 
+            this.gobackwardbox.Location = new System.Drawing.Point(248, 249);
+            this.gobackwardbox.MinimumSize = new System.Drawing.Size(37, 20);
+            this.gobackwardbox.Name = "gobackwardbox";
+            this.gobackwardbox.Size = new System.Drawing.Size(37, 20);
+            this.gobackwardbox.TabIndex = 38;
+            this.gobackwardbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // gobackwardbutton
+            // 
+            this.gobackwardbutton.Location = new System.Drawing.Point(217, 269);
+            this.gobackwardbutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.gobackwardbutton.Name = "gobackwardbutton";
+            this.gobackwardbutton.Size = new System.Drawing.Size(90, 23);
+            this.gobackwardbutton.TabIndex = 37;
+            this.gobackwardbutton.Text = "Go Backward";
+            this.gobackwardbutton.UseVisualStyleBackColor = true;
+            // 
+            // turntowardbutton
+            // 
+            this.turntowardbutton.Location = new System.Drawing.Point(208, 337);
+            this.turntowardbutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.turntowardbutton.Name = "turntowardbutton";
+            this.turntowardbutton.Size = new System.Drawing.Size(75, 23);
+            this.turntowardbutton.TabIndex = 39;
+            this.turntowardbutton.Text = "TurnToward";
+            this.turntowardbutton.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.Xbox);
+            this.groupBox2.Location = new System.Drawing.Point(127, 299);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(170, 61);
+            this.groupBox2.TabIndex = 40;
+            this.groupBox2.TabStop = false;
+            // 
+            // radiusBox
+            // 
+            this.radiusBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radiusBox.Location = new System.Drawing.Point(467, 296);
+            this.radiusBox.Name = "radiusBox";
+            this.radiusBox.Size = new System.Drawing.Size(21, 20);
+            this.radiusBox.TabIndex = 43;
+            this.radiusBox.Text = "10";
+            this.radiusBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // LookButton
+            // 
+            this.LookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LookButton.Location = new System.Drawing.Point(402, 345);
+            this.LookButton.Name = "LookButton";
+            this.LookButton.Size = new System.Drawing.Size(87, 23);
+            this.LookButton.TabIndex = 42;
+            this.LookButton.Text = "ObjectsAround";
+            this.LookButton.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.CausesValidation = false;
+            this.label7.Location = new System.Drawing.Point(399, 299);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 13);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "object radius";
+            // 
+            // myrotationbutton
+            // 
+            this.myrotationbutton.Location = new System.Drawing.Point(12, 272);
+            this.myrotationbutton.Name = "myrotationbutton";
+            this.myrotationbutton.Size = new System.Drawing.Size(99, 23);
+            this.myrotationbutton.TabIndex = 46;
+            this.myrotationbutton.Text = "MyRotation";
+            this.myrotationbutton.UseVisualStyleBackColor = true;
+            // 
+            // rotationBox
+            // 
+            this.rotationBox.Location = new System.Drawing.Point(12, 252);
+            this.rotationBox.MinimumSize = new System.Drawing.Size(100, 20);
+            this.rotationBox.Name = "rotationBox";
+            this.rotationBox.ReadOnly = true;
+            this.rotationBox.Size = new System.Drawing.Size(100, 20);
+            this.rotationBox.TabIndex = 45;
+            this.rotationBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // readmessagebutton
+            // 
+            this.readmessagebutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.readmessagebutton.Location = new System.Drawing.Point(139, 194);
+            this.readmessagebutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.readmessagebutton.Name = "readmessagebutton";
+            this.readmessagebutton.Size = new System.Drawing.Size(90, 23);
+            this.readmessagebutton.TabIndex = 48;
+            this.readmessagebutton.Text = "ReadMessage";
+            this.readmessagebutton.UseVisualStyleBackColor = true;
+            // 
+            // saymessagebutton
+            // 
+            this.saymessagebutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saymessagebutton.Location = new System.Drawing.Point(139, 216);
+            this.saymessagebutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.saymessagebutton.Name = "saymessagebutton";
+            this.saymessagebutton.Size = new System.Drawing.Size(90, 23);
+            this.saymessagebutton.TabIndex = 47;
+            this.saymessagebutton.Text = "SayMessage";
+            this.saymessagebutton.UseVisualStyleBackColor = true;
+            // 
+            // objectidbox
+            // 
+            this.objectidbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.objectidbox.Location = new System.Drawing.Point(316, 314);
+            this.objectidbox.Name = "objectidbox";
+            this.objectidbox.Size = new System.Drawing.Size(172, 20);
+            this.objectidbox.TabIndex = 49;
+            // 
+            // dropobjectbutton
+            // 
+            this.dropobjectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dropobjectbutton.Location = new System.Drawing.Point(306, 332);
+            this.dropobjectbutton.Name = "dropobjectbutton";
+            this.dropobjectbutton.Size = new System.Drawing.Size(87, 23);
+            this.dropobjectbutton.TabIndex = 50;
+            this.dropobjectbutton.Text = "DropObject";
+            this.dropobjectbutton.UseVisualStyleBackColor = true;
+            // 
+            // takeobjectbutton
+            // 
+            this.takeobjectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.takeobjectbutton.Location = new System.Drawing.Point(306, 354);
+            this.takeobjectbutton.Name = "takeobjectbutton";
+            this.takeobjectbutton.Size = new System.Drawing.Size(87, 23);
+            this.takeobjectbutton.TabIndex = 51;
+            this.takeobjectbutton.Text = "TakeObject";
+            this.takeobjectbutton.UseVisualStyleBackColor = true;
+            // 
             // BotControlForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 571);
+            this.ClientSize = new System.Drawing.Size(497, 644);
+            this.Controls.Add(this.takeobjectbutton);
+            this.Controls.Add(this.dropobjectbutton);
+            this.Controls.Add(this.objectidbox);
+            this.Controls.Add(this.readmessagebutton);
+            this.Controls.Add(this.saymessagebutton);
+            this.Controls.Add(this.myrotationbutton);
+            this.Controls.Add(this.rotationBox);
+            this.Controls.Add(this.radiusBox);
+            this.Controls.Add(this.LookButton);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.turntowardbutton);
+            this.Controls.Add(this.gobackwardbox);
+            this.Controls.Add(this.gobackwardbutton);
+            this.Controls.Add(this.goforwardbox);
+            this.Controls.Add(this.goforwardbutton);
+            this.Controls.Add(this.readchatbutton);
+            this.Controls.Add(this.mycoordinatesbutton);
+            this.Controls.Add(this.turnrightbutton);
+            this.Controls.Add(this.turnrightbox);
+            this.Controls.Add(this.turnleftbutton);
+            this.Controls.Add(this.turnleftbox);
             this.Controls.Add(this.ChatBotCheckbox);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.URIbox);
             this.Controls.Add(this.locationBox);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.radiusBox);
-            this.Controls.Add(this.LookButton);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.OpenSimCheckbox);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.avatarsBox);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.objectsBox);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.chatboxlabel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.MoveButton);
             this.Controls.Add(this.Ybox);
-            this.Controls.Add(this.Xbox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -420,14 +607,17 @@
             this.Controls.Add(this.LNtextBox);
             this.Controls.Add(this.PWtextBox);
             this.Controls.Add(this.FNtextBox);
-            this.Controls.Add(this.SendButton);
+            this.Controls.Add(this.saychatbutton);
             this.Controls.Add(this.InputBox);
             this.Controls.Add(this.ChatBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label12);
+            this.Controls.Add(this.groupBox2);
             this.MinimumSize = new System.Drawing.Size(505, 605);
             this.Name = "BotControlForm1";
             this.Text = "BotControlForm1";
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,7 +627,7 @@
 
         private System.Windows.Forms.TextBox ChatBox;
         private System.Windows.Forms.TextBox InputBox;
-        private System.Windows.Forms.Button SendButton;
+        private System.Windows.Forms.Button saychatbutton;
         private System.Windows.Forms.TextBox FNtextBox;
         private System.Windows.Forms.TextBox PWtextBox;
         private System.Windows.Forms.TextBox LNtextBox;
@@ -450,21 +640,37 @@
         private System.Windows.Forms.Button MoveButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label chatboxlabel;
         private System.Windows.Forms.TextBox objectsBox;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox avatarsBox;
         private System.Windows.Forms.CheckBox OpenSimCheckbox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button LookButton;
-        private System.Windows.Forms.TextBox radiusBox;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox locationBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox URIbox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox ChatBotCheckbox;
+        private System.Windows.Forms.Button turnleftbutton;
+        private System.Windows.Forms.TextBox turnleftbox;
+        private System.Windows.Forms.Button turnrightbutton;
+        private System.Windows.Forms.TextBox turnrightbox;
+        private System.Windows.Forms.Button mycoordinatesbutton;
+        private System.Windows.Forms.Button readchatbutton;
+        private System.Windows.Forms.Button goforwardbutton;
+        private System.Windows.Forms.TextBox goforwardbox;
+        private System.Windows.Forms.TextBox gobackwardbox;
+        private System.Windows.Forms.Button gobackwardbutton;
+        private System.Windows.Forms.Button turntowardbutton;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox radiusBox;
+        private System.Windows.Forms.Button LookButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button myrotationbutton;
+        private System.Windows.Forms.TextBox rotationBox;
+        private System.Windows.Forms.Button readmessagebutton;
+        private System.Windows.Forms.Button saymessagebutton;
+        private System.Windows.Forms.TextBox objectidbox;
+        private System.Windows.Forms.Button dropobjectbutton;
+        private System.Windows.Forms.Button takeobjectbutton;
     }
 }
