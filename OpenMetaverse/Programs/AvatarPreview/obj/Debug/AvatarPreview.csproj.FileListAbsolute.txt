@@ -1,0 +1,8 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\AvatarPreview.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\AvatarPreview.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Debug\AvatarPreview.frmAvatar.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Debug\AvatarPreview.Properties.Resources.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Debug\AvatarPreview.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Debug\AvatarPreview.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Debug\AvatarPreview.pdb

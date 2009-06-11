@@ -1,0 +1,6 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.Tests.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.Tests\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.Tests\obj\Release\OpenMetaverse.Tests.dll
+D:\Projects\libopenmetaverse\OpenMetaverse.Tests\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\bin\OpenMetaverse.Tests.dll
+D:\Projects\libopenmetaverse\OpenMetaverse.Tests\obj\Release\OpenMetaverse.Tests.dll

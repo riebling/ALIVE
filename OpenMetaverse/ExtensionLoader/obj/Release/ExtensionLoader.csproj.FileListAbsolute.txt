@@ -1,0 +1,3 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\ExtensionLoader.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\ExtensionLoader\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\ExtensionLoader\obj\Release\ExtensionLoader.dll

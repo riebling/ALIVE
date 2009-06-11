@@ -1,0 +1,14 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\PrimWorkshop.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.frmBrowser.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.Render.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.Properties.Resources.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.exe
+D:\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.frmBrowser.resources
+D:\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.Render.resources
+D:\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.Properties.Resources.resources
+D:\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.csproj.GenerateResource.Cache
+D:\Projects\libopenmetaverse\bin\PrimWorkshop.exe
+D:\Projects\libopenmetaverse\Programs\PrimWorkshop\obj\Release\PrimWorkshop.exe

@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<project name="Simian" default="build">
+	  <target name="build">
+		  <echo message="Build Directory is ${build.dir}" />
+		  <mkdir dir="${build.dir}" />
+		  <copy todir="${build.dir}" flatten="true">
+			  <fileset basedir="${project::get-base-directory()}">
+			  </fileset>
+		  </copy>
+		  <copy todir="${build.dir}">
+			  <fileset basedir=".">
+			  </fileset>
+		  </copy>
+		  <csc target="exe" debug="${build.debug}" unsafe="True" warnaserror="False" define="TRACE;DEBUG" nostdlib="False" main="" output="${build.dir}/${project::get-name()}.exe">
+			  <resources prefix="Simian" dynamicprefix="true" >
+			  </resources>
+			  <sources failonempty="true">
+				  <include name="Agent.cs" />
+				  <include name="AnimationSet.cs" />
+				  <include name="EventDictionary.cs" />
+				  <include name="InventoryDefinitions.cs" />
+				  <include name="Main.cs" />
+				  <include name="NotecardCache.cs" />
+				  <include name="Options.cs" />
+				  <include name="ScriptTypes.cs" />
+				  <include name="Simian.cs" />
+				  <include name="SimulationObject.cs" />
+				  <include name="Extensions/AccountManager.cs" />
+				  <include name="Extensions/AssetManager.cs" />
+				  <include name="Extensions/AuthFreeForAll.cs" />
+				  <include name="Extensions/AvatarManager.cs" />
+				  <include name="Extensions/CapsManager.cs" />
+				  <include name="Extensions/ConnectionManagement.cs" />
+				  <include name="Extensions/FriendManager.cs" />
+				  <include name="Extensions/ImageDelivery.cs" />
+				  <include name="Extensions/InventoryManager.cs" />
+				  <include name="Extensions/LindenLogin.cs" />
+				  <include name="Extensions/MapLocal.cs" />
+				  <include name="Extensions/Messaging.cs" />
+				  <include name="Extensions/MessagingLocal.cs" />
+				  <include name="Extensions/Money.cs" />
+				  <include name="Extensions/Movement.cs" />
+				  <include name="Extensions/ObjectManager.cs" />
+				  <include name="Extensions/ParcelManager.cs" />
+				  <include name="Extensions/Periscope.cs" />
+				  <include name="Extensions/PeriscopeImageDelivery.cs" />
+				  <include name="Extensions/PeriscopeMovement.cs" />
+				  <include name="Extensions/PeriscopeTransferManager.cs" />
+				  <include name="Extensions/PermissionsFreeForAll.cs" />
+				  <include name="Extensions/PhysicsSimple.cs" />
+				  <include name="Extensions/RenderingPluginMesher.cs" />
+				  <include name="Extensions/SceneManager.cs" />
+				  <include name="Extensions/ScriptApi.cs" />
+				  <include name="Extensions/ScriptConsole.cs" />
+				  <include name="Extensions/TaskInventoryManager.cs" />
+				  <include name="Extensions/TransferManager.cs" />
+				  <include name="Extensions/UDPManager.cs" />
+				  <include name="Extensions/XMLPersistence.cs" />
+				  <include name="Extensions/XScriptEngine.cs" />
+				  <include name="Interfaces/IAccountProvider.cs" />
+				  <include name="Interfaces/IAssetProvider.cs" />
+				  <include name="Interfaces/IAuthenticationProvider.cs" />
+				  <include name="Interfaces/IAvatarProvider.cs" />
+				  <include name="Interfaces/ICapabilitiesProvider.cs" />
+				  <include name="Interfaces/IInventoryProvider.cs" />
+				  <include name="Interfaces/IMeshingProvider.cs" />
+				  <include name="Interfaces/IMessagingProvider.cs" />
+				  <include name="Interfaces/IParcelProvider.cs" />
+				  <include name="Interfaces/IPermissionsProvider.cs" />
+				  <include name="Interfaces/IPersistable.cs" />
+				  <include name="Interfaces/IPersistenceProvider.cs" />
+				  <include name="Interfaces/IPhysicsProvider.cs" />
+				  <include name="Interfaces/ISceneProvider.cs" />
+				  <include name="Interfaces/IScriptApi.cs" />
+				  <include name="Interfaces/IScriptEngine.cs" />
+				  <include name="Interfaces/ITaskInventoryProvider.cs" />
+				  <include name="Interfaces/IUDPProvider.cs" />
+			  </sources>
+			  <references basedir="${project::get-base-directory()}">
+				  <lib>
+					  <include name="${project::get-base-directory()}" />
+					  <include name="${build.dir}" />
+				  </lib>
+				  <include name="System.dll" />
+				  <include name="System.Drawing.dll" />
+				  <include name="System.Xml.dll" />
+				  <include name="${build.dir}/ExtensionLoader.dll" />
+				  <include name="${build.dir}/HttpServer.dll" />
+				  <include name="${build.dir}/OpenMetaverse.dll" />
+				  <include name="${build.dir}/OpenMetaverseTypes.dll" />
+				  <include name="${build.dir}/OpenMetaverse.StructuredData.dll" />
+				  <include name="${build.dir}/OpenMetaverse.Http.dll" />
+			  </references>
+		  </csc>
+	  </target>
+	  <target name="clean">
+		  <delete dir="${bin.dir}" failonerror="false" />
+		  <delete dir="${obj.dir}" failonerror="false" />
+	  </target>
+	  <target name="doc" description="Creates documentation.">
+	  </target>
+</project>

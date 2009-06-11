@@ -1,0 +1,6 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\HttpServer.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\HttpServer\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\HttpServer\obj\Release\HttpServer.dll
+D:\Projects\libopenmetaverse\bin\HttpServer.dll
+D:\Projects\libopenmetaverse\HttpServer\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\HttpServer\obj\Release\HttpServer.dll

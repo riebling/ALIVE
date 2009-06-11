@@ -1,0 +1,8 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.Http.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.Http.XML
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.Http\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.Http\obj\Release\OpenMetaverse.Http.dll
+D:\Projects\libopenmetaverse\bin\OpenMetaverse.Http.dll
+D:\Projects\libopenmetaverse\bin\OpenMetaverse.Http.XML
+D:\Projects\libopenmetaverse\OpenMetaverse.Http\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\OpenMetaverse.Http\obj\Release\OpenMetaverse.Http.dll

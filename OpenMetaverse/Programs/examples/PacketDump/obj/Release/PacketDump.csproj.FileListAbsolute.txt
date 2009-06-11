@@ -1,0 +1,6 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\PacketDump.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\PacketDump\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\PacketDump\obj\Release\PacketDump.exe
+D:\Projects\libopenmetaverse\Programs\examples\PacketDump\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\bin\PacketDump.exe
+D:\Projects\libopenmetaverse\Programs\examples\PacketDump\obj\Release\PacketDump.exe

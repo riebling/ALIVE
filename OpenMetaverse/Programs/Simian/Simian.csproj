@@ -1,0 +1,295 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1F2CB20A-C061-4EAB-A96A-38F3B27544A6}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon></ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Simian</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder></AppDesignerFolder>
+    <RootNamespace>Simian</RootNamespace>
+    <StartupObject></StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DocumentationFile></DocumentationFile>
+    <DebugSymbols>True</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>False</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>False</NoStdLib>
+    <NoWarn>1591,1574,0419,0618</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile></DocumentationFile>
+    <DebugSymbols>False</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>True</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>False</NoStdLib>
+    <NoWarn>1591,1574,0419,0618</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+        <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+        <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+        <Name>System.Xml</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ExtensionLoader\ExtensionLoader.csproj">
+      <Name>ExtensionLoader</Name>
+      <Project>{F0CCD62E-8055-4419-8171-F2C5FD7C8B6D}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\HttpServer\HttpServer.csproj">
+      <Name>HttpServer</Name>
+      <Project>{455E7D70-1C85-4D7F-9F01-DC801B8B8C34}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenMetaverse\OpenMetaverse.csproj">
+      <Name>OpenMetaverse</Name>
+      <Project>{339554D7-0ACC-4BD7-AFB2-4E6713A4C5CE}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenMetaverse\Types\OpenMetaverseTypes.csproj">
+      <Name>OpenMetaverseTypes</Name>
+      <Project>{05073FA0-1BAC-4736-945F-B9B42E232F03}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenMetaverse.StructuredData\OpenMetaverse.StructuredData.csproj">
+      <Name>OpenMetaverse.StructuredData</Name>
+      <Project>{18D7BEE2-29FF-4992-8532-B5639AB97CCD}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenMetaverse.Http\OpenMetaverse.Http.csproj">
+      <Name>OpenMetaverse.Http</Name>
+      <Project>{13B40AE0-6307-4859-B4F9-E93249B70E8E}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Agent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AnimationSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventDictionary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InventoryDefinitions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NotecardCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Options.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScriptTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Simian.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimulationObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\AccountManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\AssetManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\AuthFreeForAll.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\AvatarManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\CapsManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\ConnectionManagement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\FriendManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\ImageDelivery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\InventoryManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\LindenLogin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\MapLocal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\Messaging.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\MessagingLocal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\Money.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\Movement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\ObjectManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\ParcelManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\Periscope.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\PeriscopeImageDelivery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\PeriscopeMovement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\PeriscopeTransferManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\PermissionsFreeForAll.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\PhysicsSimple.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\RenderingPluginMesher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\SceneManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\ScriptApi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\ScriptConsole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\TaskInventoryManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\TransferManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\UDPManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\XMLPersistence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\XScriptEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IAccountProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IAssetProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IAuthenticationProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IAvatarProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ICapabilitiesProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IInventoryProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IMeshingProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IMessagingProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IParcelProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IPermissionsProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IPersistable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IPersistenceProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IPhysicsProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ISceneProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IScriptApi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IScriptEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ITaskInventoryProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IUDPProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

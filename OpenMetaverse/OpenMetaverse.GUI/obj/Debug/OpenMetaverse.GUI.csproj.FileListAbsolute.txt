@@ -1,0 +1,5 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.GUI.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.GUI.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.GUI\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.GUI\obj\Debug\OpenMetaverse.GUI.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.GUI\obj\Debug\OpenMetaverse.GUI.pdb

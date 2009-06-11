@@ -1,0 +1,244 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{455E7D70-1C85-4D7F-9F01-DC801B8B8C34}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon></ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>HttpServer</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder></AppDesignerFolder>
+    <RootNamespace>HttpServer</RootNamespace>
+    <StartupObject></StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DocumentationFile></DocumentationFile>
+    <DebugSymbols>True</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>False</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>False</NoStdLib>
+    <NoWarn>1591,1574,0419,0618</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile></DocumentationFile>
+    <DebugSymbols>False</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>True</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>False</NoStdLib>
+    <NoWarn>1591,1574,0419,0618</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+        <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Web">
+        <Name>System.Web</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Check.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClientAcceptedEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ContentTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExceptionEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExceptionHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpClientContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpClientContextImp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpContextFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpForm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpInput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpInputItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpListener.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpListenerBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpParam.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpRequestHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpRequestSignature.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HttpResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IHttpClientContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IHttpContextHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IHttpRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IHttpRequestParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IHttpResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ILogWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Method.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RequestCookie.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RequestCookies.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RequestParserFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RequestQueue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RequestReceivedEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResponseCookie.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResponseCookies.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\BadRequestException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\ForbiddenException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\HttpException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\InternalServerException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\NotFoundException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\UnauthorizedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FormDecoders\FormDecoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FormDecoders\FormDecoderProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FormDecoders\HttpMultipart.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FormDecoders\IFormDecoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FormDecoders\MultipartDecoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FormDecoders\UrlDecoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Handlers\FileHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parser\BodyEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parser\HeaderEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parser\HttpRequestParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parser\RequestLineEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Templates\ITemplateEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Templates\SmartyEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,12 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\groupmanager.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\groupmanager.frmGroupInfo.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\groupmanager.frmGroupManager.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\groupmanager.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\groupmanager.exe
+D:\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\groupmanager.frmGroupInfo.resources
+D:\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\groupmanager.frmGroupManager.resources
+D:\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\groupmanager.csproj.GenerateResource.Cache
+D:\Projects\libopenmetaverse\bin\groupmanager.exe
+D:\Projects\libopenmetaverse\Programs\examples\groupmanager\obj\Release\groupmanager.exe

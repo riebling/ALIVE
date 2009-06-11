@@ -1,0 +1,10 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\Dashboard.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\Dashboard\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\Dashboard\obj\Release\Dashboard.Dashboard.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\Dashboard\obj\Release\Dashboard.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\Dashboard\obj\Release\Dashboard.exe
+D:\Projects\libopenmetaverse\Programs\examples\Dashboard\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\Programs\examples\Dashboard\obj\Release\Dashboard.Dashboard.resources
+D:\Projects\libopenmetaverse\Programs\examples\Dashboard\obj\Release\Dashboard.csproj.GenerateResource.Cache
+D:\Projects\libopenmetaverse\bin\Dashboard.exe
+D:\Projects\libopenmetaverse\Programs\examples\Dashboard\obj\Release\Dashboard.exe

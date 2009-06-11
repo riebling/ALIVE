@@ -1,0 +1,12 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverseTypes.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverseTypes.XML
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse\Types\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse\Types\obj\Release\OpenMetaverseTypes.dll
+D:\Projects\libopenmetaverse\OpenMetaverse\Types\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\OpenMetaverse\Types\obj\Release\OpenMetaverseTypes.dll
+D:\Projects\libopenmetaverse\bin\OpenMetaverseTypes.dll
+D:\Projects\libopenmetaverse\bin\OpenMetaverseTypes.XML
+D:\Projects\ALIVE\OpenMetaverse\bin\OpenMetaverseTypes.dll
+D:\Projects\ALIVE\OpenMetaverse\bin\OpenMetaverseTypes.XML
+D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\Types\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\Types\obj\Release\OpenMetaverseTypes.dll

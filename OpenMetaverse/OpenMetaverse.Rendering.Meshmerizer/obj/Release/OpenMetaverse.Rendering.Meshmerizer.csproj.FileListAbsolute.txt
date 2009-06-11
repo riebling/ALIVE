@@ -1,0 +1,6 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.Rendering.Meshmerizer.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.Rendering.Meshmerizer\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.Rendering.Meshmerizer\obj\Release\OpenMetaverse.Rendering.Meshmerizer.dll
+D:\Projects\libopenmetaverse\OpenMetaverse.Rendering.Meshmerizer\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\bin\OpenMetaverse.Rendering.Meshmerizer.dll
+D:\Projects\libopenmetaverse\OpenMetaverse.Rendering.Meshmerizer\obj\Release\OpenMetaverse.Rendering.Meshmerizer.dll

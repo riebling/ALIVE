@@ -1,0 +1,10 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\Heightmap.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\Heightmap\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\Heightmap\obj\Release\Heightmap.frmHeightmap.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\Heightmap\obj\Release\Heightmap.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\Heightmap\obj\Release\Heightmap.exe
+D:\Projects\libopenmetaverse\Programs\examples\Heightmap\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\Programs\examples\Heightmap\obj\Release\Heightmap.frmHeightmap.resources
+D:\Projects\libopenmetaverse\Programs\examples\Heightmap\obj\Release\Heightmap.csproj.GenerateResource.Cache
+D:\Projects\libopenmetaverse\bin\Heightmap.exe
+D:\Projects\libopenmetaverse\Programs\examples\Heightmap\obj\Release\Heightmap.exe

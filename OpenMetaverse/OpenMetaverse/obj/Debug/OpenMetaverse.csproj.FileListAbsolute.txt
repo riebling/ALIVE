@@ -1,0 +1,15 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.pdb
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.pdb
+D:\Projects\libopenmetaverse\bin\OpenMetaverse.dll
+D:\Projects\libopenmetaverse\bin\OpenMetaverse.pdb
+D:\Projects\libopenmetaverse\OpenMetaverse\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.dll
+D:\Projects\libopenmetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.pdb
+D:\Projects\ALIVE\OpenMetaverse\bin\OpenMetaverse.dll
+D:\Projects\ALIVE\OpenMetaverse\bin\OpenMetaverse.pdb
+D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.dll
+D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.pdb

@@ -1,0 +1,6 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.Rendering.Simple.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.Rendering.Simple\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.Rendering.Simple\obj\Release\OpenMetaverse.Rendering.Simple.dll
+D:\Projects\libopenmetaverse\OpenMetaverse.Rendering.Simple\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\bin\OpenMetaverse.Rendering.Simple.dll
+D:\Projects\libopenmetaverse\OpenMetaverse.Rendering.Simple\obj\Release\OpenMetaverse.Rendering.Simple.dll

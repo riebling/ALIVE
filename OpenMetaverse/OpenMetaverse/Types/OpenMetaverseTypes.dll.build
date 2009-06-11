@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<project name="OpenMetaverseTypes" default="build">
+	  <target name="build">
+		  <echo message="Build Directory is ${build.dir}" />
+		  <mkdir dir="${build.dir}" />
+		  <copy todir="${build.dir}" flatten="true">
+			  <fileset basedir="${project::get-base-directory()}">
+			  </fileset>
+		  </copy>
+		  <copy todir="${build.dir}">
+			  <fileset basedir=".">
+			  </fileset>
+		  </copy>
+		  <csc target="library" debug="${build.debug}" unsafe="True" warnaserror="False" define="TRACE;DEBUG" nostdlib="False" main="" output="${build.dir}/${project::get-name()}.dll">
+			  <resources prefix="OpenMetaverse" dynamicprefix="true" >
+			  </resources>
+			  <sources failonempty="true">
+				  <include name="BlockingQueue.cs" />
+				  <include name="CircularHashedQueue.cs" />
+				  <include name="CircularQueue.cs" />
+				  <include name="Color4.cs" />
+				  <include name="CRC32.cs" />
+				  <include name="DoubleDictionary.cs" />
+				  <include name="ExpiringCache.cs" />
+				  <include name="Matrix4.cs" />
+				  <include name="Quaternion.cs" />
+				  <include name="Ray.cs" />
+				  <include name="TokenBucket.cs" />
+				  <include name="Utils.cs" />
+				  <include name="UtilsConversions.cs" />
+				  <include name="UUID.cs" />
+				  <include name="Vector2.cs" />
+				  <include name="Vector3.cs" />
+				  <include name="Vector3d.cs" />
+				  <include name="Vector4.cs" />
+			  </sources>
+			  <references basedir="${project::get-base-directory()}">
+				  <lib>
+					  <include name="${project::get-base-directory()}" />
+					  <include name="${build.dir}" />
+				  </lib>
+				  <include name="System.dll" />
+			  </references>
+            <nowarn>
+                <warning number="1591" />
+                <warning number="1574" />
+                <warning number="0419" />
+                <warning number="0618" />
+            </nowarn>
+		  </csc>
+	  </target>
+	  <target name="clean">
+		  <delete dir="${bin.dir}" failonerror="false" />
+		  <delete dir="${obj.dir}" failonerror="false" />
+	  </target>
+	  <target name="doc" description="Creates documentation.">
+	  </target>
+</project>

@@ -1,0 +1,8 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.StructuredData.dll
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\OpenMetaverse.StructuredData.XML
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.StructuredData\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\OpenMetaverse.StructuredData\obj\Release\OpenMetaverse.StructuredData.dll
+D:\Projects\libopenmetaverse\bin\OpenMetaverse.StructuredData.dll
+D:\Projects\libopenmetaverse\bin\OpenMetaverse.StructuredData.XML
+D:\Projects\libopenmetaverse\OpenMetaverse.StructuredData\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\OpenMetaverse.StructuredData\obj\Release\OpenMetaverse.StructuredData.dll

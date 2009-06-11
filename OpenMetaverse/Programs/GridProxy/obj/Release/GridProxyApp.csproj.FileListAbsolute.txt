@@ -1,0 +1,6 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\GridProxyApp.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\GridProxy\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\GridProxy\obj\Release\GridProxyApp.exe
+D:\Projects\libopenmetaverse\Programs\GridProxy\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\bin\GridProxyApp.exe
+D:\Projects\libopenmetaverse\Programs\GridProxy\obj\Release\GridProxyApp.exe

@@ -1,0 +1,6 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\VoiceTest.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\VoiceTest\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\VoiceTest\obj\Release\VoiceTest.exe
+D:\Projects\libopenmetaverse\Programs\VoiceTest\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\bin\VoiceTest.exe
+D:\Projects\libopenmetaverse\Programs\VoiceTest\obj\Release\VoiceTest.exe

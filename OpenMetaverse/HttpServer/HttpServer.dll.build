@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<project name="HttpServer" default="build">
+	  <target name="build">
+		  <echo message="Build Directory is ${build.dir}" />
+		  <mkdir dir="${build.dir}" />
+		  <copy todir="${build.dir}" flatten="true">
+			  <fileset basedir="${project::get-base-directory()}">
+			  </fileset>
+		  </copy>
+		  <copy todir="${build.dir}">
+			  <fileset basedir=".">
+			  </fileset>
+		  </copy>
+		  <csc target="library" debug="${build.debug}" unsafe="True" warnaserror="False" define="TRACE;DEBUG" nostdlib="False" main="" output="${build.dir}/${project::get-name()}.dll">
+			  <resources prefix="HttpServer" dynamicprefix="true" >
+			  </resources>
+			  <sources failonempty="true">
+				  <include name="Check.cs" />
+				  <include name="ClientAcceptedEventArgs.cs" />
+				  <include name="ContentTypes.cs" />
+				  <include name="ExceptionEventArgs.cs" />
+				  <include name="ExceptionHandler.cs" />
+				  <include name="HttpClientContext.cs" />
+				  <include name="HttpClientContextImp.cs" />
+				  <include name="HttpContextFactory.cs" />
+				  <include name="HttpFile.cs" />
+				  <include name="HttpForm.cs" />
+				  <include name="HttpHelper.cs" />
+				  <include name="HttpInput.cs" />
+				  <include name="HttpInputItem.cs" />
+				  <include name="HttpListener.cs" />
+				  <include name="HttpListenerBase.cs" />
+				  <include name="HttpParam.cs" />
+				  <include name="HttpRequest.cs" />
+				  <include name="HttpRequestHandler.cs" />
+				  <include name="HttpRequestSignature.cs" />
+				  <include name="HttpResponse.cs" />
+				  <include name="IHttpClientContext.cs" />
+				  <include name="IHttpContextHandler.cs" />
+				  <include name="IHttpRequest.cs" />
+				  <include name="IHttpRequestParser.cs" />
+				  <include name="IHttpResponse.cs" />
+				  <include name="ILogWriter.cs" />
+				  <include name="Method.cs" />
+				  <include name="RequestCookie.cs" />
+				  <include name="RequestCookies.cs" />
+				  <include name="RequestParserFactory.cs" />
+				  <include name="RequestQueue.cs" />
+				  <include name="RequestReceivedEventArgs.cs" />
+				  <include name="ResponseCookie.cs" />
+				  <include name="ResponseCookies.cs" />
+				  <include name="Exceptions/BadRequestException.cs" />
+				  <include name="Exceptions/ForbiddenException.cs" />
+				  <include name="Exceptions/HttpException.cs" />
+				  <include name="Exceptions/InternalServerException.cs" />
+				  <include name="Exceptions/NotFoundException.cs" />
+				  <include name="Exceptions/UnauthorizedException.cs" />
+				  <include name="FormDecoders/FormDecoder.cs" />
+				  <include name="FormDecoders/FormDecoderProvider.cs" />
+				  <include name="FormDecoders/HttpMultipart.cs" />
+				  <include name="FormDecoders/IFormDecoder.cs" />
+				  <include name="FormDecoders/MultipartDecoder.cs" />
+				  <include name="FormDecoders/UrlDecoder.cs" />
+				  <include name="Handlers/FileHandler.cs" />
+				  <include name="Parser/BodyEventArgs.cs" />
+				  <include name="Parser/HeaderEventArgs.cs" />
+				  <include name="Parser/HttpRequestParser.cs" />
+				  <include name="Parser/RequestLineEventArgs.cs" />
+				  <include name="Properties/AssemblyInfo.cs" />
+				  <include name="Templates/ITemplateEngine.cs" />
+				  <include name="Templates/SmartyEngine.cs" />
+			  </sources>
+			  <references basedir="${project::get-base-directory()}">
+				  <lib>
+					  <include name="${project::get-base-directory()}" />
+					  <include name="${build.dir}" />
+				  </lib>
+				  <include name="System.dll" />
+				  <include name="System.Web.dll" />
+			  </references>
+            <nowarn>
+                <warning number="1591" />
+                <warning number="1574" />
+                <warning number="0419" />
+                <warning number="0618" />
+            </nowarn>
+		  </csc>
+	  </target>
+	  <target name="clean">
+		  <delete dir="${bin.dir}" failonerror="false" />
+		  <delete dir="${obj.dir}" failonerror="false" />
+	  </target>
+	  <target name="doc" description="Creates documentation.">
+	  </target>
+</project>

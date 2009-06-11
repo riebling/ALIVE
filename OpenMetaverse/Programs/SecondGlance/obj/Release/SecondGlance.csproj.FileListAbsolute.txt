@@ -1,0 +1,12 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\SecondGlance.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\SecondGlance.frmSecondGlance.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\SecondGlance.Properties.Resources.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\SecondGlance.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\SecondGlance.exe
+D:\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\SecondGlance.frmSecondGlance.resources
+D:\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\SecondGlance.Properties.Resources.resources
+D:\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\SecondGlance.csproj.GenerateResource.Cache
+D:\Projects\libopenmetaverse\bin\SecondGlance.exe
+D:\Projects\libopenmetaverse\Programs\SecondGlance\obj\Release\SecondGlance.exe

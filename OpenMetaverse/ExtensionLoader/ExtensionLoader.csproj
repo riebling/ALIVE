@@ -1,0 +1,187 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F0CCD62E-8055-4419-8171-F2C5FD7C8B6D}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon></ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>ExtensionLoader</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder></AppDesignerFolder>
+    <RootNamespace>ExtensionLoader</RootNamespace>
+    <StartupObject></StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DocumentationFile></DocumentationFile>
+    <DebugSymbols>True</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>False</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>False</NoStdLib>
+    <NoWarn>1591,1574,0419,0618</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile></DocumentationFile>
+    <DebugSymbols>False</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>True</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>False</NoStdLib>
+    <NoWarn>1591,1574,0419,0618</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+        <Name>System</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExtensionLoader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\AliasText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\ConfigBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\ConfigCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\ConfigSourceBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\IConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\IConfigSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\IniConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\IniConfigSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ini\IniDocument.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ini\IniException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ini\IniItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ini\IniReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ini\IniSection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ini\IniSectionCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ini\IniWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Config\AliasText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Config\ConfigBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Config\ConfigCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Config\ConfigSourceBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Config\IConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Config\IConfigSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Config\IniConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Config\IniConfigSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Ini\IniDocument.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Ini\IniException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Ini\IniItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Ini\IniReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Ini\IniSection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Ini\IniSectionCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Ini\IniWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Util\OrderedList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nini\Util\OrderedListEnumerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\OrderedList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\OrderedListEnumerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

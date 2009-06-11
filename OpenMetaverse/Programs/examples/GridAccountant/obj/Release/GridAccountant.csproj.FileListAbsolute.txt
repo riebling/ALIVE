@@ -1,0 +1,10 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\GridAccountant.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\GridAccountant\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\GridAccountant\obj\Release\GridAccountant.frmGridAccountant.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\GridAccountant\obj\Release\GridAccountant.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\examples\GridAccountant\obj\Release\GridAccountant.exe
+D:\Projects\libopenmetaverse\Programs\examples\GridAccountant\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\Programs\examples\GridAccountant\obj\Release\GridAccountant.frmGridAccountant.resources
+D:\Projects\libopenmetaverse\Programs\examples\GridAccountant\obj\Release\GridAccountant.csproj.GenerateResource.Cache
+D:\Projects\libopenmetaverse\bin\GridAccountant.exe
+D:\Projects\libopenmetaverse\Programs\examples\GridAccountant\obj\Release\GridAccountant.exe

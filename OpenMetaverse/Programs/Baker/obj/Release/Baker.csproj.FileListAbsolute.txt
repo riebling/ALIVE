@@ -1,0 +1,10 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\Baker.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\Baker\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\Baker\obj\Release\Baker.frmBaker.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\Baker\obj\Release\Baker.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\Baker\obj\Release\Baker.exe
+D:\Projects\libopenmetaverse\Programs\Baker\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\Programs\Baker\obj\Release\Baker.frmBaker.resources
+D:\Projects\libopenmetaverse\Programs\Baker\obj\Release\Baker.csproj.GenerateResource.Cache
+D:\Projects\libopenmetaverse\bin\Baker.exe
+D:\Projects\libopenmetaverse\Programs\Baker\obj\Release\Baker.exe

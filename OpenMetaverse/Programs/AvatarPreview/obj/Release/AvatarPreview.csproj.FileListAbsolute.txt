@@ -1,0 +1,12 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\AvatarPreview.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\AvatarPreview.frmAvatar.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\AvatarPreview.Properties.Resources.resources
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\AvatarPreview.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\AvatarPreview.exe
+D:\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\AvatarPreview.frmAvatar.resources
+D:\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\AvatarPreview.Properties.Resources.resources
+D:\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\AvatarPreview.csproj.GenerateResource.Cache
+D:\Projects\libopenmetaverse\bin\AvatarPreview.exe
+D:\Projects\libopenmetaverse\Programs\AvatarPreview\obj\Release\AvatarPreview.exe

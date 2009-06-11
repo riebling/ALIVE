@@ -1,0 +1,6 @@
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\bin\mapgenerator.exe
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\mapgenerator\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\My Documents\Visual Studio 2008\Projects\libopenmetaverse\Programs\mapgenerator\obj\Release\mapgenerator.exe
+D:\Projects\libopenmetaverse\bin\mapgenerator.exe
+D:\Projects\libopenmetaverse\Programs\mapgenerator\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\libopenmetaverse\Programs\mapgenerator\obj\Release\mapgenerator.exe
