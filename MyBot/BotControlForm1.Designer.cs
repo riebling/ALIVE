@@ -51,8 +51,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.URIbox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.ChatBotCheckbox = new System.Windows.Forms.CheckBox();
             this.turnleftbutton = new System.Windows.Forms.Button();
             this.turnleftbox = new System.Windows.Forms.TextBox();
             this.turnrightbutton = new System.Windows.Forms.Button();
@@ -65,9 +63,7 @@
             this.gobackwardbutton = new System.Windows.Forms.Button();
             this.turntowardbutton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radiusBox = new System.Windows.Forms.TextBox();
             this.LookButton = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.myrotationbutton = new System.Windows.Forms.Button();
             this.rotationBox = new System.Windows.Forms.TextBox();
             this.readmessagebutton = new System.Windows.Forms.Button();
@@ -94,7 +90,7 @@
             // 
             this.InputBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.InputBox.Location = new System.Drawing.Point(15, 174);
+            this.InputBox.Location = new System.Drawing.Point(15, 168);
             this.InputBox.MinimumSize = new System.Drawing.Size(227, 20);
             this.InputBox.Name = "InputBox";
             this.InputBox.Size = new System.Drawing.Size(295, 20);
@@ -114,7 +110,7 @@
             // FNtextBox
             // 
             this.FNtextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FNtextBox.Location = new System.Drawing.Point(388, 171);
+            this.FNtextBox.Location = new System.Drawing.Point(376, 173);
             this.FNtextBox.MinimumSize = new System.Drawing.Size(100, 20);
             this.FNtextBox.Name = "FNtextBox";
             this.FNtextBox.Size = new System.Drawing.Size(100, 20);
@@ -124,7 +120,7 @@
             // PWtextBox
             // 
             this.PWtextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PWtextBox.Location = new System.Drawing.Point(388, 223);
+            this.PWtextBox.Location = new System.Drawing.Point(376, 225);
             this.PWtextBox.MinimumSize = new System.Drawing.Size(100, 20);
             this.PWtextBox.Name = "PWtextBox";
             this.PWtextBox.PasswordChar = '*';
@@ -136,7 +132,7 @@
             // LNtextBox
             // 
             this.LNtextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LNtextBox.Location = new System.Drawing.Point(388, 197);
+            this.LNtextBox.Location = new System.Drawing.Point(376, 199);
             this.LNtextBox.MinimumSize = new System.Drawing.Size(100, 20);
             this.LNtextBox.Name = "LNtextBox";
             this.LNtextBox.Size = new System.Drawing.Size(100, 20);
@@ -146,7 +142,7 @@
             // QuitButton
             // 
             this.QuitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.QuitButton.Location = new System.Drawing.Point(413, 272);
+            this.QuitButton.Location = new System.Drawing.Point(401, 274);
             this.QuitButton.Name = "QuitButton";
             this.QuitButton.Size = new System.Drawing.Size(75, 23);
             this.QuitButton.TabIndex = 6;
@@ -158,7 +154,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.CausesValidation = false;
-            this.label1.Location = new System.Drawing.Point(330, 174);
+            this.label1.Location = new System.Drawing.Point(318, 176);
             this.label1.MinimumSize = new System.Drawing.Size(52, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
@@ -170,7 +166,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.CausesValidation = false;
-            this.label2.Location = new System.Drawing.Point(330, 200);
+            this.label2.Location = new System.Drawing.Point(318, 202);
             this.label2.MinimumSize = new System.Drawing.Size(52, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
@@ -182,7 +178,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.CausesValidation = false;
-            this.label3.Location = new System.Drawing.Point(330, 226);
+            this.label3.Location = new System.Drawing.Point(318, 228);
             this.label3.MinimumSize = new System.Drawing.Size(52, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
@@ -265,7 +261,7 @@
             this.OpenSimCheckbox.AutoSize = true;
             this.OpenSimCheckbox.Checked = true;
             this.OpenSimCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.OpenSimCheckbox.Location = new System.Drawing.Point(388, 278);
+            this.OpenSimCheckbox.Location = new System.Drawing.Point(376, 280);
             this.OpenSimCheckbox.Name = "OpenSimCheckbox";
             this.OpenSimCheckbox.Size = new System.Drawing.Size(15, 14);
             this.OpenSimCheckbox.TabIndex = 18;
@@ -276,7 +272,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.CausesValidation = false;
-            this.label9.Location = new System.Drawing.Point(330, 279);
+            this.label9.Location = new System.Drawing.Point(318, 281);
             this.label9.MinimumSize = new System.Drawing.Size(52, 13);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 13);
@@ -298,7 +294,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.CausesValidation = false;
-            this.label11.Location = new System.Drawing.Point(330, 252);
+            this.label11.Location = new System.Drawing.Point(318, 254);
             this.label11.MinimumSize = new System.Drawing.Size(52, 13);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 13);
@@ -308,7 +304,7 @@
             // URIbox
             // 
             this.URIbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.URIbox.Location = new System.Drawing.Point(388, 249);
+            this.URIbox.Location = new System.Drawing.Point(376, 251);
             this.URIbox.MinimumSize = new System.Drawing.Size(100, 20);
             this.URIbox.Name = "URIbox";
             this.URIbox.Size = new System.Drawing.Size(100, 20);
@@ -319,40 +315,18 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Location = new System.Drawing.Point(329, 165);
+            this.groupBox1.Location = new System.Drawing.Point(316, 160);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(159, 130);
+            this.groupBox1.Size = new System.Drawing.Size(169, 141);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.CausesValidation = false;
-            this.label12.Location = new System.Drawing.Point(330, 298);
-            this.label12.MinimumSize = new System.Drawing.Size(52, 13);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 13);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "ChatBot";
-            // 
-            // ChatBotCheckbox
-            // 
-            this.ChatBotCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChatBotCheckbox.AutoSize = true;
-            this.ChatBotCheckbox.Location = new System.Drawing.Point(378, 298);
-            this.ChatBotCheckbox.Name = "ChatBotCheckbox";
-            this.ChatBotCheckbox.Size = new System.Drawing.Size(15, 14);
-            this.ChatBotCheckbox.TabIndex = 27;
-            this.ChatBotCheckbox.UseVisualStyleBackColor = true;
-            // 
             // turnleftbutton
             // 
-            this.turnleftbutton.Location = new System.Drawing.Point(46, 303);
-            this.turnleftbutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.turnleftbutton.Location = new System.Drawing.Point(55, 305);
+            this.turnleftbutton.MinimumSize = new System.Drawing.Size(0, 23);
             this.turnleftbutton.Name = "turnleftbutton";
-            this.turnleftbutton.Size = new System.Drawing.Size(75, 23);
+            this.turnleftbutton.Size = new System.Drawing.Size(66, 23);
             this.turnleftbutton.TabIndex = 30;
             this.turnleftbutton.Text = "Turn Left";
             this.turnleftbutton.UseVisualStyleBackColor = true;
@@ -368,10 +342,10 @@
             // 
             // turnrightbutton
             // 
-            this.turnrightbutton.Location = new System.Drawing.Point(46, 332);
-            this.turnrightbutton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.turnrightbutton.Location = new System.Drawing.Point(55, 334);
+            this.turnrightbutton.MinimumSize = new System.Drawing.Size(0, 23);
             this.turnrightbutton.Name = "turnrightbutton";
-            this.turnrightbutton.Size = new System.Drawing.Size(75, 23);
+            this.turnrightbutton.Size = new System.Drawing.Size(66, 23);
             this.turnrightbutton.TabIndex = 32;
             this.turnrightbutton.Text = "Turn Right";
             this.turnrightbutton.UseVisualStyleBackColor = true;
@@ -397,7 +371,7 @@
             // readchatbutton
             // 
             this.readchatbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.readchatbutton.Location = new System.Drawing.Point(235, 194);
+            this.readchatbutton.Location = new System.Drawing.Point(235, 190);
             this.readchatbutton.MinimumSize = new System.Drawing.Size(75, 23);
             this.readchatbutton.Name = "readchatbutton";
             this.readchatbutton.Size = new System.Drawing.Size(75, 23);
@@ -445,7 +419,7 @@
             // 
             // turntowardbutton
             // 
-            this.turntowardbutton.Location = new System.Drawing.Point(208, 337);
+            this.turntowardbutton.Location = new System.Drawing.Point(83, 38);
             this.turntowardbutton.MinimumSize = new System.Drawing.Size(75, 23);
             this.turntowardbutton.Name = "turntowardbutton";
             this.turntowardbutton.Size = new System.Drawing.Size(75, 23);
@@ -456,42 +430,22 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.Xbox);
+            this.groupBox2.Controls.Add(this.turntowardbutton);
             this.groupBox2.Location = new System.Drawing.Point(127, 299);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(170, 61);
+            this.groupBox2.Size = new System.Drawing.Size(170, 69);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
-            // 
-            // radiusBox
-            // 
-            this.radiusBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radiusBox.Location = new System.Drawing.Point(467, 296);
-            this.radiusBox.Name = "radiusBox";
-            this.radiusBox.Size = new System.Drawing.Size(21, 20);
-            this.radiusBox.TabIndex = 43;
-            this.radiusBox.Text = "10";
-            this.radiusBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // LookButton
             // 
             this.LookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LookButton.Location = new System.Drawing.Point(402, 345);
+            this.LookButton.Location = new System.Drawing.Point(354, 348);
             this.LookButton.Name = "LookButton";
             this.LookButton.Size = new System.Drawing.Size(87, 23);
             this.LookButton.TabIndex = 42;
             this.LookButton.Text = "ObjectsAround";
             this.LookButton.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.CausesValidation = false;
-            this.label7.Location = new System.Drawing.Point(399, 299);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 13);
-            this.label7.TabIndex = 41;
-            this.label7.Text = "object radius";
             // 
             // myrotationbutton
             // 
@@ -515,7 +469,7 @@
             // readmessagebutton
             // 
             this.readmessagebutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.readmessagebutton.Location = new System.Drawing.Point(139, 194);
+            this.readmessagebutton.Location = new System.Drawing.Point(139, 190);
             this.readmessagebutton.MinimumSize = new System.Drawing.Size(75, 23);
             this.readmessagebutton.Name = "readmessagebutton";
             this.readmessagebutton.Size = new System.Drawing.Size(90, 23);
@@ -537,15 +491,15 @@
             // objectidbox
             // 
             this.objectidbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.objectidbox.Location = new System.Drawing.Point(316, 314);
+            this.objectidbox.Location = new System.Drawing.Point(303, 305);
             this.objectidbox.Name = "objectidbox";
-            this.objectidbox.Size = new System.Drawing.Size(172, 20);
+            this.objectidbox.Size = new System.Drawing.Size(182, 20);
             this.objectidbox.TabIndex = 49;
             // 
             // dropobjectbutton
             // 
             this.dropobjectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dropobjectbutton.Location = new System.Drawing.Point(306, 332);
+            this.dropobjectbutton.Location = new System.Drawing.Point(308, 325);
             this.dropobjectbutton.Name = "dropobjectbutton";
             this.dropobjectbutton.Size = new System.Drawing.Size(87, 23);
             this.dropobjectbutton.TabIndex = 50;
@@ -555,7 +509,7 @@
             // takeobjectbutton
             // 
             this.takeobjectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.takeobjectbutton.Location = new System.Drawing.Point(306, 354);
+            this.takeobjectbutton.Location = new System.Drawing.Point(398, 325);
             this.takeobjectbutton.Name = "takeobjectbutton";
             this.takeobjectbutton.Size = new System.Drawing.Size(87, 23);
             this.takeobjectbutton.TabIndex = 51;
@@ -574,10 +528,7 @@
             this.Controls.Add(this.saymessagebutton);
             this.Controls.Add(this.myrotationbutton);
             this.Controls.Add(this.rotationBox);
-            this.Controls.Add(this.radiusBox);
             this.Controls.Add(this.LookButton);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.turntowardbutton);
             this.Controls.Add(this.gobackwardbox);
             this.Controls.Add(this.gobackwardbutton);
             this.Controls.Add(this.goforwardbox);
@@ -588,11 +539,9 @@
             this.Controls.Add(this.turnrightbox);
             this.Controls.Add(this.turnleftbutton);
             this.Controls.Add(this.turnleftbox);
-            this.Controls.Add(this.ChatBotCheckbox);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.URIbox);
             this.Controls.Add(this.locationBox);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.OpenSimCheckbox);
             this.Controls.Add(this.objectsBox);
             this.Controls.Add(this.chatboxlabel);
@@ -603,16 +552,16 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.LNtextBox);
             this.Controls.Add(this.PWtextBox);
             this.Controls.Add(this.FNtextBox);
             this.Controls.Add(this.saychatbutton);
             this.Controls.Add(this.InputBox);
             this.Controls.Add(this.ChatBox);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.QuitButton);
+            this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(505, 605);
             this.Name = "BotControlForm1";
             this.Text = "BotControlForm1";
@@ -648,8 +597,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox URIbox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.CheckBox ChatBotCheckbox;
         private System.Windows.Forms.Button turnleftbutton;
         private System.Windows.Forms.TextBox turnleftbox;
         private System.Windows.Forms.Button turnrightbutton;
@@ -662,9 +609,7 @@
         private System.Windows.Forms.Button gobackwardbutton;
         private System.Windows.Forms.Button turntowardbutton;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox radiusBox;
         private System.Windows.Forms.Button LookButton;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button myrotationbutton;
         private System.Windows.Forms.TextBox rotationBox;
         private System.Windows.Forms.Button readmessagebutton;

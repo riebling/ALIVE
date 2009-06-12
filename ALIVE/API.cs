@@ -5,21 +5,24 @@ using System.Threading;
 using System.Text;
 using OpenMetaverse;
 
+// CONSTANTS
+
 namespace ALIVE
+
 {
     /// <summary>
-    /// Used in a helper function to roughly determine prim shape
-    //Unknown = 0,
-    //Box = 1,
-    //Cylinder = 2,
-    //Prism = 3,
-    //Sphere = 4,
-    //Torus = 5,
-    //Tube = 6,
-    //Ring = 7,
-    //Sculpt = 8,
+    // Docs go here
     /// </summary>
     public enum primType : int {
+        Unknown,
+        Box,
+        Cylinder,
+        Prism,
+        Sphere,
+        Torus,
+        Tube,
+        Ring,
+        Sculpt
     };
 
     public class Prim
@@ -35,6 +38,13 @@ namespace ALIVE
         public string description;
         public float angle;
         public float sizeX, sizeY, sizeZ;
+
+        public string primTypeToString(primType t)
+        {
+            string[] names = { "Unknown", "Box", "Cylinder", "Prism", "Sphere", "Torus",
+                             "Tube", "Ring", "Sculpt"};
+            return names[(int)t];
+        }
 
         // Constructor
         public Prim (Primitive p)
@@ -67,8 +77,11 @@ namespace ALIVE
 
         public string toString()
         {
-            return ID.ToString() + " " + LocalID.ToString() + " <" + X + "," + Y + ">" + pType + " " +
-                angle + " [" + sizeX + "," + sizeY + "," + sizeZ + "] " +
+            // ALIVE objects use only LocalID, leave out global UUID
+            // ID.ToString()
+            return LocalID.ToString() + " <" + X.ToString("0.0") + "," + Y.ToString("0.0")
+                + ">" + primTypeToString(pType) + " " +
+                angle.ToString("0.0") + " [" + sizeX + "," + sizeY + "," + sizeZ + "] " +
                 movable + " " + name + " " + description;
         }
 
@@ -78,7 +91,9 @@ namespace ALIVE
     {
         const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
-        const string WORLD_MASTER_NAME = "Juicy Babii";
+        const string WORLD_MASTER_NAME = "World Master";
+        const int SEARCH_RADIUS = 10;
+
         private Dictionary<String, UUID> AvatarNames;
         private UUID WorldMasterUUID = new UUID(0L);
 
@@ -292,10 +307,18 @@ namespace ALIVE
             return returnPrims;
         }
 
+        // Override
+        public List<Prim> ObjectsAround()
+        {
+            return ObjectsAround(SEARCH_RADIUS);
+        }
+
+
         public void DropObject(uint item) 
         {
             client.Objects.DropObject(client.Network.CurrentSim, item);
         }
+
 
         // We will use "attach" to pick up an object by
         // carrying it by hand, i.e. attach to left or right hand
@@ -305,7 +328,7 @@ namespace ALIVE
         }
 
 
-        // CHAT COMMANDS HERE
+        // CHAT COMMANDS
 
         // World Master message
         public string GetMessage () 
@@ -371,21 +394,16 @@ namespace ALIVE
         // Callback for ObjectProperties request received
 
         Dictionary<UUID, Primitive> PrimsWaiting = new Dictionary<UUID, Primitive>();
-        //Dictionary<UUID, Primitive> PrimsFound = new Dictionary<UUID, Primitive>();
         AutoResetEvent AllPropertiesReceived = new AutoResetEvent(false);
 
         void Objects_OnObjectProperties(Simulator simulator, Primitive.ObjectProperties properties)
         {
-
             lock (PrimsWaiting)
             {
                 Primitive prim;
                 if (PrimsWaiting.TryGetValue(properties.ObjectID, out prim))
                 {
                     prim.Properties = properties;
-
-
-                    //PrimsFound.Add(prim.ID, prim);
                 }
                 PrimsWaiting.Remove(properties.ObjectID);
 
@@ -394,7 +412,7 @@ namespace ALIVE
             }
         }
 
-                // Attempt to wear the inventory item named by the argument itemName
+        // Attempt to wear the inventory item named by the argument itemName
         // Does not report error on failure
         void wearNamedItem(string itemName)
         {

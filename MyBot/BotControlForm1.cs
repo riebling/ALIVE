@@ -75,11 +75,7 @@ namespace MyBot
             this.FormClosing += new FormClosingEventHandler(BotControl_FormClosing);
         }
 
-        void turntowardbutton_Click(object sender, EventArgs e)
-        {
-            if (Xbox.Text == "" || Ybox.Text == "") return;
-            myAvatar.TurnTo(Convert.ToInt32(Xbox.Text), Convert.ToInt32(Ybox.Text));
-        }
+
 
 /////// SUBROUTINES
 
@@ -233,9 +229,7 @@ namespace MyBot
             textBoxUpdate(objectsBox, "");
             LookButton.Enabled = false;
 
-            float radius = Convert.ToInt32(radiusBox.Text);
-            //List<Primitive> prims = lookAroundYou(radius);
-            List<Prim> prims = myAvatar.ObjectsAround(10);
+            List<Prim> prims = myAvatar.ObjectsAround();
             
             Console.Out.WriteLine("Got " + prims.Count + " objects back");
 
@@ -271,6 +265,12 @@ namespace MyBot
             if (turnrightbox.Text == "") return;
             myAvatar.TurnRight(Convert.ToInt32(turnrightbox.Text));
         }
+        void turntowardbutton_Click(object sender, EventArgs e)
+        {
+            if (Xbox.Text == "" || Ybox.Text == "") return;
+            myAvatar.TurnTo(Convert.ToInt32(Xbox.Text), Convert.ToInt32(Ybox.Text));
+        }
+
         private void goforwardbutton_Click(object sender, EventArgs e)
         {
             if (goforwardbox.Text == "") return;
