@@ -71,7 +71,6 @@ D:\Projects\ALIVE\MyBot\bin\Debug\OpenMetaverse.StructuredData.dll
 D:\Projects\ALIVE\MyBot\bin\Debug\OpenMetaverseTypes.dll
 D:\Projects\ALIVE\MyBot\bin\Debug\OpenMetaverse.pdb
 D:\Projects\ALIVE\MyBot\bin\Debug\OpenMetaverse.xml
-D:\Projects\ALIVE\MyBot\bin\Debug\HttpServer.pdb
 D:\Projects\ALIVE\MyBot\bin\Debug\OpenMetaverse.Http.pdb
 D:\Projects\ALIVE\MyBot\bin\Debug\OpenMetaverse.Http.xml
 D:\Projects\ALIVE\MyBot\bin\Debug\OpenMetaverse.StructuredData.pdb

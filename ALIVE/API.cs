@@ -11,9 +11,9 @@ namespace ALIVE
 
 {
     /// <summary>
-    // Docs go here
+    /// Docs go here
     /// </summary>
-    public enum primType : int {
+    public enum primType {
         Unknown,
         Box,
         Cylinder,
@@ -57,10 +57,11 @@ namespace ALIVE
             sizeX = p.Scale.X;
             sizeY = p.Scale.Y;
             sizeZ = p.Scale.Z;
-            movable = (p.Flags | PrimFlags.ObjectMove) != 0;
+            movable = (p.Flags & PrimFlags.ObjectMove) != 0;
             pType = (primType) p.Type;
 
             // Not sure how to do colors
+            // Maybe we overload the Description field
             color = "white";
 
             name = "";
@@ -80,8 +81,9 @@ namespace ALIVE
             // ALIVE objects use only LocalID, leave out global UUID
             // ID.ToString()
             return LocalID.ToString() + " <" + X.ToString("0.0") + "," + Y.ToString("0.0")
-                + ">" + primTypeToString(pType) + " " +
-                angle.ToString("0.0") + " [" + sizeX + "," + sizeY + "," + sizeZ + "] " +
+                + "> " + pType + " " +
+                angle.ToString("0.0") +
+                " [" + sizeX.ToString("0.0") + "," + sizeY.ToString("0.0") + "," + sizeZ.ToString("0.0") + "] " +
                 movable + " " + name + " " + description;
         }
 
@@ -249,6 +251,10 @@ namespace ALIVE
 
         // Avatar properties
 
+        // <summary>
+        // Return the coordinates of the avatar within a 256 by 256 meter
+        // Simulator
+        // </summary>
         public void MyCoordinates(out float x, out float y)
         {
             Vector3 pos = client.Self.SimPosition;
@@ -267,21 +273,16 @@ namespace ALIVE
             return newangle * 180 / (float)Math.PI;
         }
 
+        // <summary>
         // Return rotation of bot avatar in degrees
         // (due East is zero, results are from -180 to +180)
+        // </summary>
         public float MyOrientation()
         {
             return ZrotFromQuaternion(client.Self.RelativeRotation);
         }
 
         // Object commands
-
-        // Primitives have these useful properties:
-        // location:    Vector3  prim.Position
-        // size:        Vector3  prim.Scale
-        // name:        string   prim.Properties.Name
-        // description: string   prim.Properties.Description
-        // type:        PrimType prim.Type
 
         public List<Prim> ObjectsAround(float radius)
         {
@@ -296,12 +297,13 @@ namespace ALIVE
 
             
             // *** request properties of (only) these objects ***
-            bool complete = RequestObjectProperties(prims, 250, true);
+            bool complete = RequestObjectProperties(prims, 500, true);
+
+            //Console.Out.WriteLine("Properties completed: " + complete);
 
             List<Prim> returnPrims = new List<Prim>();
             foreach (Primitive p in prims) {
                 // convert OpenMetaverse Primitive to ALIVE Prim
-                Console.Out.WriteLine("ID: " + p.ID + " LocalID: " + p.LocalID);
                 returnPrims.Add(new Prim(p));
             }
             return returnPrims;
@@ -404,8 +406,13 @@ namespace ALIVE
                 if (PrimsWaiting.TryGetValue(properties.ObjectID, out prim))
                 {
                     prim.Properties = properties;
+                    PrimsWaiting.Remove(properties.ObjectID);
+                    //Console.Out.WriteLine("Name: " + properties.Name + " Desc: " + properties.Description);
                 }
-                PrimsWaiting.Remove(properties.ObjectID);
+                else
+                {
+                    // Called for an object we didn't ask for
+                }
 
                 if (PrimsWaiting.Count == 0)
                     AllPropertiesReceived.Set();
