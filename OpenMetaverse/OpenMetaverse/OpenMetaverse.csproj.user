@@ -2,7 +2,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ReferencePath>D:\Projects\ALIVE\OpenMetaverse\bin\</ReferencePath>
+    <ReferencePath>
+    </ReferencePath>
     <LastOpenVersion>9.0.21022</LastOpenVersion>
     <ProjectView>ShowAllFiles</ProjectView>
     <ProjectTrust>0</ProjectTrust>

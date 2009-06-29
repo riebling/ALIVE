@@ -10,3 +10,7 @@ D:\Projects\ALIVE\OpenMetaverse\bin\OpenMetaverse.dll
 D:\Projects\ALIVE\OpenMetaverse\bin\OpenMetaverse.XML
 D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\obj\Release\ResolveAssemblyReference.cache
 D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\obj\Release\OpenMetaverse.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\OpenMetaverse\bin\OpenMetaverse.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\OpenMetaverse\bin\OpenMetaverse.XML
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\OpenMetaverse\OpenMetaverse\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\OpenMetaverse\OpenMetaverse\obj\Release\OpenMetaverse.dll

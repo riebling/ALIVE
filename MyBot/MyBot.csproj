@@ -15,7 +15,7 @@
     <ManifestCertificateThumbprint>6FE26620B42CF010E3E29780E9102A5A2904B0B1</ManifestCertificateThumbprint>
     <ManifestKeyFile>MyBot_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\Documents and Settings\er1k\Desktop\</PublishUrl>
     <Install>true</Install>
