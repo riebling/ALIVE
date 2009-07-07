@@ -38,6 +38,7 @@ namespace ALIVE
         public string description;
         public float angle;
         public float sizeX, sizeY, sizeZ;
+        public float colorR, colorG, colorB;
 
         public string primTypeToString(primType t)
         {
@@ -54,9 +55,15 @@ namespace ALIVE
 
             X = p.Position.X;
             Y = p.Position.Y;
+            
             sizeX = p.Scale.X;
             sizeY = p.Scale.Y;
             sizeZ = p.Scale.Z;
+
+            colorR = p.Textures.DefaultTexture.RGBA.R;
+            colorG = p.Textures.DefaultTexture.RGBA.G;
+            colorB = p.Textures.DefaultTexture.RGBA.B;
+
             movable = (p.Flags & PrimFlags.ObjectMove) != 0;
             pType = (primType) p.Type;
 
@@ -76,6 +83,19 @@ namespace ALIVE
             angle = Bot.ZrotFromQuaternion(p.Rotation);
         }
 
+        private String color2String(float r, float g, float b)
+        {
+            if (r == 0 && g == 0 && b == 0) return "white";
+            if (r == 1 && g == 1 && b == 1) return "black";
+            if (r == 1 && g == 0 && b == 0) return "red";
+            if (r == 0 && g == 1 && b == 0) return "green";
+            if (r == 0 && g == 0 && b == 1) return "blue";
+            if (r == 1 && g == 1 && b == 0) return "yellow";
+            if (r == 0 && g == 1 && b == 1) return "aqua";
+            if (r == 1 && g == 0 && b == 1) return "purple";
+            return "undefined";
+        }
+
         public string toString()
         {
             // ALIVE objects use only LocalID, leave out global UUID
@@ -84,7 +104,7 @@ namespace ALIVE
                 + "> " + pType + " " +
                 angle.ToString("0.0") +
                 " [" + sizeX.ToString("0.0") + "," + sizeY.ToString("0.0") + "," + sizeZ.ToString("0.0") + "] " +
-                movable + " " + name + " " + description;
+                color2String(colorR, colorG, colorB) + " " + movable + " " + name + " " + description;
         }
 
     };
@@ -487,6 +507,9 @@ namespace ALIVE
         }
 
         // Chat buffers
+        //
+        // cb - chat buffer
+        // imb - instant message buffer
         private static string cb;
         private static string imb;
 
