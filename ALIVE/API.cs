@@ -60,16 +60,13 @@ namespace ALIVE
             sizeY = p.Scale.Y;
             sizeZ = p.Scale.Z;
 
-            colorR = p.Textures.DefaultTexture.RGBA.R;
-            colorG = p.Textures.DefaultTexture.RGBA.G;
-            colorB = p.Textures.DefaultTexture.RGBA.B;
+            color = color2String(
+                p.Textures.DefaultTexture.RGBA.R, 
+                p.Textures.DefaultTexture.RGBA.G, 
+                p.Textures.DefaultTexture.RGBA.B);
 
             movable = (p.Flags & PrimFlags.ObjectMove) != 0;
             pType = (primType) p.Type;
-
-            // Not sure how to do colors
-            // Maybe we overload the Description field
-            color = "white";
 
             name = "";
             description = "";
@@ -83,10 +80,12 @@ namespace ALIVE
             angle = Bot.ZrotFromQuaternion(p.Rotation);
         }
 
+        // simple mapping of basic RGB values to colors
+        // This can be expanded and made more 'fuzzy'
         private String color2String(float r, float g, float b)
         {
-            if (r == 0 && g == 0 && b == 0) return "white";
-            if (r == 1 && g == 1 && b == 1) return "black";
+            if (r == 0 && g == 0 && b == 0) return "black";
+            if (r == 1 && g == 1 && b == 1) return "white";
             if (r == 1 && g == 0 && b == 0) return "red";
             if (r == 0 && g == 1 && b == 0) return "green";
             if (r == 0 && g == 0 && b == 1) return "blue";
@@ -104,7 +103,7 @@ namespace ALIVE
                 + "> " + pType + " " +
                 angle.ToString("0.0") +
                 " [" + sizeX.ToString("0.0") + "," + sizeY.ToString("0.0") + "," + sizeZ.ToString("0.0") + "] " +
-                color2String(colorR, colorG, colorB) + " " + movable + " " + name + " " + description;
+                color + " " + movable + " " + name + " " + description;
         }
 
     };
