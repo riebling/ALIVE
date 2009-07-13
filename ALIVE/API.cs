@@ -11,8 +11,9 @@ namespace ALIVE
 
 {
     /// <summary>
-    /// Docs go here
     /// </summary>
+    ///<param name=""></param>
+    ///<returns></returns>
     public enum primType {
         Unknown,
         Box,
@@ -40,14 +41,8 @@ namespace ALIVE
         public float sizeX, sizeY, sizeZ;
         public float colorR, colorG, colorB;
 
-        public string primTypeToString(primType t)
-        {
-            string[] names = { "Unknown", "Box", "Cylinder", "Prism", "Sphere", "Torus",
-                             "Tube", "Ring", "Sculpt"};
-            return names[(int)t];
-        }
-
         // Constructor
+        /// <description>The most basic type of ALIVE object, akin to a Second Life Primitive</description>
         public Prim (Primitive p)
         {
             ID = p.ID.GetULong();
@@ -110,6 +105,7 @@ namespace ALIVE
 
     public class Bot
     {
+        /// naughty 'globals'
         const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         const string WORLD_MASTER_NAME = "World Master";
@@ -117,6 +113,7 @@ namespace ALIVE
 
         private Dictionary<String, UUID> AvatarNames;
         private UUID WorldMasterUUID = new UUID(0L);
+        private Boolean logging = true;
 
         public string FirstName;
         public string LastName;
@@ -147,6 +144,20 @@ namespace ALIVE
 
         // methods
 
+        private void logThis(String args) {
+            if (logging)
+            {
+                System.Diagnostics.StackFrame stackFrame
+                    = new System.Diagnostics.StackFrame(1);
+
+                System.Reflection.MethodBase methodBase =
+                    stackFrame.GetMethod();
+
+                string methodName = methodBase.Name;
+                SayMessage(DateTime.Now.ToString("[HH:mm:ss:fff]") + methodName + " (" + args + ")");
+            }
+        }
+
         public bool Login()
         {
             Boolean LoginSuccess;
@@ -176,11 +187,13 @@ namespace ALIVE
 
             //client.Network.CurrentSim.ObjectsAvatars.ForEach(OpenMetaverse.Avatar.AvatarProperties.Equals);
 
+            logThis("");
             return true;
         }
 
         public void Logout() 
         {
+            logThis("");
             if (loggedIn) client.Network.Logout();
         }
 
@@ -188,6 +201,8 @@ namespace ALIVE
 
         public void TurnTo (int x, int y) 
         {
+            logThis(x + "," + y );
+
             Vector3 position = new Vector3(x, y, 0);
 
             client.Self.Movement.TurnToward(position);
@@ -195,6 +210,8 @@ namespace ALIVE
 
         public void TurnLeft(long degrees) 
         {
+            logThis(degrees.ToString());
+
             float angle = (float)Math.PI * (float) degrees / -360f;
 
             Quaternion rot = new Quaternion(0, 0, (float)Math.Cos(angle/2), (float)Math.Sin(angle/2));
@@ -209,14 +226,23 @@ namespace ALIVE
 
         public void TurnRight(long degrees)
         {
-            // Doing the reverse angle computation results in all
-            // kinds of hurt - this actually works better
-            // (maybe rotation by multiplying Quaternions only
-            // works in one direction???  Maybe some min/max issue?)
-            TurnLeft(-degrees);
+            logThis(degrees.ToString());
+
+            float angle = (float)Math.PI * (float)degrees / 360f;
+
+            Quaternion rot = new Quaternion(0, 0, (float)Math.Cos(angle / 2), (float)Math.Sin(angle / 2));
+
+            // I don't know why but doing it twice makes it work            
+            Quaternion q = client.Self.Movement.BodyRotation * rot * rot;
+
+            client.Self.Movement.BodyRotation = q;
+            client.Self.Movement.HeadRotation = q;
+            client.Self.Movement.SendUpdate(true);
         }
 
         public void GoForward(int meters) {
+            logThis(meters.ToString());
+
             client.Self.Movement.AtPos = true;
             client.Self.Movement.SendUpdate(true);
             // 3 meters per second, so 333 msec per meter
@@ -226,6 +252,8 @@ namespace ALIVE
         }
 
         public void GoBackward(int meters) {
+            logThis(meters.ToString());
+
             client.Self.Movement.AtNeg = true;
             client.Self.Movement.SendUpdate(true);
             // 3 meters per second, so 333 msec per meter
@@ -236,6 +264,8 @@ namespace ALIVE
 
         public bool GoTo(int x, int y)
         {
+            logThis(x + "," + y);
+
             Vector3 pos = client.Self.SimPosition;
             float Z = 0;
             //int tries = 0;
@@ -260,7 +290,7 @@ namespace ALIVE
 
             Console.Out.WriteLine("Completed autopilot at: " + pos.X + "," + pos.Y);
             
-            // Need to make these fuzzy
+            // Need to make these fuzzy; final location not exact
             float fuzz = 0.8f;
             if (Math.Abs(pos.X - x) < fuzz &&  Math.Abs(pos.Y - y) < fuzz)
                 return true;
@@ -276,6 +306,8 @@ namespace ALIVE
         // </summary>
         public void MyCoordinates(out float x, out float y)
         {
+            logThis("");
+
             Vector3 pos = client.Self.SimPosition;
             x = pos.X;
             y = pos.Y;
@@ -298,6 +330,8 @@ namespace ALIVE
         // </summary>
         public float MyOrientation()
         {
+            logThis("");
+
             return ZrotFromQuaternion(client.Self.RelativeRotation);
         }
 
@@ -305,6 +339,8 @@ namespace ALIVE
 
         public List<Prim> ObjectsAround(float radius)
         {
+            logThis(radius.ToString());
+
             Vector3 location = client.Self.SimPosition;
             
             List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
@@ -337,6 +373,8 @@ namespace ALIVE
 
         public void DropObject(uint item) 
         {
+            logThis(item.ToString());
+
             client.Objects.DropObject(client.Network.CurrentSim, item);
         }
 
@@ -345,6 +383,8 @@ namespace ALIVE
         // carrying it by hand, i.e. attach to left or right hand
         public void PickupObject(uint item) 
         {
+            logThis(item.ToString());
+
             client.Objects.AttachObject(client.Network.CurrentSim, item, AttachmentPoint.LeftHand, Quaternion.Identity);
         }
 
@@ -354,6 +394,8 @@ namespace ALIVE
         // World Master message
         public string GetMessage () 
         {
+            logThis("");
+
             string temp = imb;
             imb = "";
             return temp; 
@@ -361,6 +403,8 @@ namespace ALIVE
         
         public void SayMessage (string message) 
         {
+            logThis(message);
+
             ulong id = WorldMasterUUID.GetULong();
             // Find out UUID of World master by avatar name lookup
             if (WorldMasterUUID.GetULong() != 0L)
@@ -370,6 +414,8 @@ namespace ALIVE
         // Chat message
         public string GetChat () 
         {
+            logThis("");
+
             string temp = cb;
             cb = "";
             return temp;
@@ -377,6 +423,8 @@ namespace ALIVE
 
         public void SayChat(string message) 
         {
+            logThis(message);
+
             // Chat on channel 0 = nearby 20 m
             client.Self.Chat(message, 0, ChatType.Normal);
         }
