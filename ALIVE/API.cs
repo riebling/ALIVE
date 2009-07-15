@@ -7,42 +7,63 @@ using OpenMetaverse;
 
 // CONSTANTS
 
+//<param name=''></param>
+
 namespace ALIVE
 
 {
-    /// <summary>
-    /// </summary>
-    ///<param name=""></param>
     ///<returns></returns>
     public enum primType {
+        ///<summary>Unknown primitive type</summary>
         Unknown,
+        ///<summary>Box primitive type</summary> 
         Box,
+        ///<summary>Cylinder primitive type</summary>
         Cylinder,
+        ///<summary>Prism primitive type</summary>
         Prism,
+        ///<summary>Sphere primitive type</summary>
         Sphere,
+        ///<summary>Torus primitive type</summary>
         Torus,
+        ///<summary>Tube primitive type</summary>
         Tube,
+        ///<summary>Ring primitive type</summary>
         Ring,
+        ///<summary>Sculpted primitive type</summary>
         Sculpt
     };
 
+    /// <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
     public class Prim
     {
-        public ulong ID;
+        ///<summary>64 bit Global ID (unique across the virtual world)</summary>
+        private ulong ID;
+        ///<summary>32 bit Local ID (unique within the current region)</summary>
         public uint LocalID;
+        ///<summary>X coordinate within current region</summary>
         public float X;
+        ///<summary>Y coordinate within current region</summary>
         public float Y;
+        ///<summary>Primitive type (see primType)</summary>
         public primType pType;
+        ///<summary>Can the Prim be picked up or moved?</summary>
         public bool movable;
+        ///<summary>String representing one of the colors: red, blue, green, yellow, aqua, purple, black, white
+        ///Other colors are not represented here and appear as "unknown"</summary>
         public string color;
+        ///<summary>Name of the Primitive as it appears in-world</summary>
         public string name;
+        ///<summary>Description of the Primitive as it appears in-world.  This can be overloaded to store metadata about the object</summary>
         public string description;
+        ///<summary>Rotation of the primary face of the Prim around the vertical axis in degrees, measured counter-clockwise from due East.</summary>
         public float angle;
+        ///<summary>Size of the Primitive in 3 dimensions</summary>
         public float sizeX, sizeY, sizeZ;
-        public float colorR, colorG, colorB;
+        //public float colorR, colorG, colorB;
 
         // Constructor
-        /// <description>The most basic type of ALIVE object, akin to a Second Life Primitive</description>
+        /// <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
         public Prim (Primitive p)
         {
             ID = p.ID.GetULong();
@@ -90,6 +111,7 @@ namespace ALIVE
             return "undefined";
         }
 
+        ///<summary>Returns a printable description of Prim attributes</summary>
         public string toString()
         {
             // ALIVE objects use only LocalID, leave out global UUID
@@ -103,6 +125,7 @@ namespace ALIVE
 
     };
 
+    ///<summary>Object which represents an avatar in ALIVE/OpenMetaverse/SecondLife</summary>
     public class Bot
     {
         /// naughty 'globals'
@@ -115,14 +138,17 @@ namespace ALIVE
         private UUID WorldMasterUUID = new UUID(0L);
         private Boolean logging = true;
 
-        public string FirstName;
-        public string LastName;
-        public string Password;
+        private string FirstName;
+        private string LastName;
+        private string Password;
         private Boolean loggedIn = false;
 
         private GridClient client;
 
-        // constructor
+        ///<summary></summary>
+        ///<param name='fn'>first name</param>
+        ///<param name='ln'>last name</param>
+        ///<param name='pw'>password</param>>
         public Bot(string fn, string ln, string pw) {
             FirstName = fn;
             LastName = ln;
@@ -154,10 +180,14 @@ namespace ALIVE
                     stackFrame.GetMethod();
 
                 string methodName = methodBase.Name;
-                SayMessage(DateTime.Now.ToString("[HH:mm:ss:fff]") + methodName + " (" + args + ")");
+                string message = DateTime.Now.ToString("[HH:mm:ss:fff]") + methodName + " (" + args + ")";
+
+                Console.WriteLine(message);
+                SayMessage(message);
             }
         }
 
+        ///<summary>Attempt to log the avatar into the default region</summary>
         public bool Login()
         {
             Boolean LoginSuccess;
@@ -191,6 +221,7 @@ namespace ALIVE
             return true;
         }
 
+        ///<summary>Log the avatar out</summary>
         public void Logout() 
         {
             logThis("");
@@ -199,6 +230,9 @@ namespace ALIVE
 
         // Movement commands
 
+        ///<summary>Rotate the avatar to face a specified location</summary>
+        ///<param name='x'>X coordinate</param>
+        ///<param name='y'>Y coordinate</param>
         public void TurnTo (int x, int y) 
         {
             logThis(x + "," + y );
@@ -208,6 +242,8 @@ namespace ALIVE
             client.Self.Movement.TurnToward(position);
         }
 
+        ///<summary>Rotate the avatar counter-clockwise</summary>
+        ///<param name='degrees'>degrees to rotate</param>
         public void TurnLeft(long degrees) 
         {
             logThis(degrees.ToString());
@@ -224,6 +260,8 @@ namespace ALIVE
             client.Self.Movement.SendUpdate(true);
         }
 
+        ///<summary>Rotate the avatar clockwise</summary>
+        ///<param name='degrees'>degrees to rotate</param>
         public void TurnRight(long degrees)
         {
             logThis(degrees.ToString());
@@ -240,6 +278,8 @@ namespace ALIVE
             client.Self.Movement.SendUpdate(true);
         }
 
+        ///<summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        ///<param name='meters'>Distance to walk in meters</param>
         public void GoForward(int meters) {
             logThis(meters.ToString());
 
@@ -251,6 +291,8 @@ namespace ALIVE
             client.Self.Movement.SendUpdate(true);
         }
 
+        ///<summary>Attempt to walk the avatar backwards in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        ///<param name='meters'>Distance to walk in meters</param>
         public void GoBackward(int meters) {
             logThis(meters.ToString());
 
@@ -262,6 +304,15 @@ namespace ALIVE
             client.Self.Movement.SendUpdate(true);
         }
 
+        ///<summary>Go to the specified location.</summary>
+        ///<remarks>This is not very reliable, in Second Life, or in ALIVE, and can 
+        ///result in the avatar getting stuck.  Use with caution.  The time taken to travel this distance
+        ///likely results in an avatar being still in motion before this method returns, with an
+        ///approximate travel speed of 3 meters per second.</remarks>
+        ///
+        ///<param name="x">X coordinate of location to attempt to travel to</param>
+        ///<param name="y">Y coordinate of location to attempt to travel to</param>
+        ///<returns>True or false depending on whether the location was reached (within a margin of error of 0.8 meters - from experimental data)</returns>
         public bool GoTo(int x, int y)
         {
             logThis(x + "," + y);
@@ -300,10 +351,12 @@ namespace ALIVE
 
         // Avatar properties
 
-        // <summary>
-        // Return the coordinates of the avatar within a 256 by 256 meter
-        // Simulator
-        // </summary>
+        /// <summary>
+        /// Return the coordinates of the avatar (in meters) within a 256 by 256 meter
+        /// Simulator region as floating point values.  X is due East, and Y is due North.
+        /// </summary>
+        /// <param name="x">X coordinate of avatar</param>
+        /// <param name="y">Y coordinate of avatar</param>
         public void MyCoordinates(out float x, out float y)
         {
             logThis("");
@@ -314,8 +367,10 @@ namespace ALIVE
         }
 
 
-        // Given a Quaternion, return the rotation around the Z
-        // (vertical) axis in degrees
+        /// <summary>Given a Quaternion, return the rotation around the Z
+        /// (vertical) axis in degrees.</summary><remarks>Angles are measured counterclockwise
+        /// from due East</remarks>
+        /// <returns>floating point angle in degrees</returns>
         public static float ZrotFromQuaternion(Quaternion q) {
             // Borrowed code works MUCH better than GetEulerAngles()
             // or other GetAxisAngle()
@@ -324,10 +379,10 @@ namespace ALIVE
             return newangle * 180 / (float)Math.PI;
         }
 
-        // <summary>
-        // Return rotation of bot avatar in degrees
-        // (due East is zero, results are from -180 to +180)
-        // </summary>
+        /// <summary>
+        /// Return rotation of bot avatar in degrees</summary>
+        /// <remarks>(due East is zero, results are from -180 to +180)
+        /// </remarks>
         public float MyOrientation()
         {
             logThis("");
@@ -337,6 +392,9 @@ namespace ALIVE
 
         // Object commands
 
+        ///<summary>Return a list of Prim objects found within a specified radius</summary>
+        ///<param name="radius">The radius (in meters) within which to look</param>
+        ///<returns>A List of Prim objects</returns>
         public List<Prim> ObjectsAround(float radius)
         {
             logThis(radius.ToString());
@@ -364,13 +422,15 @@ namespace ALIVE
             return returnPrims;
         }
 
-        // Override
+        /// <summary>Return a List of Prim objects within a radius of 10 meters</summary>
+        /// <returns>List of Prims</returns>
         public List<Prim> ObjectsAround()
         {
             return ObjectsAround(SEARCH_RADIUS);
         }
 
-
+        /// <summary>Drop the specified object near where the avatar is standing</summary>
+        /// <param name="item">32 bit local object ID</param>
         public void DropObject(uint item) 
         {
             logThis(item.ToString());
@@ -379,8 +439,11 @@ namespace ALIVE
         }
 
 
-        // We will use "attach" to pick up an object by
-        // carrying it by hand, i.e. attach to left or right hand
+        /// We will use "attach" to <summary>pick up an object by
+        /// carrying it by hand, i.e. attach to left or right hand</summary>
+        /// <param name="item">32 bit local ID identifying object to be picked up</param>
+        // Unfortunately this replaces the monkey costume "hand" - needs a
+        // better attachment point (spine?)
         public void PickupObject(uint item) 
         {
             logThis(item.ToString());
@@ -391,7 +454,8 @@ namespace ALIVE
 
         // CHAT COMMANDS
 
-        // World Master message
+        /// <summary>Get all the instant messages from the World Master since last checking</summary>
+        /// <returns>The message(s) as a string</returns>
         public string GetMessage () 
         {
             logThis("");
@@ -401,8 +465,11 @@ namespace ALIVE
             return temp; 
         }
         
+        /// <summary>Send the specified message to the World Master</summary>
+        /// <param name="message">The message to send World Master</param>
         public void SayMessage (string message) 
         {
+            if (!message.StartsWith("[")) // prevent recursion
             logThis(message);
 
             ulong id = WorldMasterUUID.GetULong();
@@ -411,7 +478,10 @@ namespace ALIVE
                 client.Self.InstantMessage(WorldMasterUUID, message);
         }
 
-        // Chat message
+        /// <summary>Get the messages in local chat since last checking</summary>
+        /// <remarks>Local chat is within a 20 meter radius</remarks>
+        /// <returns>A string containing messages seen in local chat, including your own.
+        /// </returns><remarks>Messages include your own chat, and begin with avatar name colon</remarks>
         public string GetChat () 
         {
             logThis("");
@@ -421,6 +491,9 @@ namespace ALIVE
             return temp;
         }
 
+        /// <summary>Say the specified message in local chat</summary>
+        /// <remarks>Local chat is heard within a 20 meter radius</remarks>
+        /// <param name="message">The message to say</param>
         public void SayChat(string message) 
         {
             logThis(message);
@@ -528,12 +601,12 @@ namespace ALIVE
         }
         
 /////// HANDLERS
-        public void Network_OnConnected(Object sender)
+        private void Network_OnConnected(Object sender)
         {
             System.Console.WriteLine("Successfully connected");
         }
 
-        public void Self_OnInstantMessage(InstantMessage im, Simulator sim)
+        private void Self_OnInstantMessage(InstantMessage im, Simulator sim)
         {
             System.Console.WriteLine("Instant Message: " + im.Message);
             if (im.Message != "typing")
@@ -542,7 +615,7 @@ namespace ALIVE
 
         // Keep track of avatar names to find World Master UUID
         
-        public void Self_OnNewAvatar(Simulator sim, Avatar av, ulong regionHandle, ushort timeDilation)
+        private void Self_OnNewAvatar(Simulator sim, Avatar av, ulong regionHandle, ushort timeDilation)
         {
             string avatarName = av.FirstName + " " + av.LastName;
 
@@ -560,7 +633,7 @@ namespace ALIVE
         private static string cb;
         private static string imb;
 
-        public void Self_OnChat(string message, ChatAudibleLevel audible, ChatType type, ChatSourceType sourceType, string fromName, UUID id, UUID ownerid, Vector3 position)
+        private void Self_OnChat(string message, ChatAudibleLevel audible, ChatType type, ChatSourceType sourceType, string fromName, UUID id, UUID ownerid, Vector3 position)
         {
             System.Console.WriteLine("Chat message: " + message);
             //if (ChatType.OwnerSay == type && sourceType == ChatSourceType.Object)

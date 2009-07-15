@@ -231,7 +231,7 @@ namespace MyBot
 
             List<Prim> prims = myAvatar.ObjectsAround();
             
-            Console.Out.WriteLine("Got " + prims.Count + " objects back");
+            //Console.Out.WriteLine("Got " + prims.Count + " objects back");
 
             // Synchronous object info update
             String message ="";
