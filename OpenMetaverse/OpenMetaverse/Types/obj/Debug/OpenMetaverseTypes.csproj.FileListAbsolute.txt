@@ -13,3 +13,8 @@ D:\Projects\ALIVE\OpenMetaverse\bin\OpenMetaverseTypes.pdb
 D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\Types\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\Types\obj\Debug\OpenMetaverseTypes.dll
 D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\Types\obj\Debug\OpenMetaverseTypes.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\bin\OpenMetaverseTypes.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\bin\OpenMetaverseTypes.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\OpenMetaverse\Types\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\OpenMetaverse\Types\obj\Debug\OpenMetaverseTypes.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\OpenMetaverse\Types\obj\Debug\OpenMetaverseTypes.pdb

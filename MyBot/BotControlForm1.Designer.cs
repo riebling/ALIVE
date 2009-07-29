@@ -71,6 +71,7 @@
             this.objectidbox = new System.Windows.Forms.TextBox();
             this.dropobjectbutton = new System.Windows.Forms.Button();
             this.takeobjectbutton = new System.Windows.Forms.Button();
+            this.ObjectPropsButton = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -426,6 +427,7 @@
             this.turntowardbutton.TabIndex = 39;
             this.turntowardbutton.Text = "TurnToward";
             this.turntowardbutton.UseVisualStyleBackColor = true;
+            this.turntowardbutton.Visible = false;
             // 
             // groupBox2
             // 
@@ -440,7 +442,7 @@
             // LookButton
             // 
             this.LookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LookButton.Location = new System.Drawing.Point(354, 348);
+            this.LookButton.Location = new System.Drawing.Point(308, 345);
             this.LookButton.Name = "LookButton";
             this.LookButton.Size = new System.Drawing.Size(87, 23);
             this.LookButton.TabIndex = 42;
@@ -516,11 +518,22 @@
             this.takeobjectbutton.Text = "TakeObject";
             this.takeobjectbutton.UseVisualStyleBackColor = true;
             // 
+            // ObjectPropsButton
+            // 
+            this.ObjectPropsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ObjectPropsButton.Location = new System.Drawing.Point(398, 345);
+            this.ObjectPropsButton.Name = "ObjectPropsButton";
+            this.ObjectPropsButton.Size = new System.Drawing.Size(87, 23);
+            this.ObjectPropsButton.TabIndex = 52;
+            this.ObjectPropsButton.Text = "ObjectProps";
+            this.ObjectPropsButton.UseVisualStyleBackColor = true;
+            // 
             // BotControlForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 644);
+            this.Controls.Add(this.ObjectPropsButton);
             this.Controls.Add(this.takeobjectbutton);
             this.Controls.Add(this.dropobjectbutton);
             this.Controls.Add(this.objectidbox);
@@ -617,5 +630,6 @@
         private System.Windows.Forms.TextBox objectidbox;
         private System.Windows.Forms.Button dropobjectbutton;
         private System.Windows.Forms.Button takeobjectbutton;
+        private System.Windows.Forms.Button ObjectPropsButton;
     }
 }

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
 using System.Threading;
 using System.Text;
 using OpenMetaverse;
-
-// CONSTANTS
-
-//<param name=''></param>
 
 namespace ALIVE
 
@@ -33,9 +28,10 @@ namespace ALIVE
         ///<summary>Sculpted primitive type</summary>
         Sculpt
     };
+    
 
     /// <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
-    public class Prim
+    public class AliveObject
     {
         ///<summary>64 bit Global ID (unique across the virtual world)</summary>
         private ulong ID;
@@ -46,7 +42,7 @@ namespace ALIVE
         ///<summary>Y coordinate within current region</summary>
         public float Y;
         ///<summary>Primitive type (see primType)</summary>
-        public primType pType;
+        public primType shape;
         ///<summary>Can the Prim be picked up or moved?</summary>
         public bool movable;
         ///<summary>String representing one of the colors: red, blue, green, yellow, aqua, purple, black, white
@@ -59,12 +55,12 @@ namespace ALIVE
         ///<summary>Rotation of the primary face of the Prim around the vertical axis in degrees, measured counter-clockwise from due East.</summary>
         public float angle;
         ///<summary>Size of the Primitive in 3 dimensions</summary>
-        public float sizeX, sizeY, sizeZ;
+        public float width, depth, height;
         //public float colorR, colorG, colorB;
 
         // Constructor
         /// <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
-        public Prim (Primitive p)
+        public AliveObject (Primitive p)
         {
             ID = p.ID.GetULong();
             LocalID = p.LocalID;
@@ -72,9 +68,9 @@ namespace ALIVE
             X = p.Position.X;
             Y = p.Position.Y;
             
-            sizeX = p.Scale.X;
-            sizeY = p.Scale.Y;
-            sizeZ = p.Scale.Z;
+            width = p.Scale.X;
+            depth = p.Scale.Y;
+            height = p.Scale.Z;
 
             color = color2String(
                 p.Textures.DefaultTexture.RGBA.R, 
@@ -82,7 +78,7 @@ namespace ALIVE
                 p.Textures.DefaultTexture.RGBA.B);
 
             movable = (p.Flags & PrimFlags.ObjectMove) != 0;
-            pType = (primType) p.Type;
+            shape = (primType) p.Type;
 
             name = "";
             description = "";
@@ -93,7 +89,7 @@ namespace ALIVE
                     description = p.Properties.Description;
             }
 
-            angle = Bot.ZrotFromQuaternion(p.Rotation);
+            angle = SmartDog.ZrotFromQuaternion(p.Rotation);
         }
 
         // simple mapping of basic RGB values to colors
@@ -117,22 +113,23 @@ namespace ALIVE
             // ALIVE objects use only LocalID, leave out global UUID
             // ID.ToString()
             return LocalID.ToString() + " <" + X.ToString("0.0") + "," + Y.ToString("0.0")
-                + "> " + pType + " " +
+                + "> " + shape + " " +
                 angle.ToString("0.0") +
-                " [" + sizeX.ToString("0.0") + "," + sizeY.ToString("0.0") + "," + sizeZ.ToString("0.0") + "] " +
+                " [" + width.ToString("0.0") + "," + depth.ToString("0.0") + "," + height.ToString("0.0") + "] " +
                 color + " " + movable + " " + name + " " + description;
         }
 
     };
 
     ///<summary>Object which represents an avatar in ALIVE/OpenMetaverse/SecondLife</summary>
-    public class Bot
+    public class SmartDog
     {
         /// naughty 'globals'
         const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         const string WORLD_MASTER_NAME = "World Master";
         const int SEARCH_RADIUS = 10;
+        const int walkSpeed = 320; // msec per meter
 
         private Dictionary<String, UUID> AvatarNames;
         private UUID WorldMasterUUID = new UUID(0L);
@@ -145,11 +142,11 @@ namespace ALIVE
 
         private GridClient client;
 
-        ///<summary></summary>
+        ///<summary>Construct a new Bot</summary>
         ///<param name='fn'>first name</param>
         ///<param name='ln'>last name</param>
         ///<param name='pw'>password</param>>
-        public Bot(string fn, string ln, string pw) {
+        public SmartDog(string fn, string ln, string pw) {
             FirstName = fn;
             LastName = ln;
             Password = pw;
@@ -222,10 +219,12 @@ namespace ALIVE
         }
 
         ///<summary>Log the avatar out</summary>
-        public void Logout() 
+        public bool Logout() 
         {
             logThis("");
             if (loggedIn) client.Network.Logout();
+
+            return true;
         }
 
         // Movement commands
@@ -244,7 +243,7 @@ namespace ALIVE
 
         ///<summary>Rotate the avatar counter-clockwise</summary>
         ///<param name='degrees'>degrees to rotate</param>
-        public void TurnLeft(long degrees) 
+        public bool TurnLeft(long degrees) 
         {
             logThis(degrees.ToString());
 
@@ -258,11 +257,13 @@ namespace ALIVE
             client.Self.Movement.BodyRotation = q;
             client.Self.Movement.HeadRotation = q;
             client.Self.Movement.SendUpdate(true);
+
+            return true;
         }
 
         ///<summary>Rotate the avatar clockwise</summary>
         ///<param name='degrees'>degrees to rotate</param>
-        public void TurnRight(long degrees)
+        public bool TurnRight(long degrees)
         {
             logThis(degrees.ToString());
 
@@ -276,39 +277,117 @@ namespace ALIVE
             client.Self.Movement.BodyRotation = q;
             client.Self.Movement.HeadRotation = q;
             client.Self.Movement.SendUpdate(true);
+
+            return true;
         }
 
         ///<summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
         ///<param name='meters'>Distance to walk in meters</param>
-        public void GoForward(int meters) {
+        public bool GoForward(int meters) {
             logThis(meters.ToString());
+
+            // Find current location, orientation and compute target location
+            float currentX, currentY, targetX, targetY;
+            float x, y;
+            double angle;
+            
+            // Get position
+            Vector3 pos = client.Self.SimPosition;
+            x = pos.X;
+            y = pos.Y;
+            
+            currentX = x;
+            currentY = y;
+
+            // Get orientation
+            float a = ZrotFromQuaternion(client.Self.RelativeRotation);
+            angle = 90 - a;
+            if (angle < 0) angle = 360 + angle;
+            
+            targetX = x + (float) (meters * Math.Sin(angle / 180 * Math.PI));
+            targetY = y + (float) (meters * Math.Cos(angle / 180 * Math.PI));
 
             client.Self.Movement.AtPos = true;
             client.Self.Movement.SendUpdate(true);
-            // 3 meters per second, so 333 msec per meter
-            Thread.Sleep(333 * meters);
+            
+            Thread.Sleep(walkSpeed * meters);
             client.Self.Movement.AtPos = false;
             client.Self.Movement.SendUpdate(true);
+
+            // Get position
+            pos = client.Self.SimPosition;
+            x = pos.X;
+            y = pos.Y;
+
+            // Compare to expected destination
+            float fuzz = 1.0f;
+
+            if ((Math.Abs(x - targetX) < fuzz) && (Math.Abs(y - targetY) < fuzz))
+                return true;
+            else
+            {
+                Console.WriteLine("Off by " + (x - targetX) + " horizontal, " +
+                    (y - targetY) + " vertical");
+                return false;
+            }
         }
 
         ///<summary>Attempt to walk the avatar backwards in a straight line.  Obstacles may prevent this from completing as expected</summary>
         ///<param name='meters'>Distance to walk in meters</param>
-        public void GoBackward(int meters) {
+        public bool GoBackward(int meters) {
             logThis(meters.ToString());
+
+            // Find current location, orientation and compute target location
+            float currentX, currentY, targetX, targetY;
+            float x, y;
+            double angle;
+
+            // Get position
+            Vector3 pos = client.Self.SimPosition;
+            x = pos.X;
+            y = pos.Y;
+
+            currentX = x;
+            currentY = y;
+
+            // Get orientation
+            float a = ZrotFromQuaternion(client.Self.RelativeRotation);
+            angle = 90 - a;
+            if (angle < 0) angle = 360 + angle;
+
+            targetX = x - (float)(meters * Math.Sin(angle / 180 * Math.PI));
+            targetY = y - (float)(meters * Math.Cos(angle / 180 * Math.PI));
 
             client.Self.Movement.AtNeg = true;
             client.Self.Movement.SendUpdate(true);
-            // 3 meters per second, so 333 msec per meter
-            Thread.Sleep(333 * meters);
+            
+            Thread.Sleep(walkSpeed * meters);
             client.Self.Movement.AtNeg = false;
             client.Self.Movement.SendUpdate(true);
+
+            // Get position
+            pos = client.Self.SimPosition;
+            x = pos.X;
+            y = pos.Y;
+
+            // Compare to expected destination
+            float fuzz = 1.0f;
+
+            if ((Math.Abs(x - targetX) < fuzz) && (Math.Abs(y - targetY) < fuzz))
+                return true;
+            else
+            {
+                Console.WriteLine("Off by " + (x - targetX) + " horizontal, " +
+                    (y - targetY) + " vertical");
+                return false;
+            }
         }
 
         ///<summary>Go to the specified location.</summary>
         ///<remarks>This is not very reliable, in Second Life, or in ALIVE, and can 
-        ///result in the avatar getting stuck.  Use with caution.  The time taken to travel this distance
-        ///likely results in an avatar being still in motion before this method returns, with an
-        ///approximate travel speed of 3 meters per second.</remarks>
+        ///result in the avatar getting stuck.  Use with caution.  This routine returns
+        ///after the time taken to travel this distance,
+        ///assuming a travel speed of 3 meters per second.</remarks>
         ///
         ///<param name="x">X coordinate of location to attempt to travel to</param>
         ///<param name="y">Y coordinate of location to attempt to travel to</param>
@@ -336,14 +415,14 @@ namespace ALIVE
 
             // Guess that avatar travels at 3m/sec
             // wait for them to get there
-            Thread.Sleep(Convert.ToInt32(333 *distance) + 500);
+            Thread.Sleep(Convert.ToInt32(320 *distance) + 500);
             pos = client.Self.SimPosition;
 
             Console.Out.WriteLine("Completed autopilot at: " + pos.X + "," + pos.Y);
             
             // Need to make these fuzzy; final location not exact
             float fuzz = 0.8f;
-            if (Math.Abs(pos.X - x) < fuzz &&  Math.Abs(pos.Y - y) < fuzz)
+            if ((Math.Abs(pos.X - x) < fuzz) &&  (Math.Abs(pos.Y - y) < fuzz))
                 return true;
             else
                 return false;
@@ -357,7 +436,7 @@ namespace ALIVE
         /// </summary>
         /// <param name="x">X coordinate of avatar</param>
         /// <param name="y">Y coordinate of avatar</param>
-        public void MyCoordinates(out float x, out float y)
+        public void Coordinates(out float x, out float y)
         {
             logThis("");
 
@@ -380,14 +459,17 @@ namespace ALIVE
         }
 
         /// <summary>
-        /// Return rotation of bot avatar in degrees</summary>
-        /// <remarks>(due East is zero, results are from -180 to +180)
+        /// Return rotation of bot avatar in degrees clockwise from Due North</summary>
+        /// <remarks>(due North is zero, results are from 0 to 360)
         /// </remarks>
-        public float MyOrientation()
+        public float Orientation()
         {
             logThis("");
 
-            return ZrotFromQuaternion(client.Self.RelativeRotation);
+            float angle = ZrotFromQuaternion(client.Self.RelativeRotation);
+            float retval = 90 - angle;
+            if (retval < 0) retval = 360 + retval;
+            return retval;
         }
 
         // Object commands
@@ -395,7 +477,7 @@ namespace ALIVE
         ///<summary>Return a list of Prim objects found within a specified radius</summary>
         ///<param name="radius">The radius (in meters) within which to look</param>
         ///<returns>A List of Prim objects</returns>
-        public List<Prim> ObjectsAround(float radius)
+        public List<AliveObject> ObjectsAround(float radius)
         {
             logThis(radius.ToString());
 
@@ -414,17 +496,17 @@ namespace ALIVE
 
             //Console.Out.WriteLine("Properties completed: " + complete);
 
-            List<Prim> returnPrims = new List<Prim>();
+            List<AliveObject> returnPrims = new List<AliveObject>();
             foreach (Primitive p in prims) {
                 // convert OpenMetaverse Primitive to ALIVE Prim
-                returnPrims.Add(new Prim(p));
+                returnPrims.Add(new AliveObject(p));
             }
             return returnPrims;
         }
 
         /// <summary>Return a List of Prim objects within a radius of 10 meters</summary>
         /// <returns>List of Prims</returns>
-        public List<Prim> ObjectsAround()
+        public List<AliveObject> ObjectsAround()
         {
             return ObjectsAround(SEARCH_RADIUS);
         }
@@ -500,6 +582,92 @@ namespace ALIVE
 
             // Chat on channel 0 = nearby 20 m
             client.Self.Chat(message, 0, ChatType.Normal);
+        }
+
+        /// <summary>List the names of ALIVE properties of object
+        /// </summary>
+        /// <param name="p">Primitive whose properties are to be returned</param>
+        public List<string> GetObjectProps(AliveObject p) {
+            List<string> props = new List<string>();
+            
+            // props.Add("id");
+            // props.Add("name");
+
+            props.Add("x");
+            props.Add("y"); // all Prims have coordinates
+            if (p.shape != primType.Unknown)
+                props.Add("shape");
+            props.Add("movable");
+            if (p.color != "unknown")
+                props.Add("color");
+            if (p.name != "")
+                props.Add("type");
+            if (p.description != "")
+                props.Add("other");
+            if (p.shape == primType.Box || p.shape == primType.Prism) {
+                props.Add("orientation");
+                props.Add("width");
+                props.Add("depth");
+            } else {
+                props.Add("radius");
+            }
+            props.Add("height");
+
+            return props;
+        }
+
+        /// <summary>Return the value of the named property for this Prim</summary>
+        /// <param name="p">The Prim of interest</param>
+        /// <param name="propName">The property to be returned</param>
+        public string GetObjProp(AliveObject p, string propName)
+        {
+            String retval = "";
+            switch(propName.ToLower()) {
+                case "x": 
+                    retval = p.X.ToString();
+                    break;
+                case "y": 
+                    retval = p.Y.ToString();
+                    break;
+                case "shape": 
+                    retval = p.shape.ToString();
+                    break;
+                case "movable":
+                    retval = p.movable.ToString();
+                    break;
+                case "color":
+                    retval = p.color;
+                    break;
+                case "type":
+                case "name":
+                    retval = p.name;
+                    break;
+                case "other":
+                    retval = p.description;
+                    break;
+                case "orientation":
+                    retval = p.angle.ToString();
+                    break;
+                case "radius":
+                    retval = (p.width / 2).ToString(); // assume w = h
+                    break;
+                case "width":
+                    retval = p.width.ToString();
+                    break;
+                case "depth":
+                    retval = p.depth.ToString();
+                    break;
+                case "height":
+                    retval = p.height.ToString();
+                    break;
+                // potentially needed to uniquely identify SL objects
+                case "id":
+                    retval = p.LocalID.ToString();
+                    break;
+                default:
+                    break;
+            }
+            return retval;
         }
 
 

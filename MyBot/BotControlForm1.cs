@@ -20,7 +20,7 @@ namespace MyBot
     public partial class BotControlForm1 : Form
     {
         private static bool LoginSuccess = false;
-        private ALIVE.Bot myAvatar;
+        private ALIVE.SmartDog myAvatar;
 
         //Dictionary<UUID, Primitive> PrimsWaiting = new Dictionary<UUID, Primitive>();
         AutoResetEvent AllPropertiesReceived = new AutoResetEvent(false);
@@ -51,6 +51,7 @@ namespace MyBot
             MoveButton.Click += new EventHandler(MoveButton_Click);
 
             LookButton.Click += new EventHandler(LookButton_Click);
+            ObjectPropsButton.Click += new EventHandler(ObjectPropsButton_Click);
             dropobjectbutton.Click += new EventHandler(dropobjectbutton_Click);
             takeobjectbutton.Click += new EventHandler(takeobjectbutton_Click);
 
@@ -84,7 +85,7 @@ namespace MyBot
         {
             //string myLocation = prettyLocation(client.Self.SimPosition);
             float x, y;
-            myAvatar.MyCoordinates(out x, out y);
+            myAvatar.Coordinates(out x, out y);
             textBoxUpdate(locationBox, "<" + x.ToString("0.0") + "," + y.ToString("0.0") + ">");
         }
 
@@ -186,7 +187,7 @@ namespace MyBot
             if (QuitButton.Text == "Login")
             {
 
-                myAvatar = new ALIVE.Bot(FNtextBox.Text, LNtextBox.Text, PWtextBox.Text);
+                myAvatar = new ALIVE.SmartDog(FNtextBox.Text, LNtextBox.Text, PWtextBox.Text);
                 LoginSuccess = myAvatar.Login();
                 //client.Network.CurrentSim.ObjectsAvatars.ForEach();
                 //client.Network.CurrentSim.ObjectsPrimitives.ForEach();
@@ -229,7 +230,7 @@ namespace MyBot
             textBoxUpdate(objectsBox, "");
             LookButton.Enabled = false;
 
-            List<Prim> prims = myAvatar.ObjectsAround();
+            List<AliveObject> prims = myAvatar.ObjectsAround();
             
             //Console.Out.WriteLine("Got " + prims.Count + " objects back");
 
@@ -243,6 +244,31 @@ namespace MyBot
             LookButton.Enabled = true;
         }
 
+        void ObjectPropsButton_Click(object sender, EventArgs e)
+        {
+            textBoxUpdate(objectsBox, "");
+            ObjectPropsButton.Enabled = false;
+
+            List<AliveObject> prims = myAvatar.ObjectsAround();
+
+            string message = "";
+            
+            for (int i = 0; i < prims.Count; i++)
+            {
+                string submessage = "";
+                AliveObject p = prims[i];
+                List<string> props = myAvatar.GetObjectProps(p);
+                for (int j = 0; j < props.Count; j++)
+                    //submessage = submessage + props[j] + " ";
+                    submessage = submessage + props[j] + "=" + myAvatar.GetObjProp(p, props[j]) + " ";
+                message += submessage + "\r\n";
+            }
+
+            textBoxUpdate(objectsBox, message);
+
+            ObjectPropsButton.Enabled = true;
+        }
+
         void MoveButton_Click(object sender, EventArgs e)
         {
             if (Xbox.Text == "" || Ybox.Text == "") return;
@@ -251,7 +277,7 @@ namespace MyBot
 
         private void rotationbutton_Click(object Sender, EventArgs e)
         {
-            float rot = myAvatar.MyOrientation();
+            float rot = myAvatar.Orientation();
             textBoxUpdate(rotationBox, rot.ToString());
         }
 
@@ -287,7 +313,7 @@ namespace MyBot
         {
             //string myLocation = prettyLocation(client.Self.SimPosition);
             float x, y;
-            myAvatar.MyCoordinates(out x, out y);
+            myAvatar.Coordinates(out x, out y);
             textBoxUpdate(locationBox, "<" + x.ToString("0.0") + "," + y.ToString("0.0") + ">");
 
         }

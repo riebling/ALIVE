@@ -13,3 +13,8 @@ D:\Projects\ALIVE\OpenMetaverse\bin\OpenMetaverse.pdb
 D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.dll
 D:\Projects\ALIVE\OpenMetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\bin\OpenMetaverse.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\bin\OpenMetaverse.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\OpenMetaverse\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\OpenMetaverse\obj\Debug\OpenMetaverse.pdb

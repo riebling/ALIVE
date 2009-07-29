@@ -14,3 +14,7 @@ C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\OpenMetaverse\bin\OpenMetaver
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\OpenMetaverse\bin\OpenMetaverse.XML
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\OpenMetaverse\OpenMetaverse\obj\Release\ResolveAssemblyReference.cache
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\OpenMetaverse\OpenMetaverse\obj\Release\OpenMetaverse.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\bin\OpenMetaverse.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\bin\OpenMetaverse.XML
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\OpenMetaverse\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\Desktop\ALIVE\OpenMetaverse\OpenMetaverse\obj\Release\OpenMetaverse.dll

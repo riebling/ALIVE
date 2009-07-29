@@ -80,3 +80,33 @@ D:\Projects\ALIVE\MyBot\bin\Debug\OpenMetaverseTypes.xml
 D:\Projects\ALIVE\MyBot\bin\Debug\ALIVE.pdb
 D:\Projects\ALIVE\MyBot\obj\Debug\MyBot.exe.manifest
 D:\Projects\ALIVE\MyBot\obj\Debug\MyBot.application
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\obj\Debug\MyBot.exe
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\obj\Debug\MyBot.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\MyBot.exe.manifest
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\MyBot.application
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\MyBot.exe
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\MyBot.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\ALIVE.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\HttpServer.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverse.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\log4net.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverse.Http.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\Mono.Security.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverse.StructuredData.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverseTypes.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\HttpServer.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverse.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverse.xml
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverse.Http.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverse.Http.xml
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverse.StructuredData.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverse.StructuredData.xml
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverseTypes.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\OpenMetaverseTypes.xml
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\ALIVE.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\bin\Debug\ALIVE.xml
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\obj\Debug\MyBot.BotControlForm1.resources
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\obj\Debug\MyBot.csproj.GenerateResource.Cache
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\obj\Debug\MyBot.exe.manifest
+C:\Documents and Settings\er1k\Desktop\ALIVE\MyBot\obj\Debug\MyBot.application

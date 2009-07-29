@@ -40,3 +40,25 @@ D:\Projects\ALIVE\ALIVE\bin\Debug\OpenMetaverseTypes.xml
 D:\Projects\ALIVE\ALIVE\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\ALIVE\ALIVE\obj\Debug\ALIVE.dll
 D:\Projects\ALIVE\ALIVE\obj\Debug\ALIVE.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\ALIVE.XML
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\ALIVE.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\ALIVE.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverse.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverseTypes.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\Mono.Security.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\HttpServer.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\log4net.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverse.Http.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverse.StructuredData.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\HttpServer.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverse.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverse.xml
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverse.Http.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverse.Http.xml
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverse.StructuredData.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverse.StructuredData.xml
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverseTypes.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverseTypes.xml
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\obj\Debug\ALIVE.dll
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\obj\Debug\ALIVE.pdb
