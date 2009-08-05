@@ -20,23 +20,17 @@ namespace AliveControlPanel
             InitializeComponent();
 
             // Register button click callbacks
-            LoginButton.Click += new EventHandler(LoginButton_Click);
-        }
-
-        private void ParseNames(out string fn, out string ln, out string pw)
-        {
-            fn = ""; ln = ""; pw = "";
+            LoginButton.Click       += new EventHandler(LoginButton_Click);
+            LogoutButton.Click      += new EventHandler(LogoutButton_Click);
+            MoveForwardButton.Click += new EventHandler(MoveForwardButton_Click);
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            string fn, ln, pw;
+            Fido = new SmartDog("Dog", NameBox.Text, "alive");
+            bool success = Fido.Login();
 
-            ParseNames(out fn, out ln, out pw);
-            Fido = new SmartDog(fn, ln, pw);
-            if (!Fido.Login())
-                MessageBox.Show("Login failed\r\n" + 
-                    "Perhaps that user is already logged in?");
+            MessageBox.AppendText("Login: " + success);
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -47,9 +41,11 @@ namespace AliveControlPanel
 
         private void MoveForwardButton_Click(object sender, EventArgs e)
         {
-            if (!Fido.GoForward(1))
-                MessageBox.Show("Failed to move forward\r\n" +
-                    "Perhaps you hit an obstacle?");
+            if (Fido != null)
+            {
+                bool success = Fido.GoForward(1);
+                MessageBox.AppendText("GoForward: " + success);
+            }
         }
         
         }
