@@ -30,7 +30,7 @@ namespace AliveControlPanel
             Fido = new SmartDog("Dog", NameBox.Text, "alive");
             bool success = Fido.Login();
 
-            MessageBox.AppendText("Login: " + success);
+            MessageBox.AppendText("Login: " + success + "\r\n");
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -44,9 +44,9 @@ namespace AliveControlPanel
             if (Fido != null)
             {
                 bool success = Fido.GoForward(1);
-                MessageBox.AppendText("GoForward: " + success);
+                MessageBox.AppendText("GoForward: " + success + "\r\n");
             }
         }
         
-        }
+    }
 }
