@@ -37,6 +37,12 @@
         <member name="T:ALIVE.AliveObject">
             <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
         </member>
+        <member name="F:ALIVE.AliveObject.family">
+            <summary>This represents the kind of AliveObject this is, 
+             for example Tree, House, Wall, Ball, Cube 
+             It is stored on the Description slot of the object as
+             created in the virtual world</summary>
+        </member>
         <member name="F:ALIVE.AliveObject.ID">
             <summary>64 bit Global ID (unique across the virtual world)</summary>
         </member>
@@ -62,11 +68,6 @@
         </member>
         <member name="F:ALIVE.AliveObject.name">
             <summary>Name of the AliveObject as it appears in-world, for example $ball3</summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.description">
-            <summary>Description of the Primitive as it appears in-world.  
-             Currently unused,
-             this can be overloaded to store metadata about the object</summary>
         </member>
         <member name="F:ALIVE.AliveObject.angle">
             <summary>Rotation of the primary face of the Prim around the vertical axis 

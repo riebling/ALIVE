@@ -33,6 +33,11 @@ namespace ALIVE
     /// <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
     public class AliveObject
     {
+        ///<summary>This represents the kind of AliveObject this is, 
+        /// for example Tree, House, Wall, Ball, Cube 
+        /// It is stored on the Description slot of the object as
+        /// created in the virtual world</summary>
+        public string family;
         ///<summary>64 bit Global ID (unique across the virtual world)</summary>
         private ulong ID;
         ///<summary>32 bit Local ID (unique within the current region)
@@ -51,10 +56,6 @@ namespace ALIVE
         public string color;
         ///<summary>Name of the AliveObject as it appears in-world, for example $ball3</summary>
         public string name;
-        ///<summary>Description of the Primitive as it appears in-world.  
-        /// Currently unused,
-        /// this can be overloaded to store metadata about the object</summary>
-        public string description;
         ///<summary>Rotation of the primary face of the Prim around the vertical axis 
         ///         in degrees, measured counter-clockwise from due East.</summary>
         public float angle;
@@ -85,12 +86,12 @@ namespace ALIVE
             shape = p.Type.ToString();
 
             name = "";
-            description = "";
+            family = "";
             if (p.Properties != null) {
                 if (p.Properties.Name != null)
                     name = p.Properties.Name;
                 if (p.Properties.Description != null)
-                    description = p.Properties.Description;
+                    family = p.Properties.Description;
             }
 
             angle = SmartDog.ZrotFromQuaternion(p.Rotation);
@@ -107,7 +108,7 @@ namespace ALIVE
                 + "> " + shape + " " +
                 angle.ToString("0.0") +
                 " [" + width.ToString("0.0") + "," + depth.ToString("0.0") + "," + height.ToString("0.0") + "] " +
-                color + " " + movable + " " + name + " " + description;
+                color + " " + movable + " " + name + " " + family;
         }
     }; // public class AliveObject
 
@@ -627,7 +628,7 @@ namespace ALIVE
                 props.Add("color");
             if (p.name != "")
                 props.Add("type");
-            if (p.description != "")
+            if (p.family != "")
                 props.Add("other");
             if (p.shape == "box" || p.shape == "prism") {
                 props.Add("orientation");
@@ -668,7 +669,7 @@ namespace ALIVE
                     retval = p.name;
                     break;
                 case "other":
-                    retval = p.description;
+                    retval = p.family;
                     break;
                 case "orientation":
                     retval = p.angle.ToString();
