@@ -71,7 +71,7 @@
             this.objectidbox = new System.Windows.Forms.TextBox();
             this.dropobjectbutton = new System.Windows.Forms.Button();
             this.takeobjectbutton = new System.Windows.Forms.Button();
-            this.ObjectPropsButton = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,7 +116,7 @@
             this.FNtextBox.Name = "FNtextBox";
             this.FNtextBox.Size = new System.Drawing.Size(100, 20);
             this.FNtextBox.TabIndex = 3;
-            this.FNtextBox.Text = "test";
+            this.FNtextBox.Text = "World";
             // 
             // PWtextBox
             // 
@@ -127,7 +127,7 @@
             this.PWtextBox.PasswordChar = '*';
             this.PWtextBox.Size = new System.Drawing.Size(100, 20);
             this.PWtextBox.TabIndex = 5;
-            this.PWtextBox.Text = "test";
+            this.PWtextBox.Text = "avatar";
             this.PWtextBox.UseSystemPasswordChar = true;
             // 
             // LNtextBox
@@ -138,12 +138,12 @@
             this.LNtextBox.Name = "LNtextBox";
             this.LNtextBox.Size = new System.Drawing.Size(100, 20);
             this.LNtextBox.TabIndex = 4;
-            this.LNtextBox.Text = "user";
+            this.LNtextBox.Text = "Master";
             // 
             // QuitButton
             // 
             this.QuitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.QuitButton.Location = new System.Drawing.Point(401, 274);
+            this.QuitButton.Location = new System.Drawing.Point(85, 90);
             this.QuitButton.Name = "QuitButton";
             this.QuitButton.Size = new System.Drawing.Size(75, 23);
             this.QuitButton.TabIndex = 6;
@@ -267,6 +267,7 @@
             this.OpenSimCheckbox.Size = new System.Drawing.Size(15, 14);
             this.OpenSimCheckbox.TabIndex = 18;
             this.OpenSimCheckbox.UseVisualStyleBackColor = true;
+            this.OpenSimCheckbox.Visible = false;
             // 
             // label9
             // 
@@ -279,6 +280,7 @@
             this.label9.Size = new System.Drawing.Size(52, 13);
             this.label9.TabIndex = 19;
             this.label9.Text = "OpenSim";
+            this.label9.Visible = false;
             // 
             // locationBox
             // 
@@ -301,6 +303,7 @@
             this.label11.Size = new System.Drawing.Size(52, 13);
             this.label11.TabIndex = 25;
             this.label11.Text = "startURI";
+            this.label11.Visible = false;
             // 
             // URIbox
             // 
@@ -310,15 +313,17 @@
             this.URIbox.Name = "URIbox";
             this.URIbox.Size = new System.Drawing.Size(100, 20);
             this.URIbox.TabIndex = 24;
-            this.URIbox.Text = "last";
+            this.URIbox.Text = "home";
             this.URIbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.URIbox.Visible = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.QuitButton);
             this.groupBox1.Location = new System.Drawing.Point(316, 160);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(169, 141);
+            this.groupBox1.Size = new System.Drawing.Size(169, 118);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             // 
@@ -427,7 +432,6 @@
             this.turntowardbutton.TabIndex = 39;
             this.turntowardbutton.Text = "TurnToward";
             this.turntowardbutton.UseVisualStyleBackColor = true;
-            this.turntowardbutton.Visible = false;
             // 
             // groupBox2
             // 
@@ -441,8 +445,8 @@
             // 
             // LookButton
             // 
-            this.LookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LookButton.Location = new System.Drawing.Point(308, 345);
+            this.LookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LookButton.Location = new System.Drawing.Point(398, 349);
             this.LookButton.Name = "LookButton";
             this.LookButton.Size = new System.Drawing.Size(87, 23);
             this.LookButton.TabIndex = 42;
@@ -497,6 +501,7 @@
             this.objectidbox.Name = "objectidbox";
             this.objectidbox.Size = new System.Drawing.Size(182, 20);
             this.objectidbox.TabIndex = 49;
+            this.objectidbox.Visible = false;
             // 
             // dropobjectbutton
             // 
@@ -507,6 +512,7 @@
             this.dropobjectbutton.TabIndex = 50;
             this.dropobjectbutton.Text = "DropObject";
             this.dropobjectbutton.UseVisualStyleBackColor = true;
+            this.dropobjectbutton.Visible = false;
             // 
             // takeobjectbutton
             // 
@@ -517,23 +523,13 @@
             this.takeobjectbutton.TabIndex = 51;
             this.takeobjectbutton.Text = "TakeObject";
             this.takeobjectbutton.UseVisualStyleBackColor = true;
-            // 
-            // ObjectPropsButton
-            // 
-            this.ObjectPropsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ObjectPropsButton.Location = new System.Drawing.Point(398, 345);
-            this.ObjectPropsButton.Name = "ObjectPropsButton";
-            this.ObjectPropsButton.Size = new System.Drawing.Size(87, 23);
-            this.ObjectPropsButton.TabIndex = 52;
-            this.ObjectPropsButton.Text = "ObjectProps";
-            this.ObjectPropsButton.UseVisualStyleBackColor = true;
+            this.takeobjectbutton.Visible = false;
             // 
             // BotControlForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 644);
-            this.Controls.Add(this.ObjectPropsButton);
             this.Controls.Add(this.takeobjectbutton);
             this.Controls.Add(this.dropobjectbutton);
             this.Controls.Add(this.objectidbox);
@@ -553,7 +549,6 @@
             this.Controls.Add(this.turnleftbutton);
             this.Controls.Add(this.turnleftbox);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.URIbox);
             this.Controls.Add(this.locationBox);
             this.Controls.Add(this.OpenSimCheckbox);
             this.Controls.Add(this.objectsBox);
@@ -573,11 +568,12 @@
             this.Controls.Add(this.ChatBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.URIbox);
             this.MinimumSize = new System.Drawing.Size(505, 605);
             this.Name = "BotControlForm1";
             this.Text = "BotControlForm1";
+            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -630,6 +626,5 @@
         private System.Windows.Forms.TextBox objectidbox;
         private System.Windows.Forms.Button dropobjectbutton;
         private System.Windows.Forms.Button takeobjectbutton;
-        private System.Windows.Forms.Button ObjectPropsButton;
     }
 }

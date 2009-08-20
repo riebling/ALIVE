@@ -35,24 +35,28 @@ namespace ALIVE
     {
         ///<summary>64 bit Global ID (unique across the virtual world)</summary>
         private ulong ID;
-        ///<summary>32 bit Local ID (unique within the current region)</summary>
+        ///<summary>32 bit Local ID (unique within the current region)
+        /// Although public, this is for internal use only.</summary>
         public uint LocalID;
         ///<summary>X coordinate within current region</summary>
         public float X;
         ///<summary>Y coordinate within current region</summary>
         public float Y;
         ///<summary>Primitive type (see primType)</summary>
-        public primType shape;
+        public string shape;
         ///<summary>Can the Prim be picked up or moved?</summary>
         public bool movable;
         ///<summary>String representing one of the colors: red, blue, green, yellow, aqua, purple, black, white
         ///Other colors are not represented here and appear as "unknown"</summary>
         public string color;
-        ///<summary>Name of the Primitive as it appears in-world</summary>
+        ///<summary>Name of the AliveObject as it appears in-world, for example $ball3</summary>
         public string name;
-        ///<summary>Description of the Primitive as it appears in-world.  This can be overloaded to store metadata about the object</summary>
+        ///<summary>Description of the Primitive as it appears in-world.  
+        /// Currently unused,
+        /// this can be overloaded to store metadata about the object</summary>
         public string description;
-        ///<summary>Rotation of the primary face of the Prim around the vertical axis in degrees, measured counter-clockwise from due East.</summary>
+        ///<summary>Rotation of the primary face of the Prim around the vertical axis 
+        ///         in degrees, measured counter-clockwise from due East.</summary>
         public float angle;
         ///<summary>Size of the Primitive in 3 dimensions</summary>
         public float width, depth, height;
@@ -72,13 +76,13 @@ namespace ALIVE
             depth = p.Scale.Y;
             height = p.Scale.Z;
 
-            color = color2String(
+            color = SmartDog.color2String(
                 p.Textures.DefaultTexture.RGBA.R, 
                 p.Textures.DefaultTexture.RGBA.G, 
                 p.Textures.DefaultTexture.RGBA.B);
 
             movable = (p.Flags & PrimFlags.ObjectMove) != 0;
-            shape = (primType) p.Type;
+            shape = p.Type.ToString();
 
             name = "";
             description = "";
@@ -92,20 +96,7 @@ namespace ALIVE
             angle = SmartDog.ZrotFromQuaternion(p.Rotation);
         }
 
-        // simple mapping of basic RGB values to colors
-        // This can be expanded and made more 'fuzzy'
-        private String color2String(float r, float g, float b)
-        {
-            if (r == 0 && g == 0 && b == 0) return "black";
-            if (r == 1 && g == 1 && b == 1) return "white";
-            if (r == 1 && g == 0 && b == 0) return "red";
-            if (r == 0 && g == 1 && b == 0) return "green";
-            if (r == 0 && g == 0 && b == 1) return "blue";
-            if (r == 1 && g == 1 && b == 0) return "yellow";
-            if (r == 0 && g == 1 && b == 1) return "aqua";
-            if (r == 1 && g == 0 && b == 1) return "purple";
-            return "undefined";
-        }
+
 
         ///<summary>Returns a printable description of Prim attributes</summary>
         public string toString()
@@ -118,14 +109,15 @@ namespace ALIVE
                 " [" + width.ToString("0.0") + "," + depth.ToString("0.0") + "," + height.ToString("0.0") + "] " +
                 color + " " + movable + " " + name + " " + description;
         }
+    }; // public class AliveObject
 
-    };
 
     ///<summary>Object which represents an avatar in ALIVE/OpenMetaverse/SecondLife</summary>
     public class SmartDog
     {
         /// naughty 'globals'
-        const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
+        //const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
+        const string ALIVE_SERVER = "http://ohio.pc.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         const string WORLD_MASTER_NAME = "World Master";
         const int SEARCH_RADIUS = 10;
@@ -191,7 +183,7 @@ namespace ALIVE
 
             LoginParams loginParams = new LoginParams();
             loginParams = client.Network.DefaultLoginParams(FirstName, LastName, Password, "ALIVE", "Bot");
-            //loginParams.Start = "last"; // specify start location
+            loginParams.Start = "home"; // specify start location.  We set avatars homes at 128,128
             loginParams.URI = ALIVE_SERVER;
             LoginSuccess = client.Network.Login(loginParams);
 
@@ -446,6 +438,23 @@ namespace ALIVE
         }
 
 
+        /// UTILITY FUNCTIONS
+
+        // simple mapping of basic RGB values to colors
+        // This can be expanded and made more 'fuzzy'
+        public static String color2String(float r, float g, float b)
+        {
+            if (r == 0 && g == 0 && b == 0) return "black";
+            if (r == 1 && g == 1 && b == 1) return "white";
+            if (r == 1 && g == 0 && b == 0) return "red";
+            if (r == 0 && g == 1 && b == 0) return "green";
+            if (r == 0 && g == 0 && b == 1) return "blue";
+            if (r == 1 && g == 1 && b == 0) return "yellow";
+            if (r == 0 && g == 1 && b == 1) return "aqua";
+            if (r == 1 && g == 0 && b == 1) return "purple";
+            return "undefined";
+        }
+
         /// <summary>Given a Quaternion, return the rotation around the Z
         /// (vertical) axis in degrees.</summary><remarks>Angles are measured counterclockwise
         /// from due East</remarks>
@@ -474,10 +483,10 @@ namespace ALIVE
 
         // Object commands
 
-        ///<summary>Return a list of Prim objects found within a specified radius</summary>
+        ///<summary>Return a list of AliveObjects found within a specified radius</summary>
         ///<param name="radius">The radius (in meters) within which to look</param>
         ///<returns>A List of Prim objects</returns>
-        public List<AliveObject> ObjectsAround(float radius)
+        private List<AliveObject> ObjectsAround(float radius)
         {
             logThis(radius.ToString());
 
@@ -499,12 +508,27 @@ namespace ALIVE
             List<AliveObject> returnPrims = new List<AliveObject>();
             foreach (Primitive p in prims) {
                 // convert OpenMetaverse Primitive to ALIVE Prim
-                returnPrims.Add(new AliveObject(p));
+                // but filter out ones we want to hide
+                // Since all new objects in OpenSim default to
+                // type "Primitive" we don't include those
+
+                if (p.Properties != null)
+                {
+                    if (p.Properties.Name != null)
+                    {
+                        if (p.Properties.Name != "Primitive")
+                            returnPrims.Add(new AliveObject(p));
+                    }
+                    else
+                        returnPrims.Add(new AliveObject(p));
+                }
+                else
+                    returnPrims.Add(new AliveObject(p));
             }
             return returnPrims;
         }
 
-        /// <summary>Return a List of Prim objects within a radius of 10 meters</summary>
+        /// <summary>Return a List of AliveObjects within a radius of 10 meters</summary>
         /// <returns>List of Prims</returns>
         public List<AliveObject> ObjectsAround()
         {
@@ -512,25 +536,23 @@ namespace ALIVE
         }
 
         /// <summary>Drop the specified object near where the avatar is standing</summary>
-        /// <param name="item">32 bit local object ID</param>
-        public void DropObject(uint item) 
+        /// <param name="item">The AliveObject to drop</param>
+        public void DropObject(AliveObject item) 
         {
             logThis(item.ToString());
 
-            client.Objects.DropObject(client.Network.CurrentSim, item);
+            client.Objects.DropObject(client.Network.CurrentSim, item.LocalID);
         }
 
 
         /// We will use "attach" to <summary>pick up an object by
         /// carrying it by hand, i.e. attach to left or right hand</summary>
-        /// <param name="item">32 bit local ID identifying object to be picked up</param>
-        // Unfortunately this replaces the monkey costume "hand" - needs a
-        // better attachment point (spine?)
-        public void PickupObject(uint item) 
+        /// <param name="item">AliveObject to be picked up</param>
+        public void PickupObject(AliveObject item) 
         {
             logThis(item.ToString());
 
-            client.Objects.AttachObject(client.Network.CurrentSim, item, AttachmentPoint.LeftHand, Quaternion.Identity);
+            client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.LeftHand, Quaternion.Identity);
         }
 
 
@@ -541,6 +563,9 @@ namespace ALIVE
         public string GetMessage () 
         {
             logThis("");
+
+            // sleep 30 seconds waiting for WM to type in message
+            Thread.Sleep(30000);
 
             string temp = imb;
             imb = "";
@@ -587,7 +612,7 @@ namespace ALIVE
         /// <summary>List the names of ALIVE properties of object
         /// </summary>
         /// <param name="p">Primitive whose properties are to be returned</param>
-        public List<string> GetObjectProps(AliveObject p) {
+        private List<string> GetObjectProps(AliveObject p) {
             List<string> props = new List<string>();
             
             // props.Add("id");
@@ -595,7 +620,7 @@ namespace ALIVE
 
             props.Add("x");
             props.Add("y"); // all Prims have coordinates
-            if (p.shape != primType.Unknown)
+            if (p.shape != "unknown")
                 props.Add("shape");
             props.Add("movable");
             if (p.color != "unknown")
@@ -604,7 +629,7 @@ namespace ALIVE
                 props.Add("type");
             if (p.description != "")
                 props.Add("other");
-            if (p.shape == primType.Box || p.shape == primType.Prism) {
+            if (p.shape == "box" || p.shape == "prism") {
                 props.Add("orientation");
                 props.Add("width");
                 props.Add("depth");
@@ -619,7 +644,7 @@ namespace ALIVE
         /// <summary>Return the value of the named property for this Prim</summary>
         /// <param name="p">The Prim of interest</param>
         /// <param name="propName">The property to be returned</param>
-        public string GetObjProp(AliveObject p, string propName)
+        private string GetObjProp(AliveObject p, string propName)
         {
             String retval = "";
             switch(propName.ToLower()) {

@@ -51,7 +51,7 @@ namespace MyBot
             MoveButton.Click += new EventHandler(MoveButton_Click);
 
             LookButton.Click += new EventHandler(LookButton_Click);
-            ObjectPropsButton.Click += new EventHandler(ObjectPropsButton_Click);
+            //ObjectPropsButton.Click += new EventHandler(ObjectPropsButton_Click);
             dropobjectbutton.Click += new EventHandler(dropobjectbutton_Click);
             takeobjectbutton.Click += new EventHandler(takeobjectbutton_Click);
 
@@ -244,30 +244,30 @@ namespace MyBot
             LookButton.Enabled = true;
         }
 
-        void ObjectPropsButton_Click(object sender, EventArgs e)
-        {
-            textBoxUpdate(objectsBox, "");
-            ObjectPropsButton.Enabled = false;
+        //void ObjectPropsButton_Click(object sender, EventArgs e)
+        //{
+        //    textBoxUpdate(objectsBox, "");
+        //    ObjectPropsButton.Enabled = false;
 
-            List<AliveObject> prims = myAvatar.ObjectsAround();
+        //    List<AliveObject> prims = myAvatar.ObjectsAround();
 
-            string message = "";
+        //    string message = "";
             
-            for (int i = 0; i < prims.Count; i++)
-            {
-                string submessage = "";
-                AliveObject p = prims[i];
-                List<string> props = myAvatar.GetObjectProps(p);
-                for (int j = 0; j < props.Count; j++)
-                    //submessage = submessage + props[j] + " ";
-                    submessage = submessage + props[j] + "=" + myAvatar.GetObjProp(p, props[j]) + " ";
-                message += submessage + "\r\n";
-            }
+        //    for (int i = 0; i < prims.Count; i++)
+        //    {
+        //        string submessage = "";
+        //        AliveObject p = prims[i];
+        //        List<string> props = myAvatar.GetObjectProps(p);
+        //        for (int j = 0; j < props.Count; j++)
+        //            //submessage = submessage + props[j] + " ";
+        //            submessage = submessage + props[j] + "=" + myAvatar.GetObjProp(p, props[j]) + " ";
+        //        message += submessage + "\r\n";
+        //    }
 
-            textBoxUpdate(objectsBox, message);
+        //    textBoxUpdate(objectsBox, message);
 
-            ObjectPropsButton.Enabled = true;
-        }
+        //    ObjectPropsButton.Enabled = true;
+        //}
 
         void MoveButton_Click(object sender, EventArgs e)
         {
@@ -344,12 +344,13 @@ namespace MyBot
 
         private void dropobjectbutton_Click(object sender, EventArgs e)
         {
-            myAvatar.DropObject(Convert.ToUInt32(objectidbox.Text));
+
+            //myAvatar.DropObject(Convert.ToUInt32(objectidbox.Text));
         }
 
         private void takeobjectbutton_Click(object sender, EventArgs e)
         {
-            myAvatar.PickupObject(Convert.ToUInt32(objectidbox.Text));
+            //myAvatar.PickupObject(Convert.ToUInt32(objectidbox.Text));
         }
 
 

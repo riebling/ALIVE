@@ -41,7 +41,8 @@
             <summary>64 bit Global ID (unique across the virtual world)</summary>
         </member>
         <member name="F:ALIVE.AliveObject.LocalID">
-            <summary>32 bit Local ID (unique within the current region)</summary>
+            <summary>32 bit Local ID (unique within the current region)
+             Although public, this is for internal use only.</summary>
         </member>
         <member name="F:ALIVE.AliveObject.X">
             <summary>X coordinate within current region</summary>
@@ -60,13 +61,16 @@
             Other colors are not represented here and appear as "unknown"</summary>
         </member>
         <member name="F:ALIVE.AliveObject.name">
-            <summary>Name of the Primitive as it appears in-world</summary>
+            <summary>Name of the AliveObject as it appears in-world, for example $ball3</summary>
         </member>
         <member name="F:ALIVE.AliveObject.description">
-            <summary>Description of the Primitive as it appears in-world.  This can be overloaded to store metadata about the object</summary>
+            <summary>Description of the Primitive as it appears in-world.  
+             Currently unused,
+             this can be overloaded to store metadata about the object</summary>
         </member>
         <member name="F:ALIVE.AliveObject.angle">
-            <summary>Rotation of the primary face of the Prim around the vertical axis in degrees, measured counter-clockwise from due East.</summary>
+            <summary>Rotation of the primary face of the Prim around the vertical axis 
+                     in degrees, measured counter-clockwise from due East.</summary>
         </member>
         <member name="F:ALIVE.AliveObject.width">
             <summary>Size of the Primitive in 3 dimensions</summary>
@@ -157,22 +161,22 @@
             </remarks>
         </member>
         <member name="M:ALIVE.SmartDog.ObjectsAround(System.Single)">
-            <summary>Return a list of Prim objects found within a specified radius</summary>
+            <summary>Return a list of AliveObjects found within a specified radius</summary>
             <param name="radius">The radius (in meters) within which to look</param>
             <returns>A List of Prim objects</returns>
         </member>
         <member name="M:ALIVE.SmartDog.ObjectsAround">
-            <summary>Return a List of Prim objects within a radius of 10 meters</summary>
+            <summary>Return a List of AliveObjects within a radius of 10 meters</summary>
             <returns>List of Prims</returns>
         </member>
-        <member name="M:ALIVE.SmartDog.DropObject(System.UInt32)">
+        <member name="M:ALIVE.SmartDog.DropObject(ALIVE.AliveObject)">
             <summary>Drop the specified object near where the avatar is standing</summary>
-            <param name="item">32 bit local object ID</param>
+            <param name="item">The AliveObject to drop</param>
         </member>
-        <member name="M:ALIVE.SmartDog.PickupObject(System.UInt32)">
+        <member name="M:ALIVE.SmartDog.PickupObject(ALIVE.AliveObject)">
             We will use "attach" to <summary>pick up an object by
             carrying it by hand, i.e. attach to left or right hand</summary>
-            <param name="item">32 bit local ID identifying object to be picked up</param>
+            <param name="item">AliveObject to be picked up</param>
         </member>
         <member name="M:ALIVE.SmartDog.GetMessage">
             <summary>Get all the instant messages from the World Master since last checking</summary>

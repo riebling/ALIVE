@@ -74,7 +74,7 @@
             // 
             this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(316, 63);
+            this.NameLabel.Location = new System.Drawing.Point(316, 61);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(34, 13);
             this.NameLabel.TabIndex = 6;
