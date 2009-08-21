@@ -500,7 +500,6 @@ namespace ALIVE
                     return ((prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < radius));
                 });
 
-            
             // *** request properties of (only) these objects ***
             bool complete = RequestObjectProperties(prims, 500, true);
 
@@ -533,7 +532,29 @@ namespace ALIVE
         /// <returns>List of Prims</returns>
         public List<AliveObject> ObjectsAround()
         {
-            return ObjectsAround(SEARCH_RADIUS);
+            // There seems to be a bug when calling this the first
+            // time.  The object properties such as Name and Description
+            // come back blank.  Workaround:  do it twice.  Knowing the asynchronous
+            // nature of SecondLife, it is asking too much to attempt to
+            // debug they "why" of this bug.  Given time & experimentation
+            // maybe we can work it out :)
+            List<AliveObject> tempObjects = ObjectsAround(SEARCH_RADIUS);
+
+            // Don't waste time if we got nothing
+            if (tempObjects.Count == 0) return tempObjects;
+
+            // See if we got empty descriptions, and if so, repeat
+            int objectsWithNames = 0;
+            for (int i = 0; i < tempObjects.Count; i++)
+                if (tempObjects[i].name != "" || tempObjects[i].family != "")
+                    objectsWithNames++;
+
+            // If we got no names, or less than half objects have names,
+            // do it again
+            if (objectsWithNames == 0 || objectsWithNames < tempObjects.Count / 2)
+                tempObjects = ObjectsAround(SEARCH_RADIUS);
+
+            return tempObjects;
         }
 
         /// <summary>Drop the specified object near where the avatar is standing</summary>
