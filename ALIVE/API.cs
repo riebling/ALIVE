@@ -120,17 +120,19 @@ namespace ALIVE
         //const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
         const string ALIVE_SERVER = "http://ohio.pc.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
-        const string WORLD_MASTER_NAME = "World Master";
+        //const string WORLD_MASTER_NAME = "World Master";
         const int SEARCH_RADIUS = 10;
         const int walkSpeed = 320; // msec per meter
 
         private Dictionary<String, UUID> AvatarNames;
         private UUID WorldMasterUUID = new UUID(0L);
+		private UUID DogMasterUUID = new UUID(0L);
         private Boolean logging = true;
 
         private string FirstName;
         private string LastName;
         private string Password;
+		private string Simulator;
         private Boolean loggedIn = false;
 
         private GridClient client;
@@ -139,10 +141,11 @@ namespace ALIVE
         ///<param name='fn'>first name</param>
         ///<param name='ln'>last name</param>
         ///<param name='pw'>password</param>>
-        public SmartDog(string fn, string ln, string pw) {
+        public SmartDog(string fn, string ln, string pw, string sim) {
             FirstName = fn;
             LastName = ln;
             Password = pw;
+			Simulator = sim;
 
             AvatarNames = new Dictionary<String, UUID>();
             client = new GridClient();
@@ -184,7 +187,7 @@ namespace ALIVE
 
             LoginParams loginParams = new LoginParams();
             loginParams = client.Network.DefaultLoginParams(FirstName, LastName, Password, "ALIVE", "Bot");
-            loginParams.Start = "home"; // specify start location.  We set avatars homes at 128,128
+            loginParams.Start = "uri:"+Simulator+"&128&128&0"; // specify start location.  We set avatars homes at 128,128
             loginParams.URI = ALIVE_SERVER;
             LoginSuccess = client.Network.Login(loginParams);
 
@@ -601,10 +604,11 @@ namespace ALIVE
             if (!message.StartsWith("[")) // prevent recursion
             logThis(message);
 
-            ulong id = WorldMasterUUID.GetULong();
             // Find out UUID of World master by avatar name lookup
             if (WorldMasterUUID.GetULong() != 0L)
                 client.Self.InstantMessage(WorldMasterUUID, message);
+			if (DogMasterUUID.GetULong() != 0L)
+				client.Self.InstantMessage(DogMasterUUID, message);
         }
 
         /// <summary>Get the messages in local chat since last checking</summary>
@@ -837,8 +841,10 @@ namespace ALIVE
             if (AvatarNames.ContainsKey(avatarName)) 
                 return;
             AvatarNames.Add(avatarName, av.ID);
-            if (avatarName == WORLD_MASTER_NAME)
-                WorldMasterUUID = av.ID;
+            if (avatarName == FirstName + " Master")
+                DogMasterUUID = av.ID;
+			if (avatarName == "World Master")
+				WorldMasterUUID = av.ID;
         }
 
         // Chat buffers
