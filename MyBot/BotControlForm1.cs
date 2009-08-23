@@ -187,7 +187,7 @@ namespace MyBot
             if (QuitButton.Text == "Login")
             {
 
-                myAvatar = new ALIVE.SmartDog(FNtextBox.Text, LNtextBox.Text, PWtextBox.Text, "SNOOPY");
+                myAvatar = new ALIVE.SmartDog(FNtextBox.Text, LNtextBox.Text, PWtextBox.Text, URIbox.Text);
                 LoginSuccess = myAvatar.Login();
                 //client.Network.CurrentSim.ObjectsAvatars.ForEach();
                 //client.Network.CurrentSim.ObjectsPrimitives.ForEach();

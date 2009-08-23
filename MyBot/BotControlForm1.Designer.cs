@@ -71,7 +71,6 @@
             this.objectidbox = new System.Windows.Forms.TextBox();
             this.dropobjectbutton = new System.Windows.Forms.Button();
             this.takeobjectbutton = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,7 +142,7 @@
             // QuitButton
             // 
             this.QuitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.QuitButton.Location = new System.Drawing.Point(85, 90);
+            this.QuitButton.Location = new System.Drawing.Point(404, 275);
             this.QuitButton.Name = "QuitButton";
             this.QuitButton.Size = new System.Drawing.Size(75, 23);
             this.QuitButton.TabIndex = 6;
@@ -303,7 +302,6 @@
             this.label11.Size = new System.Drawing.Size(52, 13);
             this.label11.TabIndex = 25;
             this.label11.Text = "startURI";
-            this.label11.Visible = false;
             // 
             // URIbox
             // 
@@ -315,15 +313,13 @@
             this.URIbox.TabIndex = 24;
             this.URIbox.Text = "home";
             this.URIbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.URIbox.Visible = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.QuitButton);
             this.groupBox1.Location = new System.Drawing.Point(316, 160);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(169, 118);
+            this.groupBox1.Size = new System.Drawing.Size(169, 139);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             // 
@@ -530,6 +526,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 644);
+            this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.takeobjectbutton);
             this.Controls.Add(this.dropobjectbutton);
             this.Controls.Add(this.objectidbox);
@@ -568,12 +565,11 @@
             this.Controls.Add(this.ChatBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.URIbox);
+            this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(505, 605);
             this.Name = "BotControlForm1";
             this.Text = "BotControlForm1";
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);

@@ -94,7 +94,7 @@
         <member name="F:ALIVE.SmartDog.ALIVE_SERVER">
             naughty 'globals'
         </member>
-        <member name="M:ALIVE.SmartDog.#ctor(System.String,System.String,System.String)">
+        <member name="M:ALIVE.SmartDog.#ctor(System.String,System.String,System.String,System.String)">
             <summary>Construct a new Bot</summary>
             <param name='fn'>first name</param>
             <param name='ln'>last name</param>

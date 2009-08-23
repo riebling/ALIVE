@@ -32,3 +32,4 @@ C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\obj\D
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\bin\Debug\ALIVE-skeleton.pdb
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\obj\Debug\AliveControlPanel.Form1.resources
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\obj\Debug\AliveControlPanel.Properties.Resources.resources
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\bin\Debug\ALIVE.pdb

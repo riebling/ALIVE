@@ -27,7 +27,7 @@ namespace AliveControlPanel
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            Fido = new SmartDog("Dog", NameBox.Text, "alive");
+            Fido = new SmartDog("Dog", NameBox.Text, "alive", "ALIVE");
             bool success = Fido.Login();
 
             MessageBox.AppendText("Login: " + success + "\r\n");
