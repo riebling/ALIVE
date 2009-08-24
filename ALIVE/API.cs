@@ -103,8 +103,8 @@ namespace ALIVE
         public string toString()
         {
             // ALIVE objects use only LocalID, leave out global UUID
-            // ID.ToString()
-            return LocalID.ToString() + " <" + X.ToString("0.0") + "," + Y.ToString("0.0")
+            // LocalID.ToString()
+            return "<" + X.ToString("0.0") + "," + Y.ToString("0.0")
                 + "> " + shape + " " +
                 angle.ToString("0.0") +
                 " [" + width.ToString("0.0") + "," + depth.ToString("0.0") + "," + height.ToString("0.0") + "] " +
