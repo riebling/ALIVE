@@ -12,8 +12,7 @@
     <AssemblyName>ALIVE-skeleton</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>MyBot.MyBotMain.Program</StartupObject>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -66,16 +65,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control Panel.cs">
+    <Compile Include="BotControlForm1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Control Panel.Designer.cs">
-      <DependentUpon>Control Panel.cs</DependentUpon>
+    <Compile Include="BotControlForm1.designer.cs">
+      <DependentUpon>BotControlForm1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="MyBotMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Control Panel.resx">
-      <DependentUpon>Control Panel.cs</DependentUpon>
+    <EmbeddedResource Include="BotControlForm1.resx">
+      <DependentUpon>BotControlForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

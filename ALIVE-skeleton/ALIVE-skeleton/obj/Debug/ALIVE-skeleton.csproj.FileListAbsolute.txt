@@ -30,6 +30,6 @@ C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\bin\D
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\obj\Debug\ALIVE-skeleton.csproj.GenerateResource.Cache
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\bin\Debug\ALIVE-skeleton.pdb
-C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\obj\Debug\AliveControlPanel.Form1.resources
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\obj\Debug\AliveControlPanel.Properties.Resources.resources
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\bin\Debug\ALIVE.pdb
+C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE-skeleton\ALIVE-skeleton\obj\Debug\MyBot.BotControlForm1.resources
