@@ -7,12 +7,10 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
-//using OpenMetaverse;
+using System.Net;
+
 using ALIVE;
 
-//using HttpServer;
-using System.Net;
-//using HttpListener = HttpServer.HttpListener;
 
 namespace MyBot
 {
@@ -21,11 +19,13 @@ namespace MyBot
     {
         private static bool LoginSuccess = false;
         private ALIVE.SmartDog myAvatar;
+        private List<AliveObject> Prims;
+        private AliveObject carriedPrim = null;
 
         //Dictionary<UUID, Primitive> PrimsWaiting = new Dictionary<UUID, Primitive>();
         AutoResetEvent AllPropertiesReceived = new AutoResetEvent(false);
 
-        // The delegate and the funny-looking method solved an annoying problem of
+        // The delegate and the funny-looking method solve an annoying problem of
         // not being able to update the ChatBox from another thread – the one that
         // responds to the OnChat events
         public delegate void textBoxUpdater(TextBox tb, string nvalue);
@@ -89,98 +89,16 @@ namespace MyBot
             textBoxUpdate(locationBox, "<" + x.ToString("0.0") + "," + y.ToString("0.0") + ">");
         }
 
-        // Just for fun: Connect to a Pandora chatbot (ALICE)
-        // uses fromName as a unique ID for Pandora to 'remember'
-        // the conversation thread
-        String GetBotAnswer(String inputstring, String fromName)
-        {
-            const String botID = "f5d922d97e345aa1"; // this is the Loebner prizewinning ALICE chatbot
-            const String botURL = "http://www.pandorabots.com/pandora/talk-xml?botid=" + botID;
-
-            // used to build entire input
-            StringBuilder sb = new StringBuilder();
-
-            // used on each read operation
-            byte[] buf = new byte[8192];
-
-            String myUri = botURL + "&input="
-                + Uri.EscapeDataString(inputstring) + "&custid=" + 
-                Uri.EscapeDataString(fromName);
-
-            HttpWebRequest request;
-            HttpWebResponse response;
-
-            try
-            {
-                request = (HttpWebRequest)WebRequest.Create(myUri);
-            } catch {
-                System.Console.WriteLine("Exception in Chatbot HTTP request");
-                return "";
-            }
-
-            // execute the request
-            try
-            {
-                response = (HttpWebResponse)request.GetResponse();
-            }
-            catch
-            {
-                System.Console.WriteLine("Exception in Chatbot HTTP response");
-                return "";
-            }
-
-            // we will read data via the response stream
-            Stream resStream = response.GetResponseStream();
-
-            string tempString = null;
-            int count = 0;
-
-            do
-            {
-                // fill the buffer with data
-                count = resStream.Read(buf, 0, buf.Length);
-
-                // make sure we read some data
-                if (count != 0)
-                {
-                    // translate from bytes to ASCII text
-                    tempString = Encoding.ASCII.GetString(buf, 0, count);
-
-                    // continue building the string
-                    sb.Append(tempString);
-                }
-            }
-            while (count > 0); // any more data to read?
-
-            // clean up the output
-            String buf2 = sb.ToString();
-            int start = buf2.IndexOf("<that>");
-            int end = buf2.IndexOf("</that>");
-            String msglines = buf2.Substring(start + 6, (end-start) - 6);
-
-            // Clean up HTML entities
-            msglines = msglines.Replace("&lt;br&gt;", "\r");
-            msglines = msglines.Replace("&quot;", "\"");
-            msglines = msglines.Replace("&lt;", "<");
-            msglines = msglines.Replace("&gt;", ">");
-
-            // Delay 7 seconds to simulate conversational pause
-            Thread.Sleep(7000);
-
-            // log and return response
-            //Console.WriteLine(msglines);
-            return msglines;
-        }
-
-
-        // override
-        public String GetBotAnswer(String inputstring)
-        {
-            return GetBotAnswer(inputstring, "12334");
-        }
-
-
+        
 //////  EVENT HANDLERS
+
+        private void BotControl_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            if (myAvatar != null)
+                myAvatar.Logout();
+            Environment.Exit(0);
+        }
 
         void QuitButton_Click(object sender, EventArgs e)
         {
@@ -230,44 +148,19 @@ namespace MyBot
             textBoxUpdate(objectsBox, "");
             LookButton.Enabled = false;
 
-            List<AliveObject> prims = myAvatar.ObjectsAround();
+            Prims = myAvatar.ObjectsAround();
             
             //Console.Out.WriteLine("Got " + prims.Count + " objects back");
 
             // Synchronous object info update
             String message ="";
-            for (int i = 0; i < prims.Count; i++)
-                message += prims[i].toString() + "\r\n";
+            for (int i = 0; i < Prims.Count; i++)
+                message += i + " " + Prims[i].toString() + "\r\n";
 
             textBoxUpdate(objectsBox, message);
 
             LookButton.Enabled = true;
         }
-
-        //void ObjectPropsButton_Click(object sender, EventArgs e)
-        //{
-        //    textBoxUpdate(objectsBox, "");
-        //    ObjectPropsButton.Enabled = false;
-
-        //    List<AliveObject> prims = myAvatar.ObjectsAround();
-
-        //    string message = "";
-            
-        //    for (int i = 0; i < prims.Count; i++)
-        //    {
-        //        string submessage = "";
-        //        AliveObject p = prims[i];
-        //        List<string> props = myAvatar.GetObjectProps(p);
-        //        for (int j = 0; j < props.Count; j++)
-        //            //submessage = submessage + props[j] + " ";
-        //            submessage = submessage + props[j] + "=" + myAvatar.GetObjProp(p, props[j]) + " ";
-        //        message += submessage + "\r\n";
-        //    }
-
-        //    textBoxUpdate(objectsBox, message);
-
-        //    ObjectPropsButton.Enabled = true;
-        //}
 
         void MoveButton_Click(object sender, EventArgs e)
         {
@@ -344,28 +237,25 @@ namespace MyBot
 
         private void dropobjectbutton_Click(object sender, EventArgs e)
         {
-
-            //myAvatar.DropObject(Convert.ToUInt32(objectidbox.Text));
+            if (carriedPrim != null)
+            {
+                myAvatar.DropObject(carriedPrim);
+                carriedPrim = null;
+            }
         }
 
         private void takeobjectbutton_Click(object sender, EventArgs e)
         {
-            //myAvatar.PickupObject(Convert.ToUInt32(objectidbox.Text));
+            if (objectidbox.Text != null) // try to guard against empty textbox
+            {
+                int objectIndex = Convert.ToInt32(objectidbox.Text);
+                if (Prims.Count >= objectIndex) // try to guard against bad index
+                {
+                    myAvatar.PickupObject(Prims[objectIndex]);
+                    carriedPrim = Prims[objectIndex];
+                }
+            }
         }
-
-
-
-
-////  CALLBACKS
-
-        private void BotControl_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            if (myAvatar != null)
-                myAvatar.Logout();
-            Environment.Exit(0);
-        }
-
 
     }
 }

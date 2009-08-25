@@ -127,7 +127,9 @@ namespace ALIVE
         private Dictionary<String, UUID> AvatarNames;
         private UUID WorldMasterUUID = new UUID(0L);
 		private UUID DogMasterUUID = new UUID(0L);
-        private Boolean logging = true;
+        private Boolean logging = false;
+
+        private AliveObject carriedObject = null;
 
         private string FirstName;
         private string LastName;
@@ -543,19 +545,11 @@ namespace ALIVE
             // maybe we can work it out :)
             List<AliveObject> tempObjects = ObjectsAround(SEARCH_RADIUS);
 
-            // Don't waste time if we got nothing
-            if (tempObjects.Count == 0) return tempObjects;
+            // Here is the 'magic' workaround - try again after 1s delay
+            Thread.Sleep(1000);
 
-            // See if we got empty descriptions, and if so, repeat
-            int objectsWithNames = 0;
-            for (int i = 0; i < tempObjects.Count; i++)
-                if (tempObjects[i].name != "" || tempObjects[i].family != "")
-                    objectsWithNames++;
-
-            // If we got no names, or less than half objects have names,
-            // do it again
-            if (objectsWithNames == 0 || objectsWithNames < tempObjects.Count / 2)
-                tempObjects = ObjectsAround(SEARCH_RADIUS);
+            // Do it again
+            tempObjects = ObjectsAround(SEARCH_RADIUS);
 
             return tempObjects;
         }
@@ -566,7 +560,10 @@ namespace ALIVE
         {
             logThis(item.ToString());
 
+            if (carriedObject != null)
             client.Objects.DropObject(client.Network.CurrentSim, item.LocalID);
+
+            carriedObject = null;
         }
 
 
@@ -577,7 +574,9 @@ namespace ALIVE
         {
             logThis(item.ToString());
 
+            if (carriedObject == null)
             client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.LeftHand, Quaternion.Identity);
+            carriedObject = item;
         }
 
 
@@ -589,8 +588,13 @@ namespace ALIVE
         {
             logThis("");
 
-            // sleep 30 seconds waiting for WM to type in message
-            Thread.Sleep(30000);
+            // wait up to 60 seconds polling for message from World Master (or Dog Master)
+            Int16 i = 0;
+            do
+            {
+                Thread.Sleep(5000);
+                i++;
+            } while (i < 12 && imb == "");
 
             string temp = imb;
             imb = "";
@@ -841,7 +845,7 @@ namespace ALIVE
             if (AvatarNames.ContainsKey(avatarName)) 
                 return;
             AvatarNames.Add(avatarName, av.ID);
-            if (avatarName == FirstName + " Master")
+            if (avatarName == "Master " + av.LastName)
                 DogMasterUUID = av.ID;
 			if (avatarName == "World Master")
 				WorldMasterUUID = av.ID;

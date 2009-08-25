@@ -45,8 +45,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.chatboxlabel = new System.Windows.Forms.Label();
             this.objectsBox = new System.Windows.Forms.TextBox();
-            this.OpenSimCheckbox = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.locationBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.URIbox = new System.Windows.Forms.TextBox();
@@ -71,6 +69,7 @@
             this.objectidbox = new System.Windows.Forms.TextBox();
             this.dropobjectbutton = new System.Windows.Forms.Button();
             this.takeobjectbutton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,7 +114,7 @@
             this.FNtextBox.Name = "FNtextBox";
             this.FNtextBox.Size = new System.Drawing.Size(100, 20);
             this.FNtextBox.TabIndex = 3;
-            this.FNtextBox.Text = "World";
+            this.FNtextBox.Text = "Dog";
             // 
             // PWtextBox
             // 
@@ -126,7 +125,7 @@
             this.PWtextBox.PasswordChar = '*';
             this.PWtextBox.Size = new System.Drawing.Size(100, 20);
             this.PWtextBox.TabIndex = 5;
-            this.PWtextBox.Text = "avatar";
+            this.PWtextBox.Text = "alive";
             this.PWtextBox.UseSystemPasswordChar = true;
             // 
             // LNtextBox
@@ -137,7 +136,7 @@
             this.LNtextBox.Name = "LNtextBox";
             this.LNtextBox.Size = new System.Drawing.Size(100, 20);
             this.LNtextBox.TabIndex = 4;
-            this.LNtextBox.Text = "Master";
+            this.LNtextBox.Text = "One";
             // 
             // QuitButton
             // 
@@ -255,32 +254,6 @@
             this.objectsBox.Size = new System.Drawing.Size(473, 258);
             this.objectsBox.TabIndex = 14;
             // 
-            // OpenSimCheckbox
-            // 
-            this.OpenSimCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpenSimCheckbox.AutoSize = true;
-            this.OpenSimCheckbox.Checked = true;
-            this.OpenSimCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.OpenSimCheckbox.Location = new System.Drawing.Point(376, 280);
-            this.OpenSimCheckbox.Name = "OpenSimCheckbox";
-            this.OpenSimCheckbox.Size = new System.Drawing.Size(15, 14);
-            this.OpenSimCheckbox.TabIndex = 18;
-            this.OpenSimCheckbox.UseVisualStyleBackColor = true;
-            this.OpenSimCheckbox.Visible = false;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.CausesValidation = false;
-            this.label9.Location = new System.Drawing.Point(318, 281);
-            this.label9.MinimumSize = new System.Drawing.Size(52, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "OpenSim";
-            this.label9.Visible = false;
-            // 
             // locationBox
             // 
             this.locationBox.Location = new System.Drawing.Point(12, 205);
@@ -311,7 +284,7 @@
             this.URIbox.Name = "URIbox";
             this.URIbox.Size = new System.Drawing.Size(100, 20);
             this.URIbox.TabIndex = 24;
-            this.URIbox.Text = "home";
+            this.URIbox.Text = "One";
             this.URIbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox1
@@ -493,33 +466,42 @@
             // objectidbox
             // 
             this.objectidbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.objectidbox.Location = new System.Drawing.Point(303, 305);
+            this.objectidbox.Location = new System.Drawing.Point(376, 311);
             this.objectidbox.Name = "objectidbox";
-            this.objectidbox.Size = new System.Drawing.Size(182, 20);
+            this.objectidbox.Size = new System.Drawing.Size(16, 20);
             this.objectidbox.TabIndex = 49;
-            this.objectidbox.Visible = false;
             // 
             // dropobjectbutton
             // 
             this.dropobjectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dropobjectbutton.Location = new System.Drawing.Point(308, 325);
+            this.dropobjectbutton.Location = new System.Drawing.Point(305, 335);
             this.dropobjectbutton.Name = "dropobjectbutton";
             this.dropobjectbutton.Size = new System.Drawing.Size(87, 23);
             this.dropobjectbutton.TabIndex = 50;
             this.dropobjectbutton.Text = "DropObject";
             this.dropobjectbutton.UseVisualStyleBackColor = true;
-            this.dropobjectbutton.Visible = false;
             // 
             // takeobjectbutton
             // 
             this.takeobjectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.takeobjectbutton.Location = new System.Drawing.Point(398, 325);
+            this.takeobjectbutton.Location = new System.Drawing.Point(398, 311);
             this.takeobjectbutton.Name = "takeobjectbutton";
             this.takeobjectbutton.Size = new System.Drawing.Size(87, 23);
             this.takeobjectbutton.TabIndex = 51;
             this.takeobjectbutton.Text = "TakeObject";
             this.takeobjectbutton.UseVisualStyleBackColor = true;
-            this.takeobjectbutton.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.CausesValidation = false;
+            this.label6.Location = new System.Drawing.Point(306, 316);
+            this.label6.MinimumSize = new System.Drawing.Size(52, 13);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.TabIndex = 52;
+            this.label6.Text = "object index";
             // 
             // BotControlForm1
             // 
@@ -547,7 +529,6 @@
             this.Controls.Add(this.turnleftbox);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.locationBox);
-            this.Controls.Add(this.OpenSimCheckbox);
             this.Controls.Add(this.objectsBox);
             this.Controls.Add(this.chatboxlabel);
             this.Controls.Add(this.label5);
@@ -564,9 +545,9 @@
             this.Controls.Add(this.InputBox);
             this.Controls.Add(this.ChatBox);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.URIbox);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label6);
             this.MinimumSize = new System.Drawing.Size(505, 605);
             this.Name = "BotControlForm1";
             this.Text = "BotControlForm1";
@@ -596,8 +577,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label chatboxlabel;
         private System.Windows.Forms.TextBox objectsBox;
-        private System.Windows.Forms.CheckBox OpenSimCheckbox;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox locationBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox URIbox;
@@ -622,5 +601,6 @@
         private System.Windows.Forms.TextBox objectidbox;
         private System.Windows.Forms.Button dropobjectbutton;
         private System.Windows.Forms.Button takeobjectbutton;
+        private System.Windows.Forms.Label label6;
     }
 }
