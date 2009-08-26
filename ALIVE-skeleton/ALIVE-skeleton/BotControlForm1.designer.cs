@@ -70,6 +70,7 @@
             this.dropobjectbutton = new System.Windows.Forms.Button();
             this.takeobjectbutton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.AutoButton = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -244,14 +245,15 @@
             // 
             // objectsBox
             // 
-            this.objectsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.objectsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.objectsBox.Location = new System.Drawing.Point(12, 374);
-            this.objectsBox.MinimumSize = new System.Drawing.Size(473, 258);
+            this.objectsBox.Location = new System.Drawing.Point(12, 394);
+            this.objectsBox.MinimumSize = new System.Drawing.Size(473, 256);
             this.objectsBox.Multiline = true;
             this.objectsBox.Name = "objectsBox";
             this.objectsBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.objectsBox.Size = new System.Drawing.Size(473, 258);
+            this.objectsBox.Size = new System.Drawing.Size(473, 256);
             this.objectsBox.TabIndex = 14;
             // 
             // locationBox
@@ -414,8 +416,8 @@
             // 
             // LookButton
             // 
-            this.LookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LookButton.Location = new System.Drawing.Point(398, 349);
+            this.LookButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LookButton.Location = new System.Drawing.Point(398, 365);
             this.LookButton.Name = "LookButton";
             this.LookButton.Size = new System.Drawing.Size(87, 23);
             this.LookButton.TabIndex = 42;
@@ -474,7 +476,7 @@
             // dropobjectbutton
             // 
             this.dropobjectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dropobjectbutton.Location = new System.Drawing.Point(305, 335);
+            this.dropobjectbutton.Location = new System.Drawing.Point(398, 337);
             this.dropobjectbutton.Name = "dropobjectbutton";
             this.dropobjectbutton.Size = new System.Drawing.Size(87, 23);
             this.dropobjectbutton.TabIndex = 50;
@@ -503,11 +505,21 @@
             this.label6.TabIndex = 52;
             this.label6.Text = "object index";
             // 
+            // AutoButton
+            // 
+            this.AutoButton.Location = new System.Drawing.Point(309, 347);
+            this.AutoButton.Name = "AutoButton";
+            this.AutoButton.Size = new System.Drawing.Size(75, 41);
+            this.AutoButton.TabIndex = 53;
+            this.AutoButton.Text = "Auto";
+            this.AutoButton.UseVisualStyleBackColor = true;
+            // 
             // BotControlForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 644);
+            this.ClientSize = new System.Drawing.Size(497, 652);
+            this.Controls.Add(this.AutoButton);
             this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.takeobjectbutton);
             this.Controls.Add(this.dropobjectbutton);
@@ -548,7 +560,7 @@
             this.Controls.Add(this.URIbox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label6);
-            this.MinimumSize = new System.Drawing.Size(505, 605);
+            this.MinimumSize = new System.Drawing.Size(505, 686);
             this.Name = "BotControlForm1";
             this.Text = "BotControlForm1";
             this.groupBox2.ResumeLayout(false);
@@ -602,5 +614,6 @@
         private System.Windows.Forms.Button dropobjectbutton;
         private System.Windows.Forms.Button takeobjectbutton;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button AutoButton;
     }
 }

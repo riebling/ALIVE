@@ -49,9 +49,9 @@ namespace MyBot
 
             QuitButton.Click += new EventHandler(QuitButton_Click);
             MoveButton.Click += new EventHandler(MoveButton_Click);
+            AutoButton.Click += new EventHandler(AutoButton_Click);
 
             LookButton.Click += new EventHandler(LookButton_Click);
-            //ObjectPropsButton.Click += new EventHandler(ObjectPropsButton_Click);
             dropobjectbutton.Click += new EventHandler(dropobjectbutton_Click);
             takeobjectbutton.Click += new EventHandler(takeobjectbutton_Click);
 
@@ -68,9 +68,6 @@ namespace MyBot
             turntowardbutton.Click += new EventHandler(turntowardbutton_Click);
             mycoordinatesbutton.Click +=new EventHandler(mycoordinatesbutton_Click);
             myrotationbutton.Click += new EventHandler(rotationbutton_Click);
-
-            //// Register callback to catch Object properties events
-            //client.Objects.OnObjectProperties += new ObjectManager.ObjectPropertiesCallback(Objects_OnObjectProperties);
 
             //force logout and exit when form is closed
             this.FormClosing += new FormClosingEventHandler(BotControl_FormClosing);
@@ -251,10 +248,17 @@ namespace MyBot
                 int objectIndex = Convert.ToInt32(objectidbox.Text);
                 if (Prims.Count >= objectIndex) // try to guard against bad index
                 {
-                    myAvatar.PickupObject(Prims[objectIndex]);
-                    carriedPrim = Prims[objectIndex];
+                    if (myAvatar.PickupObject(Prims[objectIndex]))
+                        carriedPrim = Prims[objectIndex];
+                    else
+                        carriedPrim = null;
                 }
             }
+        }
+
+        private void AutoButton_Click(object sender, EventArgs e)
+        {
+            // Add code here
         }
 
     }

@@ -556,27 +556,34 @@ namespace ALIVE
 
         /// <summary>Drop the specified object near where the avatar is standing</summary>
         /// <param name="item">The AliveObject to drop</param>
-        public void DropObject(AliveObject item) 
+        public bool DropObject(AliveObject item) 
         {
             logThis(item.ToString());
 
             if (carriedObject != null)
-            client.Objects.DropObject(client.Network.CurrentSim, item.LocalID);
-
-            carriedObject = null;
+            {
+                client.Objects.DropObject(client.Network.CurrentSim, item.LocalID);
+                carriedObject = null;
+                return true;
+            }
+            else return false;
         }
 
 
         /// We will use "attach" to <summary>pick up an object by
         /// carrying it by hand, i.e. attach to left or right hand</summary>
         /// <param name="item">AliveObject to be picked up</param>
-        public void PickupObject(AliveObject item) 
+        public bool PickupObject(AliveObject item) 
         {
             logThis(item.ToString());
 
             if (carriedObject == null)
-            client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.LeftHand, Quaternion.Identity);
-            carriedObject = item;
+            {
+                client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.LeftHand, Quaternion.Identity);
+                carriedObject = item;
+                return true;
+            }
+            else return false;
         }
 
 
