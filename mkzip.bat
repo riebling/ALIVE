@@ -1,1 +1,1 @@
-c:\cygwin\bin\bash mkzip.sh
+zip -r ALIVE-skeleton.zip ALIVE-skeleton -x \*.svn\*
