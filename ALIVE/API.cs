@@ -5,10 +5,10 @@ using System.Text;
 using OpenMetaverse;
 
 namespace ALIVE
-
 {
     ///<returns></returns>
-    public enum primType {
+    public enum primType
+    {
         ///<summary>Unknown primitive type</summary>
         Unknown,
         ///<summary>Box primitive type</summary> 
@@ -28,7 +28,7 @@ namespace ALIVE
         ///<summary>Sculpted primitive type</summary>
         Sculpt
     };
-    
+
 
     /// <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
     public class AliveObject
@@ -65,21 +65,21 @@ namespace ALIVE
 
         // Constructor
         /// <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
-        public AliveObject (Primitive p)
+        public AliveObject(Primitive p)
         {
             ID = p.ID.GetULong();
             LocalID = p.LocalID;
 
             X = p.Position.X;
             Y = p.Position.Y;
-            
+
             width = p.Scale.X;
             depth = p.Scale.Y;
             height = p.Scale.Z;
 
             color = SmartDog.color2String(
-                p.Textures.DefaultTexture.RGBA.R, 
-                p.Textures.DefaultTexture.RGBA.G, 
+                p.Textures.DefaultTexture.RGBA.R,
+                p.Textures.DefaultTexture.RGBA.G,
                 p.Textures.DefaultTexture.RGBA.B);
 
             movable = (p.Flags & PrimFlags.ObjectMove) != 0;
@@ -87,7 +87,8 @@ namespace ALIVE
 
             name = "";
             family = "";
-            if (p.Properties != null) {
+            if (p.Properties != null)
+            {
                 if (p.Properties.Name != null)
                     name = p.Properties.Name;
                 if (p.Properties.Description != null)
@@ -126,7 +127,7 @@ namespace ALIVE
 
         private Dictionary<String, UUID> AvatarNames;
         private UUID WorldMasterUUID = new UUID(0L);
-		private UUID DogMasterUUID = new UUID(0L);
+        private UUID DogMasterUUID = new UUID(0L);
         private Boolean logging = false;
 
         private AliveObject carriedObject = null;
@@ -134,7 +135,7 @@ namespace ALIVE
         private string FirstName;
         private string LastName;
         private string Password;
-		private string Simulator;
+        private string Simulator;
         private Boolean loggedIn = false;
 
         private GridClient client;
@@ -143,16 +144,17 @@ namespace ALIVE
         ///<param name='fn'>first name</param>
         ///<param name='ln'>last name</param>
         ///<param name='pw'>password</param>>
-        public SmartDog(string fn, string ln, string pw, string sim) {
+        public SmartDog(string fn, string ln, string pw, string sim)
+        {
             FirstName = fn;
             LastName = ln;
             Password = pw;
-			Simulator = sim;
+            Simulator = sim;
 
             AvatarNames = new Dictionary<String, UUID>();
             client = new GridClient();
 
-            client.Network.OnConnected +=new NetworkManager.ConnectedCallback(Network_OnConnected);
+            client.Network.OnConnected += new NetworkManager.ConnectedCallback(Network_OnConnected);
             client.Self.OnChat += new AgentManager.ChatCallback(Self_OnChat);
             client.Self.OnInstantMessage += new AgentManager.InstantMessageCallback(Self_OnInstantMessage);
 
@@ -165,7 +167,8 @@ namespace ALIVE
 
         // methods
 
-        private void logThis(String args) {
+        private void logThis(String args)
+        {
             if (logging)
             {
                 System.Diagnostics.StackFrame stackFrame
@@ -189,7 +192,7 @@ namespace ALIVE
 
             LoginParams loginParams = new LoginParams();
             loginParams = client.Network.DefaultLoginParams(FirstName, LastName, Password, "ALIVE", "Bot");
-            loginParams.Start = "uri:"+Simulator+"&128&128&0"; // specify start location.  We set avatars homes at 128,128
+            loginParams.Start = "uri:" + Simulator + "&128&128&0"; // specify start location.  We set avatars homes at 128,128
             loginParams.URI = ALIVE_SERVER;
             LoginSuccess = client.Network.Login(loginParams);
 
@@ -217,7 +220,7 @@ namespace ALIVE
         }
 
         ///<summary>Log the avatar out</summary>
-        public bool Logout() 
+        public bool Logout()
         {
             logThis("");
             if (loggedIn) client.Network.Logout();
@@ -230,9 +233,9 @@ namespace ALIVE
         ///<summary>Rotate the avatar to face a specified location</summary>
         ///<param name='x'>X coordinate</param>
         ///<param name='y'>Y coordinate</param>
-        public void TurnTo (int x, int y) 
+        public void TurnTo(int x, int y)
         {
-            logThis(x + "," + y );
+            logThis(x + "," + y);
 
             Vector3 position = new Vector3(x, y, 0);
 
@@ -241,13 +244,13 @@ namespace ALIVE
 
         ///<summary>Rotate the avatar counter-clockwise</summary>
         ///<param name='degrees'>degrees to rotate</param>
-        public bool TurnLeft(long degrees) 
+        public bool TurnLeft(long degrees)
         {
             logThis(degrees.ToString());
 
-            float angle = (float)Math.PI * (float) degrees / -360f;
+            float angle = (float)Math.PI * (float)degrees / -360f;
 
-            Quaternion rot = new Quaternion(0, 0, (float)Math.Cos(angle/2), (float)Math.Sin(angle/2));
+            Quaternion rot = new Quaternion(0, 0, (float)Math.Cos(angle / 2), (float)Math.Sin(angle / 2));
 
             // I don't know why but doing it twice makes it work            
             Quaternion q = client.Self.Movement.BodyRotation * rot * rot;
@@ -281,19 +284,20 @@ namespace ALIVE
 
         ///<summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
         ///<param name='meters'>Distance to walk in meters</param>
-        public bool GoForward(int meters) {
+        public bool GoForward(int meters)
+        {
             logThis(meters.ToString());
 
             // Find current location, orientation and compute target location
             float currentX, currentY, targetX, targetY;
             float x, y;
             double angle;
-            
+
             // Get position
             Vector3 pos = client.Self.SimPosition;
             x = pos.X;
             y = pos.Y;
-            
+
             currentX = x;
             currentY = y;
 
@@ -301,13 +305,13 @@ namespace ALIVE
             float a = ZrotFromQuaternion(client.Self.RelativeRotation);
             angle = 90 - a;
             if (angle < 0) angle = 360 + angle;
-            
-            targetX = x + (float) (meters * Math.Sin(angle / 180 * Math.PI));
-            targetY = y + (float) (meters * Math.Cos(angle / 180 * Math.PI));
+
+            targetX = x + (float)(meters * Math.Sin(angle / 180 * Math.PI));
+            targetY = y + (float)(meters * Math.Cos(angle / 180 * Math.PI));
 
             client.Self.Movement.AtPos = true;
             client.Self.Movement.SendUpdate(true);
-            
+
             Thread.Sleep(walkSpeed * meters);
             client.Self.Movement.AtPos = false;
             client.Self.Movement.SendUpdate(true);
@@ -332,7 +336,8 @@ namespace ALIVE
 
         ///<summary>Attempt to walk the avatar backwards in a straight line.  Obstacles may prevent this from completing as expected</summary>
         ///<param name='meters'>Distance to walk in meters</param>
-        public bool GoBackward(int meters) {
+        public bool GoBackward(int meters)
+        {
             logThis(meters.ToString());
 
             // Find current location, orientation and compute target location
@@ -358,7 +363,7 @@ namespace ALIVE
 
             client.Self.Movement.AtNeg = true;
             client.Self.Movement.SendUpdate(true);
-            
+
             Thread.Sleep(walkSpeed * meters);
             client.Self.Movement.AtNeg = false;
             client.Self.Movement.SendUpdate(true);
@@ -406,21 +411,26 @@ namespace ALIVE
             //}
 
             //if (!success)
-                Z = client.Self.SimPosition.Z;
+            Z = client.Self.SimPosition.Z;
 
             float distance = Vector3.Distance(pos, new Vector3(x, y, Z));
             client.Self.AutoPilotLocal(x, y, Z);
 
             // Guess that avatar travels at 3m/sec
             // wait for them to get there
-            Thread.Sleep(Convert.ToInt32(320 *distance) + 500);
+            Thread.Sleep(Convert.ToInt32(320 * distance) + 500);
+
+            // Stop moving and/or flying (if something went horribly wrong
+            // SecondLife "pops up" avatars into flying stance.
+            client.Self.AutoPilotCancel();
+            client.Self.Fly(false);
             pos = client.Self.SimPosition;
 
             Console.Out.WriteLine("Completed autopilot at: " + pos.X + "," + pos.Y);
-            
+
             // Need to make these fuzzy; final location not exact
             float fuzz = 0.8f;
-            if ((Math.Abs(pos.X - x) < fuzz) &&  (Math.Abs(pos.Y - y) < fuzz))
+            if ((Math.Abs(pos.X - x) < fuzz) && (Math.Abs(pos.Y - y) < fuzz))
                 return true;
             else
                 return false;
@@ -465,7 +475,8 @@ namespace ALIVE
         /// (vertical) axis in degrees.</summary><remarks>Angles are measured counterclockwise
         /// from due East</remarks>
         /// <returns>floating point angle in degrees</returns>
-        public static float ZrotFromQuaternion(Quaternion q) {
+        public static float ZrotFromQuaternion(Quaternion q)
+        {
             // Borrowed code works MUCH better than GetEulerAngles()
             // or other GetAxisAngle()
             Vector3 v3 = Vector3.Transform(Vector3.UnitX, Matrix4.CreateFromQuaternion(q));
@@ -497,12 +508,16 @@ namespace ALIVE
             logThis(radius.ToString());
 
             Vector3 location = client.Self.SimPosition;
-            
+            bool flag;
+            // double tripleRadius = 3 * (double)radius;
+
             List<Primitive> prims = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
                 delegate(Primitive prim)
                 {
                     Vector3 pos = prim.Position;
-                    return ((prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < radius));
+                    int r3 = 3 * (int)radius;
+                    //                    return ((prim.ParentID == 0) && (pos != Vector3.Zero));
+                    return ((prim.ParentID == 0) && (pos != Vector3.Zero) && (Vector3.Distance(pos, location) < r3));
                 });
 
             // *** request properties of (only) these objects ***
@@ -511,26 +526,61 @@ namespace ALIVE
             //Console.Out.WriteLine("Properties completed: " + complete);
 
             List<AliveObject> returnPrims = new List<AliveObject>();
-            foreach (Primitive p in prims) {
+            foreach (Primitive p in prims)
+            {
                 // convert OpenMetaverse Primitive to ALIVE Prim
                 // but filter out ones we want to hide
                 // Since all new objects in OpenSim default to
                 // type "Primitive" we don't include those
 
-                if (p.Properties != null)
+                if (visible(p, location, radius))
                 {
-                    if (p.Properties.Name != null)
-                    {
-                        if (p.Properties.Name != "Primitive")
-                            returnPrims.Add(new AliveObject(p));
-                    }
-                    else
-                        returnPrims.Add(new AliveObject(p));
+                    flag = (p.Properties != null) && (p.Properties.Name != null) && (p.Properties.Name == "Primitive");
+                    if (flag == false) returnPrims.Add(new AliveObject(p));
                 }
-                else
-                    returnPrims.Add(new AliveObject(p));
             }
             return returnPrims;
+        }
+
+        private bool visible(Primitive p, Vector3 location, float radius)
+        // determines if any part of the object p is visible to the avatar from location
+        {
+            double xa, ya, xa1, ya1, xa2, ya2, xc, yc, w, d, angle, r2;
+            xa = location.X;
+            ya = location.Y;
+            xc = p.Position.X;
+            yc = p.Position.Y;
+            w = p.Scale.X / 2;
+            d = p.Scale.Y / 2;
+            angle = Math.PI * SmartDog.ZrotFromQuaternion(p.Rotation) / 180;
+            r2 = radius * radius;
+            // transform to object-centered coordinates, consider all objects rectangular
+            xa1 = xa - xc;
+            ya1 = ya - yc;
+            if (xa1 * xa1 + ya1 * ya1 <= r2) return true;
+            xa2 = xa1 * Math.Cos(angle) + ya1 * Math.Sin(angle);
+            ya2 = -xa1 * Math.Sin(angle) + ya1 * Math.Cos(angle);
+            if (xa2 <= -w)
+            {
+                if (ya2 <= -d) return (xa2 + w) * (xa2 + w) + (ya2 + d) * (ya2 + d) <= r2;
+                if (ya2 >= d) return (xa2 + w) * (xa2 + w) + (ya2 - d) * (ya2 - d) <= r2;
+                return xa2 + w <= radius;
+            }
+            else
+            {
+                if (xa2 >= w)
+                {
+                    if (ya2 <= -d) return (xa2 - w) * (xa2 - w) + (ya2 + d) * (ya2 + d) <= r2;
+                    if (ya2 >= d) return (xa2 - w) * (xa2 - w) + (ya2 - d) * (ya2 - d) <= r2;
+                    return xa2 - w <= radius;
+                }
+                else
+                {
+                    if (ya2 >= d) return ya2 - d <= radius;
+                    if (ya2 <= -d) return ya2 + d <= radius;
+                    return true; // the avatar is inside the rectangle footprint of the object
+                }
+            }
         }
 
         /// <summary>Return a List of AliveObjects within a radius of 10 meters</summary>
@@ -556,7 +606,7 @@ namespace ALIVE
 
         /// <summary>Drop the specified object near where the avatar is standing</summary>
         /// <param name="item">The AliveObject to drop</param>
-        public bool DropObject(AliveObject item) 
+        public bool DropObject(AliveObject item)
         {
             logThis(item.ToString());
 
@@ -571,17 +621,27 @@ namespace ALIVE
 
 
         /// We will use "attach" to <summary>pick up an object by
-        /// carrying it by hand, i.e. attach to left or right hand</summary>
+        /// carrying it by hand, i.e. attach to left hand
+        /// so long as the object is within 5 meters of the avatar</summary>
         /// <param name="item">AliveObject to be picked up</param>
-        public bool PickupObject(AliveObject item) 
+        public bool PickupObject(AliveObject item)
         {
             logThis(item.ToString());
 
             if (carriedObject == null)
             {
-                client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.LeftHand, Quaternion.Identity);
-                carriedObject = item;
-                return true;
+                // Don't let avatar pick up objects farther away than 5m
+                Vector3 avatarPosition = client.Self.SimPosition;
+                Vector3 objectPosition = new Vector3(item.X, item.Y, avatarPosition.Z);
+
+                if (Vector3.Distance(avatarPosition, objectPosition) < 5)
+                {
+                    client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.LeftHand, Quaternion.Identity);
+                    carriedObject = item;
+                    return true;
+                }
+                else
+                    return false;
             }
             else return false;
         }
@@ -591,7 +651,7 @@ namespace ALIVE
 
         /// <summary>Get all the instant messages from the World Master since last checking</summary>
         /// <returns>The message(s) as a string</returns>
-        public string GetMessage () 
+        public string GetMessage()
         {
             logThis("");
 
@@ -605,28 +665,28 @@ namespace ALIVE
 
             string temp = imb;
             imb = "";
-            return temp; 
+            return temp;
         }
-        
+
         /// <summary>Send the specified message to the World Master</summary>
         /// <param name="message">The message to send World Master</param>
-        public void SayMessage (string message) 
+        public void SayMessage(string message)
         {
             if (!message.StartsWith("[")) // prevent recursion
-            logThis(message);
+                logThis(message);
 
             // Find out UUID of World master by avatar name lookup
             if (WorldMasterUUID.GetULong() != 0L)
                 client.Self.InstantMessage(WorldMasterUUID, message);
-			if (DogMasterUUID.GetULong() != 0L)
-				client.Self.InstantMessage(DogMasterUUID, message);
+            if (DogMasterUUID.GetULong() != 0L)
+                client.Self.InstantMessage(DogMasterUUID, message);
         }
 
         /// <summary>Get the messages in local chat since last checking</summary>
         /// <remarks>Local chat is within a 20 meter radius</remarks>
         /// <returns>A string containing messages seen in local chat, including your own.
         /// </returns><remarks>Messages include your own chat, and begin with avatar name colon</remarks>
-        public string GetChat () 
+        public string GetChat()
         {
             logThis("");
 
@@ -638,7 +698,7 @@ namespace ALIVE
         /// <summary>Say the specified message in local chat</summary>
         /// <remarks>Local chat is heard within a 20 meter radius</remarks>
         /// <param name="message">The message to say</param>
-        public void SayChat(string message) 
+        public void SayChat(string message)
         {
             logThis(message);
 
@@ -649,9 +709,10 @@ namespace ALIVE
         /// <summary>List the names of ALIVE properties of object
         /// </summary>
         /// <param name="p">Primitive whose properties are to be returned</param>
-        private List<string> GetObjectProps(AliveObject p) {
+        private List<string> GetObjectProps(AliveObject p)
+        {
             List<string> props = new List<string>();
-            
+
             // props.Add("id");
             // props.Add("name");
 
@@ -666,11 +727,14 @@ namespace ALIVE
                 props.Add("type");
             if (p.family != "")
                 props.Add("other");
-            if (p.shape == "box" || p.shape == "prism") {
+            if (p.shape == "box" || p.shape == "prism")
+            {
                 props.Add("orientation");
                 props.Add("width");
                 props.Add("depth");
-            } else {
+            }
+            else
+            {
                 props.Add("radius");
             }
             props.Add("height");
@@ -684,14 +748,15 @@ namespace ALIVE
         private string GetObjProp(AliveObject p, string propName)
         {
             String retval = "";
-            switch(propName.ToLower()) {
-                case "x": 
+            switch (propName.ToLower())
+            {
+                case "x":
                     retval = p.X.ToString();
                     break;
-                case "y": 
+                case "y":
                     retval = p.Y.ToString();
                     break;
-                case "shape": 
+                case "shape":
                     retval = p.shape.ToString();
                     break;
                 case "movable":
@@ -829,8 +894,8 @@ namespace ALIVE
                 System.Console.WriteLine("Error attaching " + itemName);
             }
         }
-        
-/////// HANDLERS
+
+        /////// HANDLERS
         private void Network_OnConnected(Object sender)
         {
             System.Console.WriteLine("Successfully connected");
@@ -840,22 +905,22 @@ namespace ALIVE
         {
             System.Console.WriteLine("Instant Message: " + im.Message);
             if (im.Message != "typing")
-            imb = imb + im.FromAgentName + ": " + im.Message + "\r\n";
+                imb = imb + im.FromAgentName + ": " + im.Message + "\r\n";
         }
 
         // Keep track of avatar names to find World Master UUID
-        
+
         private void Self_OnNewAvatar(Simulator sim, Avatar av, ulong regionHandle, ushort timeDilation)
         {
             string avatarName = av.FirstName + " " + av.LastName;
 
-            if (AvatarNames.ContainsKey(avatarName)) 
+            if (AvatarNames.ContainsKey(avatarName))
                 return;
             AvatarNames.Add(avatarName, av.ID);
             if (avatarName == "Master " + av.LastName)
                 DogMasterUUID = av.ID;
-			if (avatarName == "World Master")
-				WorldMasterUUID = av.ID;
+            if (avatarName == "World Master")
+                WorldMasterUUID = av.ID;
         }
 
         // Chat buffers
@@ -878,7 +943,7 @@ namespace ALIVE
             //else 
             if (audible != ChatAudibleLevel.Fully || type == ChatType.StartTyping || type == ChatType.StopTyping)
                 return;
-            if (sourceType == ChatSourceType.Object) 
+            if (sourceType == ChatSourceType.Object)
                 return;
 
             cb = cb + fromName + ": " + message + "\r\n";
