@@ -128,7 +128,7 @@ namespace ALIVE
         private Dictionary<String, UUID> AvatarNames;
         private UUID WorldMasterUUID = new UUID(0L);
         private UUID DogMasterUUID = new UUID(0L);
-        private Boolean logging = false;
+        public Boolean logging = false;
 
         private AliveObject carriedObject = null;
 
@@ -144,6 +144,7 @@ namespace ALIVE
         ///<param name='fn'>first name</param>
         ///<param name='ln'>last name</param>
         ///<param name='pw'>password</param>>
+        ///<param name="sim">Simulator name to log into</param>
         public SmartDog(string fn, string ln, string pw, string sim)
         {
             FirstName = fn;
@@ -230,14 +231,15 @@ namespace ALIVE
 
         // Movement commands
 
-        ///<summary>Rotate the avatar to face a specified location</summary>
+        ///<summary>Rotate the avatar to face a specified 3d location</summary>
         ///<param name='x'>X coordinate</param>
         ///<param name='y'>Y coordinate</param>
-        public void TurnTo(int x, int y)
+        ///<param name="z">Z coordinate</param>
+        public void TurnTo(float x, float y, float z)
         {
-            logThis(x + "," + y);
+            logThis(x + "," + y + "," + z);
 
-            Vector3 position = new Vector3(x, y, 0);
+            Vector3 position = new Vector3(x, y, z);
 
             client.Self.Movement.TurnToward(position);
         }
