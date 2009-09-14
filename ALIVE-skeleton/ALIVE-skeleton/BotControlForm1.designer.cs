@@ -145,7 +145,7 @@
             this.QuitButton.Location = new System.Drawing.Point(404, 275);
             this.QuitButton.Name = "QuitButton";
             this.QuitButton.Size = new System.Drawing.Size(75, 23);
-            this.QuitButton.TabIndex = 6;
+            this.QuitButton.TabIndex = 7;
             this.QuitButton.Text = "Login";
             this.QuitButton.UseVisualStyleBackColor = true;
             // 
@@ -285,7 +285,7 @@
             this.URIbox.MinimumSize = new System.Drawing.Size(100, 20);
             this.URIbox.Name = "URIbox";
             this.URIbox.Size = new System.Drawing.Size(100, 20);
-            this.URIbox.TabIndex = 24;
+            this.URIbox.TabIndex = 6;
             this.URIbox.Text = "One";
             this.URIbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 

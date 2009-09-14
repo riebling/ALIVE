@@ -184,7 +184,8 @@ namespace MyBot
         void turntowardbutton_Click(object sender, EventArgs e)
         {
             if (Xbox.Text == "" || Ybox.Text == "") return;
-            myAvatar.TurnTo(Convert.ToInt32(Xbox.Text), Convert.ToInt32(Ybox.Text));
+
+            myAvatar.TurnTo(Convert.ToSingle(Xbox.Text), Convert.ToSingle(Ybox.Text), 25f);
         }
 
         private void goforwardbutton_Click(object sender, EventArgs e)
@@ -258,7 +259,11 @@ namespace MyBot
 
         private void AutoButton_Click(object sender, EventArgs e)
         {
+
             // Add code here
+
+            
+
         }
 
     }

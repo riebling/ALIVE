@@ -99,6 +99,7 @@
             <param name='fn'>first name</param>
             <param name='ln'>last name</param>
             <param name='pw'>password</param>>
+            <param name="sim">Simulator name to log into</param>
         </member>
         <member name="M:ALIVE.SmartDog.Login">
             <summary>Attempt to log the avatar into the default region</summary>
@@ -106,10 +107,11 @@
         <member name="M:ALIVE.SmartDog.Logout">
             <summary>Log the avatar out</summary>
         </member>
-        <member name="M:ALIVE.SmartDog.TurnTo(System.Int32,System.Int32)">
-            <summary>Rotate the avatar to face a specified location</summary>
+        <member name="M:ALIVE.SmartDog.TurnTo(System.Single,System.Single,System.Single)">
+            <summary>Rotate the avatar to face a specified 3d location</summary>
             <param name='x'>X coordinate</param>
             <param name='y'>Y coordinate</param>
+            <param name="z">Z coordinate</param>
         </member>
         <member name="M:ALIVE.SmartDog.TurnLeft(System.Int64)">
             <summary>Rotate the avatar counter-clockwise</summary>
