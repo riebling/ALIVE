@@ -284,9 +284,15 @@ namespace ALIVE
             return true;
         }
 
+        // Overload
+        public bool GoForward(int meters)
+        {
+            return GoForward(Convert.ToSingle(meters));
+        }
+
         ///<summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
         ///<param name='meters'>Distance to walk in meters</param>
-        public bool GoForward(int meters)
+        public bool GoForward(float meters)
         {
             logThis(meters.ToString());
 
@@ -314,7 +320,7 @@ namespace ALIVE
             client.Self.Movement.AtPos = true;
             client.Self.Movement.SendUpdate(true);
 
-            Thread.Sleep(walkSpeed * meters);
+            Thread.Sleep(Convert.ToInt16(walkSpeed * meters));
             client.Self.Movement.AtPos = false;
             client.Self.Movement.SendUpdate(true);
 
@@ -336,9 +342,15 @@ namespace ALIVE
             }
         }
 
+        // Overload
+        public bool GoBackward(int meters)
+        {
+            return GoBackward(Convert.ToSingle(meters));
+        }
+
         ///<summary>Attempt to walk the avatar backwards in a straight line.  Obstacles may prevent this from completing as expected</summary>
         ///<param name='meters'>Distance to walk in meters</param>
-        public bool GoBackward(int meters)
+        public bool GoBackward(float meters)
         {
             logThis(meters.ToString());
 
@@ -366,7 +378,7 @@ namespace ALIVE
             client.Self.Movement.AtNeg = true;
             client.Self.Movement.SendUpdate(true);
 
-            Thread.Sleep(walkSpeed * meters);
+            Thread.Sleep(Convert.ToInt16(walkSpeed * meters));
             client.Self.Movement.AtNeg = false;
             client.Self.Movement.SendUpdate(true);
 
@@ -614,6 +626,7 @@ namespace ALIVE
 
             if (carriedObject != null)
             {
+                lookupCarriedItem();
                 client.Objects.DropObject(client.Network.CurrentSim, item.LocalID);
                 carriedObject = null;
                 return true;
@@ -858,10 +871,11 @@ namespace ALIVE
 
         // Attempt to wear the inventory item named by the argument itemName
         // Does not report error on failure
-        void wearNamedItem(string itemName)
+        public void lookupCarriedItem()
         {
             //initialize our list to store the folder contents
-            UUID inventoryItems;
+            UUID ObjectsFolderUUID;
+            List<InventoryBase> contents;
 
             //make a string array to put our folder names in.
             String[] SearchFolders = { "" };
@@ -869,31 +883,53 @@ namespace ALIVE
             //Next we grab a full copy of the entire inventory and get it stored into the Inventory Manager
             client.Inventory.RequestFolderContents(client.Inventory.Store.RootFolder.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
 
-            //Next we want to step through the directory structure until we get to the item.
-            SearchFolders[0] = "Objects";
-
             //Now we can grab the details of that folder and store it to our list.
-            inventoryItems = client.Inventory.FindObjectByPath(client.Inventory.Store.RootFolder.UUID, client.Self.AgentID, SearchFolders[0], 1000);
+            ObjectsFolderUUID = client.Inventory.FindObjectByPath(client.Inventory.Store.RootFolder.UUID, 
+                client.Self.AgentID, "Objects", 1000);
+
+            // Create the list which we can use to iliterate through
+            contents =
+                client.Inventory.FolderContents(ObjectsFolderUUID, client.Self.AgentID,
+                    true, true, InventorySortOrder.ByName, 1000);
+
+
+            foreach (InventoryBase item in contents)
+            {
+                // Illiterate through our list of items and print them to the console
+
+                // Code that processes each item goes here
+                InventoryItem myitem = client.Inventory.FetchItem(item.UUID, item.OwnerID, 1000);
+                if (myitem != null)
+                {
+                    Console.Out.WriteLine("Name: " + myitem.Name + " <==> " + myitem.UUID.ToString());
+                    Console.Out.WriteLine("Flags: " + myitem.Flags);
+                    //Console.Out.WriteLine(myitem is InventoryAttachment);
+                    if (myitem is InventoryAttachment)
+                        Console.Out.WriteLine(((InventoryAttachment)myitem).AttachmentPoint.ToString());
+                }
+            }
+
 
             //now that we have the details of the objects folder, we need to grab the details of our torch.
-            SearchFolders[0] = itemName;
-            inventoryItems = client.Inventory.FindObjectByPath(inventoryItems, client.Self.AgentID, SearchFolders[0], 1000);
+            //SearchFolders[0] = itemName;
+            //inventoryItems = client.Inventory.FindObjectByPath(inventoryItems, client.Self.AgentID, SearchFolders[0], 1000);
 
-            InventoryItem myitem;
+            //InventoryItem myitem = null;
 
             // Convert the LLUUID to an inventory item
-            myitem = client.Inventory.FetchItem(inventoryItems, client.Self.AgentID, 1000);
+            //myitem = client.Inventory.FetchItem(inventoryItems, client.Self.AgentID, 1000);
 
             //finally we attach the object to it's default position
             try
             {
                 // Catch any errors that may occur (not having the "Torch!" item in your inventory for example)
-                client.Appearance.Attach(myitem as InventoryItem, AttachmentPoint.Default);
+                //client.Appearance.Attach(myitem as InventoryItem, AttachmentPoint.Default);
             }
             catch
             {
                 // Put any code that handles any errors :)
-                System.Console.WriteLine("Error attaching " + itemName);
+                System.Console.WriteLine("Error ;ooking up items");
+                
             }
         }
 
