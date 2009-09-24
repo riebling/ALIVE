@@ -262,7 +262,7 @@ namespace MyBot
 
             // Add code here
 
-            
+            myAvatar.lookupCarriedItem();
 
         }
 
