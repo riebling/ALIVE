@@ -60,6 +60,9 @@ namespace MyBot
             goforwardbutton.Click += new EventHandler(goforwardbutton_Click);
             gobackwardbutton.Click += new EventHandler(gobackwardbutton_Click);
 
+            WalkButton.Click += new EventHandler(WalkButton_Click);
+            NudgeButton.Click += new EventHandler(NudgeButton_Click);
+
             readchatbutton.Click += new EventHandler(readchatbutton_Click);
             readmessagebutton.Click += new EventHandler(readmessagebutton_Click);
             saychatbutton.Click += new EventHandler(saychatbutton_Click);
@@ -242,6 +245,21 @@ namespace MyBot
             }
         }
 
+
+        private void NudgeButton_Click(object sender, EventArgs e)
+        {
+            if (goforwardbox.Text == "") return;
+            myAvatar.NudgeForward(Convert.ToInt32(goforwardbox.Text));
+
+        }
+
+        private void WalkButton_Click(object sender, EventArgs e)
+        {
+            if (goforwardbox.Text == "") return;
+            myAvatar.WalkForward(Convert.ToInt32(goforwardbox.Text));
+
+        }
+
         private void takeobjectbutton_Click(object sender, EventArgs e)
         {
             if (objectidbox.Text != null) // try to guard against empty textbox
@@ -265,6 +283,7 @@ namespace MyBot
             myAvatar.lookupCarriedItem();
 
         }
+
 
     }
 }

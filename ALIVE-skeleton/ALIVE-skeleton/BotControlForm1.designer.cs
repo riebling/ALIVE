@@ -71,6 +71,8 @@
             this.takeobjectbutton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.AutoButton = new System.Windows.Forms.Button();
+            this.NudgeButton = new System.Windows.Forms.Button();
+            this.WalkButton = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -196,7 +198,7 @@
             // 
             // Ybox
             // 
-            this.Ybox.Location = new System.Drawing.Point(235, 311);
+            this.Ybox.Location = new System.Drawing.Point(235, 331);
             this.Ybox.MinimumSize = new System.Drawing.Size(37, 20);
             this.Ybox.Name = "Ybox";
             this.Ybox.Size = new System.Drawing.Size(37, 20);
@@ -205,7 +207,7 @@
             // 
             // MoveButton
             // 
-            this.MoveButton.Location = new System.Drawing.Point(134, 337);
+            this.MoveButton.Location = new System.Drawing.Point(134, 357);
             this.MoveButton.MinimumSize = new System.Drawing.Size(75, 23);
             this.MoveButton.Name = "MoveButton";
             this.MoveButton.Size = new System.Drawing.Size(75, 23);
@@ -217,7 +219,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.CausesValidation = false;
-            this.label4.Location = new System.Drawing.Point(152, 314);
+            this.label4.Location = new System.Drawing.Point(152, 334);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(14, 13);
             this.label4.TabIndex = 11;
@@ -227,7 +229,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.CausesValidation = false;
-            this.label5.Location = new System.Drawing.Point(215, 314);
+            this.label5.Location = new System.Drawing.Point(215, 334);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(14, 13);
             this.label5.TabIndex = 12;
@@ -358,7 +360,7 @@
             // 
             // goforwardbutton
             // 
-            this.goforwardbutton.Location = new System.Drawing.Point(136, 269);
+            this.goforwardbutton.Location = new System.Drawing.Point(134, 263);
             this.goforwardbutton.MinimumSize = new System.Drawing.Size(75, 23);
             this.goforwardbutton.Name = "goforwardbutton";
             this.goforwardbutton.Size = new System.Drawing.Size(75, 23);
@@ -368,7 +370,7 @@
             // 
             // goforwardbox
             // 
-            this.goforwardbox.Location = new System.Drawing.Point(159, 249);
+            this.goforwardbox.Location = new System.Drawing.Point(157, 243);
             this.goforwardbox.MinimumSize = new System.Drawing.Size(37, 20);
             this.goforwardbox.Name = "goforwardbox";
             this.goforwardbox.Size = new System.Drawing.Size(37, 20);
@@ -377,7 +379,7 @@
             // 
             // gobackwardbox
             // 
-            this.gobackwardbox.Location = new System.Drawing.Point(248, 249);
+            this.gobackwardbox.Location = new System.Drawing.Point(246, 243);
             this.gobackwardbox.MinimumSize = new System.Drawing.Size(37, 20);
             this.gobackwardbox.Name = "gobackwardbox";
             this.gobackwardbox.Size = new System.Drawing.Size(37, 20);
@@ -386,7 +388,7 @@
             // 
             // gobackwardbutton
             // 
-            this.gobackwardbutton.Location = new System.Drawing.Point(217, 269);
+            this.gobackwardbutton.Location = new System.Drawing.Point(215, 263);
             this.gobackwardbutton.MinimumSize = new System.Drawing.Size(75, 23);
             this.gobackwardbutton.Name = "gobackwardbutton";
             this.gobackwardbutton.Size = new System.Drawing.Size(90, 23);
@@ -408,7 +410,7 @@
             // 
             this.groupBox2.Controls.Add(this.Xbox);
             this.groupBox2.Controls.Add(this.turntowardbutton);
-            this.groupBox2.Location = new System.Drawing.Point(127, 299);
+            this.groupBox2.Location = new System.Drawing.Point(127, 319);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(170, 69);
             this.groupBox2.TabIndex = 40;
@@ -514,11 +516,34 @@
             this.AutoButton.Text = "Auto";
             this.AutoButton.UseVisualStyleBackColor = true;
             // 
+            // NudgeButton
+            // 
+            this.NudgeButton.Location = new System.Drawing.Point(215, 290);
+            this.NudgeButton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.NudgeButton.Name = "NudgeButton";
+            this.NudgeButton.Size = new System.Drawing.Size(90, 23);
+            this.NudgeButton.TabIndex = 55;
+            this.NudgeButton.Text = "Nudge Fwd.";
+            this.NudgeButton.UseVisualStyleBackColor = true;
+            this.NudgeButton.Click += new System.EventHandler(this.NudgeButton_Click);
+            // 
+            // WalkButton
+            // 
+            this.WalkButton.Location = new System.Drawing.Point(127, 290);
+            this.WalkButton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.WalkButton.Name = "WalkButton";
+            this.WalkButton.Size = new System.Drawing.Size(82, 23);
+            this.WalkButton.TabIndex = 54;
+            this.WalkButton.Text = "Walk Forward";
+            this.WalkButton.UseVisualStyleBackColor = true;
+            // 
             // BotControlForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 652);
+            this.Controls.Add(this.NudgeButton);
+            this.Controls.Add(this.WalkButton);
             this.Controls.Add(this.AutoButton);
             this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.takeobjectbutton);
@@ -615,5 +640,7 @@
         private System.Windows.Forms.Button takeobjectbutton;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button AutoButton;
+        private System.Windows.Forms.Button NudgeButton;
+        private System.Windows.Forms.Button WalkButton;
     }
 }
