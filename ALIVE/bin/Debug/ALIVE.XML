@@ -121,6 +121,22 @@
             <summary>Rotate the avatar clockwise</summary>
             <param name='degrees'>degrees to rotate</param>
         </member>
+        <member name="M:ALIVE.SmartDog.WalkForward(System.Int32)">
+            <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend walking</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.WalkBackward(System.Int32)">
+            <summary>Attempt to walk the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend walking</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.NudgeForward(System.Int32)">
+            <summary>Attempt to nudge the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend being nudged</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.NudgeBackward(System.Int32)">
+            <summary>Attempt to nudge the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend being nudged</param>
+        </member>
         <member name="M:ALIVE.SmartDog.GoForward(System.Single)">
             <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
             <param name='meters'>Distance to walk in meters</param>

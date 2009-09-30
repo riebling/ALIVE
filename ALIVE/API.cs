@@ -284,6 +284,54 @@ namespace ALIVE
             return true;
         }
 
+        ///<summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        ///<param name='milliseconds'>Time to spend walking</param>
+        public void WalkForward(int milliseconds)
+        {
+            client.Self.Movement.AtPos = true;
+            client.Self.Movement.SendUpdate(true);
+
+            Thread.Sleep(milliseconds);
+            client.Self.Movement.AtPos = false;
+            client.Self.Movement.SendUpdate(true);
+        }
+
+        ///<summary>Attempt to walk the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        ///<param name='milliseconds'>Time to spend walking</param>
+        public void WalkBackward(int milliseconds)
+        {
+            client.Self.Movement.AtNeg = true;
+            client.Self.Movement.SendUpdate(true);
+
+            Thread.Sleep(milliseconds);
+            client.Self.Movement.AtNeg = false;
+            client.Self.Movement.SendUpdate(true);
+        }
+
+        ///<summary>Attempt to nudge the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        ///<param name='milliseconds'>Time to spend being nudged</param>
+        public void NudgeForward(int milliseconds)
+        {
+            client.Self.Movement.NudgeAtPos = true;
+            client.Self.Movement.SendUpdate(true);
+
+            Thread.Sleep(milliseconds);
+            client.Self.Movement.NudgeAtPos = false;
+            client.Self.Movement.SendUpdate(true);
+        }
+
+        ///<summary>Attempt to nudge the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        ///<param name='milliseconds'>Time to spend being nudged</param>
+        public void NudgeBackward(int milliseconds)
+        {
+            client.Self.Movement.NudgeAtNeg = true;
+            client.Self.Movement.SendUpdate(true);
+
+            Thread.Sleep(milliseconds);
+            client.Self.Movement.NudgeAtNeg = false;
+            client.Self.Movement.SendUpdate(true);
+        }
+
         // Overload
         public bool GoForward(int meters)
         {
@@ -626,7 +674,6 @@ namespace ALIVE
 
             if (carriedObject != null)
             {
-                lookupCarriedItem();
                 client.Objects.DropObject(client.Network.CurrentSim, item.LocalID);
                 carriedObject = null;
                 return true;
