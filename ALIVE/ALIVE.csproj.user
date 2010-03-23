@@ -4,4 +4,10 @@
     <ReferencePath>
     </ReferencePath>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartWorkingDirectory>D:\Projects\ALIVE\ALIVE\bin\Debug\</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <StartWorkingDirectory>D:\Projects\ALIVE\ALIVE\bin\Debug\</StartWorkingDirectory>
+  </PropertyGroup>
 </Project>

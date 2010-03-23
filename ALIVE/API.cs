@@ -63,6 +63,19 @@ namespace ALIVE
         public float width, depth, height;
         //public float colorR, colorG, colorB;
 
+        public AliveObject(Avatar av)
+        {
+            ID = av.ID.GetULong();
+            LocalID = av.LocalID;
+            X = av.Position.X;
+            Y = av.Position.Y;
+            family = "Avatar";
+            height = av.Scale.Z;
+            width = av.Scale.X;
+            name = av.Name;
+            angle = SmartDog.ZrotFromQuaternion(av.Rotation);
+        }
+
         // Constructor
         /// <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
         public AliveObject(Primitive p)
@@ -119,13 +132,14 @@ namespace ALIVE
     {
         /// naughty 'globals'
         //const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
+        public string AliveVersion = "3/23/2010";
         const string ALIVE_SERVER = "http://ohio.pc.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         //const string WORLD_MASTER_NAME = "World Master";
         const int SEARCH_RADIUS = 10;
         const int walkSpeed = 320; // msec per meter
 
-        private Dictionary<String, UUID> AvatarNames;
+        private Dictionary<uint, Avatar> AvatarNames;
         private UUID WorldMasterUUID = new UUID(0L);
         private UUID DogMasterUUID = new UUID(0L);
         public Boolean logging = false;
@@ -152,7 +166,7 @@ namespace ALIVE
             Password = pw;
             Simulator = sim;
 
-            AvatarNames = new Dictionary<String, UUID>();
+            AvatarNames = new Dictionary<uint, Avatar>();
             client = new GridClient();
 
             client.Network.OnConnected += new NetworkManager.ConnectedCallback(Network_OnConnected);
@@ -160,6 +174,7 @@ namespace ALIVE
             client.Self.OnInstantMessage += new AgentManager.InstantMessageCallback(Self_OnInstantMessage);
 
             client.Objects.OnNewAvatar += new ObjectManager.NewAvatarCallback(Self_OnNewAvatar);
+            client.Objects.OnObjectKilled += new ObjectManager.KillObjectCallback(Objects_OnObjectKilled);
             //client.Self.OnMeanCollision += new AgentManager.MeanCollisionCallback(Self_OnMeanCollision);
 
             // Register callback to catch Object properties events
@@ -216,6 +231,18 @@ namespace ALIVE
 
             //client.Network.CurrentSim.ObjectsAvatars.ForEach(OpenMetaverse.Avatar.AvatarProperties.Equals);
 
+            // This takes some time to ensure prims show up
+            // otherwise the carried item hasn't appeared yet in the sim
+            // dictionary (how do we know when all objects nearby have apeared?
+            // possibly never, as movement within the sim is always causing new
+            // ones to appear asynchronously)
+            this.ObjectsAround();
+
+            // Now that we have a pretty good sense the objects are present,
+            // drop anything whose parent ID is the avatar, and is held in
+            // left hand
+            dropCarriedItem();
+
             logThis("");
             return true;
         }
@@ -230,6 +257,14 @@ namespace ALIVE
         }
 
         // Movement commands
+
+        ///<summary>Rotate the avatar to face a specified location at the avatar's current Z elevation</summary>
+        ///<param name='x'>X coordinate</param>
+        ///<param name='y'>Y coordinate</param>
+        public void TurnTo(float x, float y)
+        {
+            TurnTo(x, y, client.Self.SimPosition.Z);
+        }
 
         ///<summary>Rotate the avatar to face a specified 3d location</summary>
         ///<param name='x'>X coordinate</param>
@@ -517,6 +552,30 @@ namespace ALIVE
 
 
         /// UTILITY FUNCTIONS
+        /// 
+        List<Primitive> getAttachments() {
+            List<Primitive> attachments = client.Network.CurrentSim.ObjectsPrimitives.FindAll(
+                    delegate(Primitive prim) { return prim.ParentID == client.Self.LocalID; }
+                );
+
+            return attachments;
+        }
+
+        // Drop whatever is attached to the avatar's left hand
+        private bool dropCarriedItem()
+        {
+            List<Primitive> heldItems = getAttachments();
+            foreach (Primitive p in heldItems)
+            {
+                if (Helpers.StateToAttachmentPoint(p.PrimData.State) == AttachmentPoint.LeftHand)
+                {
+                    //Console.Out.WriteLine("Dropping " + p.LocalID);
+                    client.Objects.DropObject(client.Network.CurrentSim, p.LocalID);
+                    return true;
+                }
+            }
+            return false;
+        }
 
         // simple mapping of basic RGB values to colors
         // This can be expanded and made more 'fuzzy'
@@ -595,11 +654,11 @@ namespace ALIVE
                 // Since all new objects in OpenSim default to
                 // type "Primitive" we don't include those
 
-                if (visible(p, location, radius))
-                {
-                    flag = (p.Properties != null) && (p.Properties.Name != null) && (p.Properties.Name == "Primitive");
-                    if (flag == false) returnPrims.Add(new AliveObject(p));
-                }
+                flag = (p.Properties != null) && (p.Properties.Name != null) && (p.Properties.Name == "Primitive");
+                if (flag == false)
+                    if (visible(p, location, radius))
+                        returnPrims.Add(new AliveObject(p));
+                
             }
             return returnPrims;
         }
@@ -607,6 +666,7 @@ namespace ALIVE
         private bool visible(Primitive p, Vector3 location, float radius)
         // determines if any part of the object p is visible to the avatar from location
         {
+
             double xa, ya, xa1, ya1, xa2, ya2, xc, yc, w, d, angle, r2;
             xa = location.X;
             ya = location.Y;
@@ -626,7 +686,7 @@ namespace ALIVE
             {
                 if (ya2 <= -d) return (xa2 + w) * (xa2 + w) + (ya2 + d) * (ya2 + d) <= r2;
                 if (ya2 >= d) return (xa2 + w) * (xa2 + w) + (ya2 - d) * (ya2 - d) <= r2;
-                return xa2 + w <= radius;
+                return xa2 + w >= -radius;
             }
             else
             {
@@ -639,7 +699,7 @@ namespace ALIVE
                 else
                 {
                     if (ya2 >= d) return ya2 - d <= radius;
-                    if (ya2 <= -d) return ya2 + d <= radius;
+                    if (ya2 <= -d) return ya2 + d <= -radius;
                     return true; // the avatar is inside the rectangle footprint of the object
                 }
             }
@@ -660,8 +720,29 @@ namespace ALIVE
             // Here is the 'magic' workaround - try again after 1s delay
             Thread.Sleep(1000);
 
+            // Also look for avatars nearby
+            Vector3 loc = client.Self.SimPosition;
+            Dictionary<uint, Avatar>.Enumerator en = AvatarNames.GetEnumerator();
+
             // Do it again
             tempObjects = ObjectsAround(SEARCH_RADIUS);
+
+            // Add Avatars
+            lock (AvatarNames)
+                foreach (KeyValuePair<uint, Avatar> kp in AvatarNames)
+                {
+                    Avatar av = kp.Value;
+
+                    if (av.ID != client.Self.AgentID)
+                    {
+                        float dist = Vector3.Distance(av.Position, client.Self.SimPosition);
+                        if (dist <= SEARCH_RADIUS)
+                        {
+                            AliveObject obj = new AliveObject(av);
+                            tempObjects.Add(obj);
+                        }
+                    }
+                }
 
             return tempObjects;
         }
@@ -672,13 +753,12 @@ namespace ALIVE
         {
             logThis(item.ToString());
 
-            if (carriedObject != null)
-            {
-                client.Objects.DropObject(client.Network.CurrentSim, item.LocalID);
-                carriedObject = null;
-                return true;
-            }
-            else return false;
+            return dropCarriedItem();
+        }
+        public bool DropObject()
+        {
+            logThis("");
+            return dropCarriedItem();
         }
 
 
@@ -690,22 +770,18 @@ namespace ALIVE
         {
             logThis(item.ToString());
 
-            if (carriedObject == null)
-            {
-                // Don't let avatar pick up objects farther away than 5m
-                Vector3 avatarPosition = client.Self.SimPosition;
-                Vector3 objectPosition = new Vector3(item.X, item.Y, avatarPosition.Z);
+            // Don't let avatar pick up objects farther away than 5m
+            Vector3 avatarPosition = client.Self.SimPosition;
+            Vector3 objectPosition = new Vector3(item.X, item.Y, avatarPosition.Z);
 
-                if (Vector3.Distance(avatarPosition, objectPosition) < 5)
-                {
-                    client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.LeftHand, Quaternion.Identity);
-                    carriedObject = item;
-                    return true;
-                }
-                else
-                    return false;
+            if (Vector3.Distance(avatarPosition, objectPosition) < 5)
+            {
+                client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.LeftHand, Quaternion.Identity);
+                carriedObject = item;
+                return true;
             }
-            else return false;
+            else
+                return false;
         }
 
 
@@ -995,18 +1071,51 @@ namespace ALIVE
 
         // Keep track of avatar names to find World Master UUID
 
+        private void Objects_OnAvatarAttachment(Simulator simulator, Primitive prim, ulong regionHandle,
+            ushort timeDilation)
+        {
+            Console.WriteLine(prim.ParentID + " " + client.Self.LocalID);
+            Console.WriteLine("Got an attachment!" + prim.PrimData.AttachmentPoint.ToString() + "\r\n" + prim.ToString());
+        }
+
         private void Self_OnNewAvatar(Simulator sim, Avatar av, ulong regionHandle, ushort timeDilation)
         {
             string avatarName = av.FirstName + " " + av.LastName;
 
-            if (AvatarNames.ContainsKey(avatarName))
+            // DEBUG
+            //Console.WriteLine("Self_OnNewAvatar: " + avatarName);
+
+            if (AvatarNames.ContainsKey(av.LocalID))
                 return;
-            AvatarNames.Add(avatarName, av.ID);
-            if (avatarName == "Master " + av.LastName)
+            lock (AvatarNames)
+                AvatarNames.Add(av.LocalID, av);
+
+            if (avatarName == "Master " + LastName)
                 DogMasterUUID = av.ID;
             if (avatarName == "World Master")
                 WorldMasterUUID = av.ID;
         }
+
+        // Strangely there's no event for Avatars leaving, it's bundled with
+        // objects.
+        private void Objects_OnObjectKilled(Simulator simulator, uint objectID)
+        {
+            // DEBUG
+            //Console.WriteLine("OnObjectKilled: ");
+
+            lock (AvatarNames)
+            {
+                if (AvatarNames.ContainsKey(objectID))
+                {
+                    // DEBUG
+                    //Avatar av;
+                    //AvatarNames.TryGetValue(objectID, out av);
+                    //Console.WriteLine("Removing " + av.Name);
+                    AvatarNames.Remove(objectID);
+                }
+            }
+        }
+
 
         // Chat buffers
         //
