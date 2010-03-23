@@ -32,15 +32,35 @@ namespace MyBot
 
         public void textBoxUpdate(TextBox tb, string nvalue)
         {
-            if (tb.InvokeRequired)
+            if (this.InvokeRequired)
             {
-                tb.Invoke(new textBoxUpdater(textBoxUpdate), new object[] { tb, nvalue });
-                return;
+                this.BeginInvoke((MethodInvoker)delegate { textBoxUpdate(tb, nvalue); });
             }
-            tb.Text = nvalue;
-            tb.SelectionStart = tb.Text.Length;
-            tb.ScrollToCaret();
+            else
+            {
+                if (this.Handle != IntPtr.Zero)
+                {
+                    tb.Text = nvalue;
+                    tb.SelectionStart = tb.Text.Length;
+                    tb.ScrollToCaret();
+                }
+            }
             //tb.Refresh();
+        }
+
+        public void buttonTextUpdate(Button tb, string nvalue)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke((MethodInvoker)delegate { buttonTextUpdate(tb, nvalue); });
+            }
+            else
+            {
+                if (this.Handle != IntPtr.Zero)
+                {
+                    tb.Text = nvalue;
+                }
+            }
         }
 
         public BotControlForm1()
@@ -114,11 +134,11 @@ namespace MyBot
                 {
                     //client.Settings.DISABLE_AGENT_UPDATE_DUPLICATE_CHECK = true;
 
-                    QuitButton.Text = "Logout";
+                    buttonTextUpdate(QuitButton, "Logout");
                     ChatBox.Visible = true;
                     InputBox.Visible = true;
                     saychatbutton.Visible = true;
-                    PWtextBox.Text = "";
+                    textBoxUpdate(PWtextBox, "");
                     }
                 else
                 {
@@ -127,18 +147,19 @@ namespace MyBot
                 }
 
                 displayMyLocation();
+                textBoxUpdate(ChatBox, "Version: " + myAvatar.AliveVersion);
             }
             else
             {
                 //client.Network.Logout();
                 myAvatar.Logout();
-                QuitButton.Text = "Login";
+                buttonTextUpdate(QuitButton, "Login");
                 ChatBox.Visible = false;
                 InputBox.Visible = false;
                 saychatbutton.Visible = false;
 
-                objectsBox.Text = "";
-                locationBox.Text = "";
+                textBoxUpdate(objectsBox, "");
+                textBoxUpdate(locationBox, "");
                 }
         }
 
@@ -227,22 +248,23 @@ namespace MyBot
         private void saychatbutton_Click(object sender, EventArgs e)
         {
             myAvatar.SayChat(InputBox.Text);
-            InputBox.Text = "";
+            textBoxUpdate(InputBox, "");
         }
 
         private void saymessagebutton_Click(object sender, EventArgs e)
         {
             myAvatar.SayMessage(InputBox.Text);
-            InputBox.Text = "";
+            textBoxUpdate(InputBox, "");
         }
 
         private void dropobjectbutton_Click(object sender, EventArgs e)
         {
-            if (carriedPrim != null)
-            {
-                myAvatar.DropObject(carriedPrim);
-                carriedPrim = null;
-            }
+            //if (carriedPrim != null)
+            //{
+            //    myAvatar.DropObject(carriedPrim);
+            //    carriedPrim = null;
+            //}
+            myAvatar.DropObject();
         }
 
 

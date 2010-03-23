@@ -91,7 +91,7 @@
         <member name="T:ALIVE.SmartDog">
             <summary>Object which represents an avatar in ALIVE/OpenMetaverse/SecondLife</summary>
         </member>
-        <member name="F:ALIVE.SmartDog.ALIVE_SERVER">
+        <member name="F:ALIVE.SmartDog.AliveVersion">
             naughty 'globals'
         </member>
         <member name="M:ALIVE.SmartDog.#ctor(System.String,System.String,System.String,System.String)">
@@ -107,6 +107,11 @@
         <member name="M:ALIVE.SmartDog.Logout">
             <summary>Log the avatar out</summary>
         </member>
+        <member name="M:ALIVE.SmartDog.TurnTo(System.Single,System.Single)">
+            <summary>Rotate the avatar to face a specified location at the avatar's current Z elevation</summary>
+            <param name='x'>X coordinate</param>
+            <param name='y'>Y coordinate</param>
+        </member>
         <member name="M:ALIVE.SmartDog.TurnTo(System.Single,System.Single,System.Single)">
             <summary>Rotate the avatar to face a specified 3d location</summary>
             <param name='x'>X coordinate</param>
@@ -120,6 +125,22 @@
         <member name="M:ALIVE.SmartDog.TurnRight(System.Int64)">
             <summary>Rotate the avatar clockwise</summary>
             <param name='degrees'>degrees to rotate</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.WalkForward(System.Int32)">
+            <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend walking</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.WalkBackward(System.Int32)">
+            <summary>Attempt to walk the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend walking</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.NudgeForward(System.Int32)">
+            <summary>Attempt to nudge the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend being nudged</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.NudgeBackward(System.Int32)">
+            <summary>Attempt to nudge the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend being nudged</param>
         </member>
         <member name="M:ALIVE.SmartDog.GoForward(System.Single)">
             <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
@@ -148,8 +169,9 @@
             <param name="x">X coordinate of avatar</param>
             <param name="y">Y coordinate of avatar</param>
         </member>
-        <member name="M:ALIVE.SmartDog.color2String(System.Single,System.Single,System.Single)">
+        <member name="M:ALIVE.SmartDog.getAttachments">
             UTILITY FUNCTIONS
+            
         </member>
         <member name="M:ALIVE.SmartDog.ZrotFromQuaternion(OpenMetaverse.Quaternion)">
             <summary>Given a Quaternion, return the rotation around the Z

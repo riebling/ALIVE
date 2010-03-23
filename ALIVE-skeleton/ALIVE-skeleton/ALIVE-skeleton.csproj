@@ -48,6 +48,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ALIVE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="OpenMetaverse, Version=0.7.0.22610, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="OpenMetaverse.Http, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="OpenMetaverse.StructuredData, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="OpenMetaverseTypes, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
