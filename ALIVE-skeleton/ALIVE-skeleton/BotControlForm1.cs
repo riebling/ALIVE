@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Net;
+using System.Reflection;
 
 using ALIVE;
 
@@ -70,6 +71,7 @@ namespace MyBot
             QuitButton.Click += new EventHandler(QuitButton_Click);
             MoveButton.Click += new EventHandler(MoveButton_Click);
             AutoButton.Click += new EventHandler(AutoButton_Click);
+            NudgeButton.Click += new EventHandler(AnimationButton_Click);
 
             LookButton.Click += new EventHandler(LookButton_Click);
             dropobjectbutton.Click += new EventHandler(dropobjectbutton_Click);
@@ -161,6 +163,12 @@ namespace MyBot
                 textBoxUpdate(objectsBox, "");
                 textBoxUpdate(locationBox, "");
                 }
+        }
+
+        void AnimationButton_Click(object sender, EventArgs e)
+        {
+            if (InputBox.Text != null)
+                myAvatar.PlayAnimation(InputBox.Text);
         }
 
 
@@ -302,7 +310,9 @@ namespace MyBot
 
             // Add code here
 
-            myAvatar.lookupCarriedItem();
+            myAvatar.PlayAnimation(AliveAnimation.BACKFLIP);
+            
+            myAvatar.PlayAnimation(AliveAnimation.HELLO);
 
         }
 

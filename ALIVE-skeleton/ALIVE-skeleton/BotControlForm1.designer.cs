@@ -523,7 +523,7 @@
             this.NudgeButton.Name = "NudgeButton";
             this.NudgeButton.Size = new System.Drawing.Size(90, 23);
             this.NudgeButton.TabIndex = 55;
-            this.NudgeButton.Text = "Nudge Fwd.";
+            this.NudgeButton.Text = "Animation";
             this.NudgeButton.UseVisualStyleBackColor = true;
             this.NudgeButton.Click += new System.EventHandler(this.NudgeButton_Click);
             // 
