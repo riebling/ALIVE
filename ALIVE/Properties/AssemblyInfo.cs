@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Carnegie Mellon University")]
 [assembly: AssemblyProduct("ALIVE")]
-[assembly: AssemblyCopyright("Copyright © Carnegie Mellon University 2009")]
+[assembly: AssemblyCopyright("Copyright © Carnegie Mellon University 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

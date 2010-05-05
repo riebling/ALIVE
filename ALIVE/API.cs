@@ -3,67 +3,93 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Text;
 using OpenMetaverse;
+using System.Reflection;
 
 namespace ALIVE
 {
-    ///<returns></returns>
+    /// <returns></returns>
     public enum primType
     {
-        ///<summary>Unknown primitive type</summary>
+        /// <summary>Unknown primitive type</summary>
         Unknown,
-        ///<summary>Box primitive type</summary> 
+        /// <summary>Box primitive type</summary> 
         Box,
-        ///<summary>Cylinder primitive type</summary>
+        /// <summary>Cylinder primitive type</summary>
         Cylinder,
-        ///<summary>Prism primitive type</summary>
+        /// <summary>Prism primitive type</summary>
         Prism,
-        ///<summary>Sphere primitive type</summary>
+        /// <summary>Sphere primitive type</summary>
         Sphere,
-        ///<summary>Torus primitive type</summary>
+        /// <summary>Torus primitive type</summary>
         Torus,
-        ///<summary>Tube primitive type</summary>
+        /// <summary>Tube primitive type</summary>
         Tube,
-        ///<summary>Ring primitive type</summary>
+        /// <summary>Ring primitive type</summary>
         Ring,
-        ///<summary>Sculpted primitive type</summary>
+        /// <summary>Sculpted primitive type</summary>
         Sculpt
     };
-
 
     /// <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
     public class AliveObject
     {
-        ///<summary>This represents the kind of AliveObject this is, 
-        /// for example Tree, House, Wall, Ball, Cube 
+        /// <summary>
+        ///This represents the kind of AliveObject this is, 
+        /// for example Tree, House, Wall, Ball, Cube. 
         /// It is stored on the Description slot of the object as
-        /// created in the virtual world</summary>
+        /// created in the virtual world
+        /// </summary>
         public string family;
-        ///<summary>64 bit Global ID (unique across the virtual world)</summary>
+        /// <summary>
+        ///64 bit Global ID (unique across the virtual world)
+        /// </summary>
         private ulong ID;
-        ///<summary>32 bit Local ID (unique within the current region)
-        /// Although public, this is for internal use only.</summary>
+        /// <summary>
+        ///32 bit Local ID (unique within the current region)
+        /// Although public, this is for internal use only.
+        /// </summary>
         public uint LocalID;
-        ///<summary>X coordinate within current region</summary>
+        /// <summary>
+        ///X coordinate within current region
+        /// </summary>
         public float X;
-        ///<summary>Y coordinate within current region</summary>
+        /// <summary>
+        ///Y coordinate within current region
+        /// </summary>
         public float Y;
-        ///<summary>Primitive type (see primType)</summary>
+        /// <summary>
+        ///Primitive type (see primType)
+        /// </summary>
         public string shape;
-        ///<summary>Can the Prim be picked up or moved?</summary>
+        /// <summary>
+        ///Can the Prim be picked up or moved?
+        /// </summary>
         public bool movable;
-        ///<summary>String representing one of the colors: red, blue, green, yellow, aqua, purple, black, white
-        ///Other colors are not represented here and appear as "unknown"</summary>
+        /// <summary>
+        ///String representing one of the colors: red, blue, green, yellow, aqua, purple, black, white.
+        ///Other colors are not represented here and appear as "unknown"
+        /// </summary>
         public string color;
-        ///<summary>Name of the AliveObject as it appears in-world, for example $ball3</summary>
+        /// <summary>
+        ///Name of the AliveObject as it appears in-world, for example $ball3
+        /// </summary>
         public string name;
-        ///<summary>Rotation of the primary face of the Prim around the vertical axis 
-        ///         in degrees, measured counter-clockwise from due East.</summary>
+        /// <summary>
+        ///Rotation of the primary face of the Prim around the vertical axis 
+        ///         in degrees, measured counter-clockwise from due East.
+        /// </summary>
         public float angle;
-        ///<summary>Size of the Primitive in 3 dimensions</summary>
+        /// <summary>
+        ///Size of the Primitive in 3 dimensions
+        /// </summary>
         public float width, depth, height;
         //public float colorR, colorG, colorB;
 
-        public AliveObject(Avatar av)
+        /// <summary>
+        /// ALIVE object representing an avatar
+        /// </summary>
+        /// <param name="av"></param>
+        private AliveObject(Avatar av)
         {
             ID = av.ID.GetULong();
             LocalID = av.LocalID;
@@ -113,7 +139,7 @@ namespace ALIVE
 
 
 
-        ///<summary>Returns a printable description of Prim attributes</summary>
+        /// <summary>Returns a printable description of Prim attributes</summary>
         public string toString()
         {
             // ALIVE objects use only LocalID, leave out global UUID
@@ -127,12 +153,12 @@ namespace ALIVE
     }; // public class AliveObject
 
 
-    ///<summary>Object which represents an avatar in ALIVE/OpenMetaverse/SecondLife</summary>
+    /// <summary>Object which represents an avatar in ALIVE/OpenMetaverse/SecondLife</summary>
     public class SmartDog
     {
-        /// naughty 'globals'
-        //const string ALIVE_SERVER = "http://osmort.lti.cs.cmu.edu:9000";
-        public string AliveVersion = "3/23/2010";
+        // naughty 'globals'
+
+        public string AliveVersion = "4/28/2010";
         const string ALIVE_SERVER = "http://ohio.pc.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         //const string WORLD_MASTER_NAME = "World Master";
@@ -144,7 +170,10 @@ namespace ALIVE
         private UUID DogMasterUUID = new UUID(0L);
         public Boolean logging = false;
 
-        private AliveObject carriedObject = null;
+        /// <summary>
+        /// if not null, the AliveObject currently held by the avatar
+        /// </summary>
+        public AliveObject carriedObject = null;
 
         private string FirstName;
         private string LastName;
@@ -154,11 +183,11 @@ namespace ALIVE
 
         private GridClient client;
 
-        ///<summary>Construct a new Bot</summary>
-        ///<param name='fn'>first name</param>
-        ///<param name='ln'>last name</param>
-        ///<param name='pw'>password</param>>
-        ///<param name="sim">Simulator name to log into</param>
+        /// <summary>Construct a new SmartDog avatar</summary>
+        /// <param name='fn'>first name</param>
+        /// <param name='ln'>last name</param>
+        /// <param name='pw'>password</param>>
+        /// <param name='sim'>Region name to log into</param>
         public SmartDog(string fn, string ln, string pw, string sim)
         {
             FirstName = fn;
@@ -201,7 +230,7 @@ namespace ALIVE
             }
         }
 
-        ///<summary>Attempt to log the avatar into the default region</summary>
+        /// <summary>Attempt to log the avatar into the default region</summary>
         public bool Login()
         {
             Boolean LoginSuccess;
@@ -247,7 +276,7 @@ namespace ALIVE
             return true;
         }
 
-        ///<summary>Log the avatar out</summary>
+        /// <summary>Log the avatar out</summary>
         public bool Logout()
         {
             logThis("");
@@ -256,20 +285,64 @@ namespace ALIVE
             return true;
         }
 
+        // Animation commands
+        /// <summary>Play an animation (sleeps 5 seconds while playing)</summary>
+        public bool PlayAnimation(UUID anim)
+        {
+            
+            client.Self.AnimationStart(anim, false);
+            Thread.Sleep(5000);
+            client.Self.AnimationStop(anim, false);
+            return true;
+        }
+
+        /// <summary>Play an animation (sleeps 5 seconds while playing)</summary>
+        /// <param name="animName">One of the possible AliveAnimation.animationNames (case insensitive)</param>
+        /// <returns>true if succeeded, false if named animation doesn't exist</returns>
+        public bool PlayAnimation(String animName)
+        {
+            animName = animName.ToUpper();
+            if (!AliveAnimation.animationNames.Contains(animName))
+                return false;
+
+            FieldInfo fi = typeof(AliveAnimation).GetField(animName,
+                BindingFlags.Public | BindingFlags.Static);
+
+            if (fi != null)
+                return(PlayAnimation((OpenMetaverse.UUID)fi.GetValue(null)));
+            else
+                return false;
+        }
+
+        // Animation commands
+        /// <summary>Start playing an animation, then return immediately</summary>
+        /// <param name="anim">OpenMetaverse.UUID of the animation to play (see AliveAnimation)</param>
+        public void StartAnimation(UUID anim)
+        {
+            client.Self.AnimationStart(anim, false);
+        }
+
+        // Animation commands
+        /// <summary>Stop playing an animation (the one started with StartAnimation)</summary>
+        public void StopAnimation(UUID anim)
+        {
+            client.Self.AnimationStop(anim, false);
+        }
+
         // Movement commands
 
-        ///<summary>Rotate the avatar to face a specified location at the avatar's current Z elevation</summary>
-        ///<param name='x'>X coordinate</param>
-        ///<param name='y'>Y coordinate</param>
+        /// <summary>Rotate the avatar to face a specified location at the avatar's current Z elevation</summary>
+        /// <param name='x'>X coordinate</param>
+        /// <param name='y'>Y coordinate</param>
         public void TurnTo(float x, float y)
         {
             TurnTo(x, y, client.Self.SimPosition.Z);
         }
 
-        ///<summary>Rotate the avatar to face a specified 3d location</summary>
-        ///<param name='x'>X coordinate</param>
-        ///<param name='y'>Y coordinate</param>
-        ///<param name="z">Z coordinate</param>
+        /// <summary>Rotate the avatar to face a specified 3d location</summary>
+        /// <param name='x'>X coordinate</param>
+        /// <param name='y'>Y coordinate</param>
+        /// <param name="z">Z coordinate</param>
         public void TurnTo(float x, float y, float z)
         {
             logThis(x + "," + y + "," + z);
@@ -279,8 +352,8 @@ namespace ALIVE
             client.Self.Movement.TurnToward(position);
         }
 
-        ///<summary>Rotate the avatar counter-clockwise</summary>
-        ///<param name='degrees'>degrees to rotate</param>
+        /// <summary>Rotate the avatar counter-clockwise</summary>
+        /// <param name='degrees'>degrees to rotate</param>
         public bool TurnLeft(long degrees)
         {
             logThis(degrees.ToString());
@@ -299,8 +372,8 @@ namespace ALIVE
             return true;
         }
 
-        ///<summary>Rotate the avatar clockwise</summary>
-        ///<param name='degrees'>degrees to rotate</param>
+        /// <summary>Rotate the avatar clockwise</summary>
+        /// <param name='degrees'>degrees to rotate</param>
         public bool TurnRight(long degrees)
         {
             logThis(degrees.ToString());
@@ -319,8 +392,8 @@ namespace ALIVE
             return true;
         }
 
-        ///<summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-        ///<param name='milliseconds'>Time to spend walking</param>
+        /// <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        /// <param name='milliseconds'>Time to spend walking</param>
         public void WalkForward(int milliseconds)
         {
             client.Self.Movement.AtPos = true;
@@ -331,8 +404,8 @@ namespace ALIVE
             client.Self.Movement.SendUpdate(true);
         }
 
-        ///<summary>Attempt to walk the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-        ///<param name='milliseconds'>Time to spend walking</param>
+        /// <summary>Attempt to walk the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        /// <param name='milliseconds'>Time to spend walking</param>
         public void WalkBackward(int milliseconds)
         {
             client.Self.Movement.AtNeg = true;
@@ -343,8 +416,8 @@ namespace ALIVE
             client.Self.Movement.SendUpdate(true);
         }
 
-        ///<summary>Attempt to nudge the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-        ///<param name='milliseconds'>Time to spend being nudged</param>
+        /// <summary>Attempt to nudge the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        /// <param name='milliseconds'>Time to spend being nudged</param>
         public void NudgeForward(int milliseconds)
         {
             client.Self.Movement.NudgeAtPos = true;
@@ -355,8 +428,8 @@ namespace ALIVE
             client.Self.Movement.SendUpdate(true);
         }
 
-        ///<summary>Attempt to nudge the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-        ///<param name='milliseconds'>Time to spend being nudged</param>
+        /// <summary>Attempt to nudge the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        /// <param name='milliseconds'>Time to spend being nudged</param>
         public void NudgeBackward(int milliseconds)
         {
             client.Self.Movement.NudgeAtNeg = true;
@@ -373,8 +446,8 @@ namespace ALIVE
             return GoForward(Convert.ToSingle(meters));
         }
 
-        ///<summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-        ///<param name='meters'>Distance to walk in meters</param>
+        /// <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        /// <param name='meters'>Distance to walk in meters</param>
         public bool GoForward(float meters)
         {
             logThis(meters.ToString());
@@ -431,8 +504,8 @@ namespace ALIVE
             return GoBackward(Convert.ToSingle(meters));
         }
 
-        ///<summary>Attempt to walk the avatar backwards in a straight line.  Obstacles may prevent this from completing as expected</summary>
-        ///<param name='meters'>Distance to walk in meters</param>
+        /// <summary>Attempt to walk the avatar backwards in a straight line.  Obstacles may prevent this from completing as expected</summary>
+        /// <param name='meters'>Distance to walk in meters</param>
         public bool GoBackward(float meters)
         {
             logThis(meters.ToString());
@@ -483,15 +556,15 @@ namespace ALIVE
             }
         }
 
-        ///<summary>Go to the specified location.</summary>
-        ///<remarks>This is not very reliable, in Second Life, or in ALIVE, and can 
+        /// <summary>Go to the specified location.</summary>
+        /// <remarks>This is not very reliable, in Second Life, or in ALIVE, and can 
         ///result in the avatar getting stuck.  Use with caution.  This routine returns
         ///after the time taken to travel this distance,
         ///assuming a travel speed of 3 meters per second.</remarks>
         ///
-        ///<param name="x">X coordinate of location to attempt to travel to</param>
-        ///<param name="y">Y coordinate of location to attempt to travel to</param>
-        ///<returns>True or false depending on whether the location was reached (within a margin of error of 0.8 meters - from experimental data)</returns>
+        /// <param name="x">X coordinate of location to attempt to travel to</param>
+        /// <param name="y">Y coordinate of location to attempt to travel to</param>
+        /// <returns>True or false depending on whether the location was reached (within a margin of error of 0.8 meters - from experimental data)</returns>
         public bool GoTo(int x, int y)
         {
             logThis(x + "," + y);
@@ -621,9 +694,9 @@ namespace ALIVE
 
         // Object commands
 
-        ///<summary>Return a list of AliveObjects found within a specified radius</summary>
-        ///<param name="radius">The radius (in meters) within which to look</param>
-        ///<returns>A List of Prim objects</returns>
+        /// <summary>Return a list of AliveObjects found within a specified radius</summary>
+        /// <param name="radius">The radius (in meters) within which to look</param>
+        /// <returns>A List of Prim objects</returns>
         private List<AliveObject> ObjectsAround(float radius)
         {
             logThis(radius.ToString());
@@ -755,6 +828,7 @@ namespace ALIVE
 
             return dropCarriedItem();
         }
+        /// <summary>Drop the currently-carried object near where the avatar is standing</summary>
         public bool DropObject()
         {
             logThis("");
@@ -769,6 +843,9 @@ namespace ALIVE
         public bool PickupObject(AliveObject item)
         {
             logThis(item.ToString());
+
+            if (item.movable == false)
+                return false;
 
             // Don't let avatar pick up objects farther away than 5m
             Vector3 avatarPosition = client.Self.SimPosition;
@@ -823,7 +900,7 @@ namespace ALIVE
         /// <summary>Get the messages in local chat since last checking</summary>
         /// <remarks>Local chat is within a 20 meter radius</remarks>
         /// <returns>A string containing messages seen in local chat, including your own.
-        /// </returns><remarks>Messages include your own chat, and begin with avatar name colon</remarks>
+        /// </returns><remarks>Messages include your own chat, and begin with avatar name and a colon</remarks>
         public string GetChat()
         {
             logThis("");
@@ -992,69 +1069,69 @@ namespace ALIVE
             }
         }
 
-        // Attempt to wear the inventory item named by the argument itemName
-        // Does not report error on failure
-        public void lookupCarriedItem()
-        {
-            //initialize our list to store the folder contents
-            UUID ObjectsFolderUUID;
-            List<InventoryBase> contents;
+        //// Attempt to wear the inventory item named by the argument itemName
+        //// Does not report error on failure
+        //public void lookupCarriedItem()
+        //{
+        //    //initialize our list to store the folder contents
+        //    UUID ObjectsFolderUUID;
+        //    List<InventoryBase> contents;
 
-            //make a string array to put our folder names in.
-            String[] SearchFolders = { "" };
+        //    //make a string array to put our folder names in.
+        //    String[] SearchFolders = { "" };
 
-            //Next we grab a full copy of the entire inventory and get it stored into the Inventory Manager
-            client.Inventory.RequestFolderContents(client.Inventory.Store.RootFolder.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
+        //    //Next we grab a full copy of the entire inventory and get it stored into the Inventory Manager
+        //    client.Inventory.RequestFolderContents(client.Inventory.Store.RootFolder.UUID, client.Self.AgentID, true, true, InventorySortOrder.ByDate);
 
-            //Now we can grab the details of that folder and store it to our list.
-            ObjectsFolderUUID = client.Inventory.FindObjectByPath(client.Inventory.Store.RootFolder.UUID, 
-                client.Self.AgentID, "Objects", 1000);
+        //    //Now we can grab the details of that folder and store it to our list.
+        //    ObjectsFolderUUID = client.Inventory.FindObjectByPath(client.Inventory.Store.RootFolder.UUID, 
+        //        client.Self.AgentID, "Objects", 1000);
 
-            // Create the list which we can use to iliterate through
-            contents =
-                client.Inventory.FolderContents(ObjectsFolderUUID, client.Self.AgentID,
-                    true, true, InventorySortOrder.ByName, 1000);
-
-
-            foreach (InventoryBase item in contents)
-            {
-                // Illiterate through our list of items and print them to the console
-
-                // Code that processes each item goes here
-                InventoryItem myitem = client.Inventory.FetchItem(item.UUID, item.OwnerID, 1000);
-                if (myitem != null)
-                {
-                    Console.Out.WriteLine("Name: " + myitem.Name + " <==> " + myitem.UUID.ToString());
-                    Console.Out.WriteLine("Flags: " + myitem.Flags);
-                    //Console.Out.WriteLine(myitem is InventoryAttachment);
-                    if (myitem is InventoryAttachment)
-                        Console.Out.WriteLine(((InventoryAttachment)myitem).AttachmentPoint.ToString());
-                }
-            }
+        //    // Create the list which we can use to iliterate through
+        //    contents =
+        //        client.Inventory.FolderContents(ObjectsFolderUUID, client.Self.AgentID,
+        //            true, true, InventorySortOrder.ByName, 1000);
 
 
-            //now that we have the details of the objects folder, we need to grab the details of our torch.
-            //SearchFolders[0] = itemName;
-            //inventoryItems = client.Inventory.FindObjectByPath(inventoryItems, client.Self.AgentID, SearchFolders[0], 1000);
+        //    foreach (InventoryBase item in contents)
+        //    {
+        //        // Illiterate through our list of items and print them to the console
 
-            //InventoryItem myitem = null;
+        //        // Code that processes each item goes here
+        //        InventoryItem myitem = client.Inventory.FetchItem(item.UUID, item.OwnerID, 1000);
+        //        if (myitem != null)
+        //        {
+        //            Console.Out.WriteLine("Name: " + myitem.Name + " <==> " + myitem.UUID.ToString());
+        //            Console.Out.WriteLine("Flags: " + myitem.Flags);
+        //            //Console.Out.WriteLine(myitem is InventoryAttachment);
+        //            if (myitem is InventoryAttachment)
+        //                Console.Out.WriteLine(((InventoryAttachment)myitem).AttachmentPoint.ToString());
+        //        }
+        //    }
 
-            // Convert the LLUUID to an inventory item
-            //myitem = client.Inventory.FetchItem(inventoryItems, client.Self.AgentID, 1000);
 
-            //finally we attach the object to it's default position
-            try
-            {
-                // Catch any errors that may occur (not having the "Torch!" item in your inventory for example)
-                //client.Appearance.Attach(myitem as InventoryItem, AttachmentPoint.Default);
-            }
-            catch
-            {
-                // Put any code that handles any errors :)
-                System.Console.WriteLine("Error ;ooking up items");
+        //    //now that we have the details of the objects folder, we need to grab the details of our torch.
+        //    //SearchFolders[0] = itemName;
+        //    //inventoryItems = client.Inventory.FindObjectByPath(inventoryItems, client.Self.AgentID, SearchFolders[0], 1000);
+
+        //    //InventoryItem myitem = null;
+
+        //    // Convert the LLUUID to an inventory item
+        //    //myitem = client.Inventory.FetchItem(inventoryItems, client.Self.AgentID, 1000);
+
+        //    //finally we attach the object to it's default position
+        //    try
+        //    {
+        //        // Catch any errors that may occur (not having the "Torch!" item in your inventory for example)
+        //        //client.Appearance.Attach(myitem as InventoryItem, AttachmentPoint.Default);
+        //    }
+        //    catch
+        //    {
+        //        // Put any code that handles any errors :)
+        //        System.Console.WriteLine("Error looking up items");
                 
-            }
-        }
+        //    }
+        //}
 
         /////// HANDLERS
         private void Network_OnConnected(Object sender)

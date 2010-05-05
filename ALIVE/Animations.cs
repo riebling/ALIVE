@@ -33,7 +33,7 @@ namespace ALIVE
     /// <summary>
     /// Static pre-defined animations available to all agents
     /// </summary>
-    public static class AliveAnimation
+    public class AliveAnimation
     {
         /// <summary>Agent with afraid expression on face</summary>
         public readonly static UUID AFRAID = new UUID("6b61c8e8-4747-0d75-12d7-e49ff207a4ca");
@@ -306,6 +306,9 @@ namespace ALIVE
         /// <summary>Agent floating with legs and arms crossed</summary>
         public readonly static UUID YOGA_FLOAT = new UUID("42ecd00b-9947-a97c-400a-bbc9174c7aeb");
 
+        /// <summary>
+        /// List of all possible animation names, as strings
+        /// </summary>
         public static List<string> animationNames = new List<string>{"AFRAID",
             "AIM_BAZOOKA_R",
             "AIM_BOW_L",
