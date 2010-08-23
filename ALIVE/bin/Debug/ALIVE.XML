@@ -4,287 +4,6 @@
         <name>ALIVE</name>
     </assembly>
     <members>
-        <member name="T:ALIVE.primType">
-            <returns></returns>
-        </member>
-        <member name="F:ALIVE.primType.Unknown">
-            <summary>Unknown primitive type</summary>
-        </member>
-        <member name="F:ALIVE.primType.Box">
-            <summary>Box primitive type</summary> 
-        </member>
-        <member name="F:ALIVE.primType.Cylinder">
-            <summary>Cylinder primitive type</summary>
-        </member>
-        <member name="F:ALIVE.primType.Prism">
-            <summary>Prism primitive type</summary>
-        </member>
-        <member name="F:ALIVE.primType.Sphere">
-            <summary>Sphere primitive type</summary>
-        </member>
-        <member name="F:ALIVE.primType.Torus">
-            <summary>Torus primitive type</summary>
-        </member>
-        <member name="F:ALIVE.primType.Tube">
-            <summary>Tube primitive type</summary>
-        </member>
-        <member name="F:ALIVE.primType.Ring">
-            <summary>Ring primitive type</summary>
-        </member>
-        <member name="F:ALIVE.primType.Sculpt">
-            <summary>Sculpted primitive type</summary>
-        </member>
-        <member name="T:ALIVE.AliveObject">
-            <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.family">
-             <summary>
-            This represents the kind of AliveObject this is, 
-             for example Tree, House, Wall, Ball, Cube. 
-             It is stored on the Description slot of the object as
-             created in the virtual world
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.ID">
-             <summary>
-            64 bit Global ID (unique across the virtual world)
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.LocalID">
-             <summary>
-            32 bit Local ID (unique within the current region)
-             Although public, this is for internal use only.
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.X">
-             <summary>
-            X coordinate within current region
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.Y">
-             <summary>
-            Y coordinate within current region
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.shape">
-             <summary>
-            Primitive type (see primType)
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.movable">
-             <summary>
-            Can the Prim be picked up or moved?
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.color">
-             <summary>
-            String representing one of the colors: red, blue, green, yellow, aqua, purple, black, white.
-            Other colors are not represented here and appear as "unknown"
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.name">
-             <summary>
-            Name of the AliveObject as it appears in-world, for example $ball3
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.angle">
-             <summary>
-            Rotation of the primary face of the Prim around the vertical axis 
-                     in degrees, measured counter-clockwise from due East.
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.width">
-             <summary>
-            Size of the Primitive in 3 dimensions
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.depth">
-             <summary>
-            Size of the Primitive in 3 dimensions
-             </summary>
-        </member>
-        <member name="F:ALIVE.AliveObject.height">
-             <summary>
-            Size of the Primitive in 3 dimensions
-             </summary>
-        </member>
-        <member name="M:ALIVE.AliveObject.#ctor(OpenMetaverse.Avatar)">
-            <summary>
-            ALIVE object representing an avatar
-            </summary>
-            <param name="av"></param>
-        </member>
-        <member name="M:ALIVE.AliveObject.#ctor(OpenMetaverse.Primitive)">
-            <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
-        </member>
-        <member name="M:ALIVE.AliveObject.toString">
-            <summary>Returns a printable description of Prim attributes</summary>
-        </member>
-        <member name="T:ALIVE.SmartDog">
-            <summary>Object which represents an avatar in ALIVE/OpenMetaverse/SecondLife</summary>
-        </member>
-        <member name="F:ALIVE.SmartDog.carriedObject">
-            <summary>
-            if not null, the AliveObject currently held by the avatar
-            </summary>
-        </member>
-        <member name="M:ALIVE.SmartDog.#ctor(System.String,System.String,System.String,System.String)">
-            <summary>Construct a new SmartDog avatar</summary>
-            <param name='fn'>first name</param>
-            <param name='ln'>last name</param>
-            <param name='pw'>password</param>>
-            <param name='sim'>Region name to log into</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.Login">
-            <summary>Attempt to log the avatar into the default region</summary>
-        </member>
-        <member name="M:ALIVE.SmartDog.Logout">
-            <summary>Log the avatar out</summary>
-        </member>
-        <member name="M:ALIVE.SmartDog.PlayAnimation(OpenMetaverse.UUID)">
-            <summary>Play an animation (sleeps 5 seconds while playing)</summary>
-        </member>
-        <member name="M:ALIVE.SmartDog.PlayAnimation(System.String)">
-            <summary>Play an animation (sleeps 5 seconds while playing)</summary>
-            <param name="animName">One of the possible AliveAnimation.animationNames (case insensitive)</param>
-            <returns>true if succeeded, false if named animation doesn't exist</returns>
-        </member>
-        <member name="M:ALIVE.SmartDog.StartAnimation(OpenMetaverse.UUID)">
-            <summary>Start playing an animation, then return immediately</summary>
-            <param name="anim">OpenMetaverse.UUID of the animation to play (see AliveAnimation)</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.StopAnimation(OpenMetaverse.UUID)">
-            <summary>Stop playing an animation (the one started with StartAnimation)</summary>
-        </member>
-        <member name="M:ALIVE.SmartDog.TurnTo(System.Single,System.Single)">
-            <summary>Rotate the avatar to face a specified location at the avatar's current Z elevation</summary>
-            <param name='x'>X coordinate</param>
-            <param name='y'>Y coordinate</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.TurnTo(System.Single,System.Single,System.Single)">
-            <summary>Rotate the avatar to face a specified 3d location</summary>
-            <param name='x'>X coordinate</param>
-            <param name='y'>Y coordinate</param>
-            <param name="z">Z coordinate</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.TurnLeft(System.Int64)">
-            <summary>Rotate the avatar counter-clockwise</summary>
-            <param name='degrees'>degrees to rotate</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.TurnRight(System.Int64)">
-            <summary>Rotate the avatar clockwise</summary>
-            <param name='degrees'>degrees to rotate</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.WalkForward(System.Int32)">
-            <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-            <param name='milliseconds'>Time to spend walking</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.WalkBackward(System.Int32)">
-            <summary>Attempt to walk the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-            <param name='milliseconds'>Time to spend walking</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.NudgeForward(System.Int32)">
-            <summary>Attempt to nudge the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-            <param name='milliseconds'>Time to spend being nudged</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.NudgeBackward(System.Int32)">
-            <summary>Attempt to nudge the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-            <param name='milliseconds'>Time to spend being nudged</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.GoForward(System.Single)">
-            <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
-            <param name='meters'>Distance to walk in meters</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.GoBackward(System.Single)">
-            <summary>Attempt to walk the avatar backwards in a straight line.  Obstacles may prevent this from completing as expected</summary>
-            <param name='meters'>Distance to walk in meters</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.GoTo(System.Int32,System.Int32)">
-             <summary>Go to the specified location.</summary>
-             <remarks>This is not very reliable, in Second Life, or in ALIVE, and can 
-            result in the avatar getting stuck.  Use with caution.  This routine returns
-            after the time taken to travel this distance,
-            assuming a travel speed of 3 meters per second.</remarks>
-            
-             <param name="x">X coordinate of location to attempt to travel to</param>
-             <param name="y">Y coordinate of location to attempt to travel to</param>
-             <returns>True or false depending on whether the location was reached (within a margin of error of 0.8 meters - from experimental data)</returns>
-        </member>
-        <member name="M:ALIVE.SmartDog.Coordinates(System.Single@,System.Single@)">
-            <summary>
-            Return the coordinates of the avatar (in meters) within a 256 by 256 meter
-            Simulator region as floating point values.  X is due East, and Y is due North.
-            </summary>
-            <param name="x">X coordinate of avatar</param>
-            <param name="y">Y coordinate of avatar</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.getAttachments">
-            UTILITY FUNCTIONS
-            
-        </member>
-        <member name="M:ALIVE.SmartDog.ZrotFromQuaternion(OpenMetaverse.Quaternion)">
-            <summary>Given a Quaternion, return the rotation around the Z
-            (vertical) axis in degrees.</summary><remarks>Angles are measured counterclockwise
-            from due East</remarks>
-            <returns>floating point angle in degrees</returns>
-        </member>
-        <member name="M:ALIVE.SmartDog.Orientation">
-            <summary>
-            Return rotation of bot avatar in degrees clockwise from Due North</summary>
-            <remarks>(due North is zero, results are from 0 to 360)
-            </remarks>
-        </member>
-        <member name="M:ALIVE.SmartDog.ObjectsAround(System.Single)">
-            <summary>Return a list of AliveObjects found within a specified radius</summary>
-            <param name="radius">The radius (in meters) within which to look</param>
-            <returns>A List of Prim objects</returns>
-        </member>
-        <member name="M:ALIVE.SmartDog.ObjectsAround">
-            <summary>Return a List of AliveObjects within a radius of 10 meters</summary>
-            <returns>List of Prims</returns>
-        </member>
-        <member name="M:ALIVE.SmartDog.DropObject(ALIVE.AliveObject)">
-            <summary>Drop the specified object near where the avatar is standing</summary>
-            <param name="item">The AliveObject to drop</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.DropObject">
-            <summary>Drop the currently-carried object near where the avatar is standing</summary>
-        </member>
-        <member name="M:ALIVE.SmartDog.PickupObject(ALIVE.AliveObject)">
-            We will use "attach" to <summary>pick up an object by
-            carrying it by hand, i.e. attach to left hand
-            so long as the object is within 5 meters of the avatar</summary>
-            <param name="item">AliveObject to be picked up</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.GetMessage">
-            <summary>Get all the instant messages from the World Master since last checking</summary>
-            <returns>The message(s) as a string</returns>
-        </member>
-        <member name="M:ALIVE.SmartDog.SayMessage(System.String)">
-            <summary>Send the specified message to the World Master</summary>
-            <param name="message">The message to send World Master</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.GetChat">
-            <summary>Get the messages in local chat since last checking</summary>
-            <remarks>Local chat is within a 20 meter radius</remarks>
-            <returns>A string containing messages seen in local chat, including your own.
-            </returns><remarks>Messages include your own chat, and begin with avatar name and a colon</remarks>
-        </member>
-        <member name="M:ALIVE.SmartDog.SayChat(System.String)">
-            <summary>Say the specified message in local chat</summary>
-            <remarks>Local chat is heard within a 20 meter radius</remarks>
-            <param name="message">The message to say</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.GetObjectProps(ALIVE.AliveObject)">
-            <summary>List the names of ALIVE properties of object
-            </summary>
-            <param name="p">Primitive whose properties are to be returned</param>
-        </member>
-        <member name="M:ALIVE.SmartDog.GetObjProp(ALIVE.AliveObject,System.String)">
-            <summary>Return the value of the named property for this Prim</summary>
-            <param name="p">The Prim of interest</param>
-            <param name="propName">The property to be returned</param>
-        </member>
         <member name="T:ALIVE.AliveAnimation">
             <summary>
             Static pre-defined animations available to all agents
@@ -699,6 +418,287 @@
             <summary>
             List of all possible animation names, as strings
             </summary>
+        </member>
+        <member name="T:ALIVE.primType">
+            <returns></returns>
+        </member>
+        <member name="F:ALIVE.primType.Unknown">
+            <summary>Unknown primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Box">
+            <summary>Box primitive type</summary> 
+        </member>
+        <member name="F:ALIVE.primType.Cylinder">
+            <summary>Cylinder primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Prism">
+            <summary>Prism primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Sphere">
+            <summary>Sphere primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Torus">
+            <summary>Torus primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Tube">
+            <summary>Tube primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Ring">
+            <summary>Ring primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Sculpt">
+            <summary>Sculpted primitive type</summary>
+        </member>
+        <member name="T:ALIVE.AliveObject">
+            <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.family">
+             <summary>
+            This represents the kind of AliveObject this is, 
+             for example Tree, House, Wall, Ball, Cube. 
+             It is stored on the Description slot of the object as
+             created in the virtual world
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.ID">
+             <summary>
+            64 bit Global ID (unique across the virtual world)
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.LocalID">
+             <summary>
+            32 bit Local ID (unique within the current region)
+             Although public, this is for internal use only.
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.X">
+             <summary>
+            X coordinate within current region
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.Y">
+             <summary>
+            Y coordinate within current region
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.shape">
+             <summary>
+            Primitive type (see primType)
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.movable">
+             <summary>
+            Can the Prim be picked up or moved?
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.color">
+             <summary>
+            String representing one of the colors: red, blue, green, yellow, aqua, purple, black, white.
+            Other colors are not represented here and appear as "unknown"
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.name">
+             <summary>
+            Name of the AliveObject as it appears in-world, for example $ball3
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.angle">
+             <summary>
+            Rotation of the primary face of the Prim around the vertical axis 
+                     in degrees, measured counter-clockwise from due East.
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.width">
+             <summary>
+            Size of the Primitive in 3 dimensions
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.depth">
+             <summary>
+            Size of the Primitive in 3 dimensions
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.height">
+             <summary>
+            Size of the Primitive in 3 dimensions
+             </summary>
+        </member>
+        <member name="M:ALIVE.AliveObject.#ctor(OpenMetaverse.Avatar)">
+            <summary>
+            ALIVE object representing an avatar
+            </summary>
+            <param name="av"></param>
+        </member>
+        <member name="M:ALIVE.AliveObject.#ctor(OpenMetaverse.Primitive)">
+            <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
+        </member>
+        <member name="M:ALIVE.AliveObject.toString">
+            <summary>Returns a printable description of Prim attributes</summary>
+        </member>
+        <member name="T:ALIVE.SmartDog">
+            <summary>Object which represents an avatar in ALIVE/OpenMetaverse/SecondLife</summary>
+        </member>
+        <member name="F:ALIVE.SmartDog.carriedObject">
+            <summary>
+            if not null, the AliveObject currently held by the avatar
+            </summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>Construct a new SmartDog avatar</summary>
+            <param name='fn'>first name</param>
+            <param name='ln'>last name</param>
+            <param name='pw'>password</param>>
+            <param name='sim'>Region name to log into</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.Login">
+            <summary>Attempt to log the avatar into the default region</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.Logout">
+            <summary>Log the avatar out</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.PlayAnimation(OpenMetaverse.UUID)">
+            <summary>Play an animation (sleeps 5 seconds while playing)</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.PlayAnimation(System.String)">
+            <summary>Play an animation (sleeps 5 seconds while playing)</summary>
+            <param name="animName">One of the possible AliveAnimation.animationNames (case insensitive)</param>
+            <returns>true if succeeded, false if named animation doesn't exist</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.StartAnimation(OpenMetaverse.UUID)">
+            <summary>Start playing an animation, then return immediately</summary>
+            <param name="anim">OpenMetaverse.UUID of the animation to play (see AliveAnimation)</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.StopAnimation(OpenMetaverse.UUID)">
+            <summary>Stop playing an animation (the one started with StartAnimation)</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.TurnTo(System.Single,System.Single)">
+            <summary>Rotate the avatar to face a specified location at the avatar's current Z elevation</summary>
+            <param name='x'>X coordinate</param>
+            <param name='y'>Y coordinate</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.TurnTo(System.Single,System.Single,System.Single)">
+            <summary>Rotate the avatar to face a specified 3d location</summary>
+            <param name='x'>X coordinate</param>
+            <param name='y'>Y coordinate</param>
+            <param name="z">Z coordinate</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.TurnLeft(System.Int64)">
+            <summary>Rotate the avatar counter-clockwise</summary>
+            <param name='degrees'>degrees to rotate</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.TurnRight(System.Int64)">
+            <summary>Rotate the avatar clockwise</summary>
+            <param name='degrees'>degrees to rotate</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.WalkForward(System.Int32)">
+            <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend walking</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.WalkBackward(System.Int32)">
+            <summary>Attempt to walk the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend walking</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.NudgeForward(System.Int32)">
+            <summary>Attempt to nudge the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend being nudged</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.NudgeBackward(System.Int32)">
+            <summary>Attempt to nudge the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend being nudged</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GoForward(System.Single)">
+            <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='meters'>Distance to walk in meters</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GoBackward(System.Single)">
+            <summary>Attempt to walk the avatar backwards in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='meters'>Distance to walk in meters</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GoTo(System.Int32,System.Int32)">
+             <summary>Go to the specified location.</summary>
+             <remarks>This is not very reliable, in Second Life, or in ALIVE, and can 
+            result in the avatar getting stuck.  Use with caution.  This routine returns
+            after the time taken to travel this distance,
+            assuming a travel speed of 3 meters per second.</remarks>
+            
+             <param name="x">X coordinate of location to attempt to travel to</param>
+             <param name="y">Y coordinate of location to attempt to travel to</param>
+             <returns>True or false depending on whether the location was reached (within a margin of error of 0.8 meters - from experimental data)</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.Coordinates(System.Single@,System.Single@)">
+            <summary>
+            Return the coordinates of the avatar (in meters) within a 256 by 256 meter
+            Simulator region as floating point values.  X is due East, and Y is due North.
+            </summary>
+            <param name="x">X coordinate of avatar</param>
+            <param name="y">Y coordinate of avatar</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.getAttachments">
+            UTILITY FUNCTIONS
+            
+        </member>
+        <member name="M:ALIVE.SmartDog.ZrotFromQuaternion(OpenMetaverse.Quaternion)">
+            <summary>Given a Quaternion, return the rotation around the Z
+            (vertical) axis in degrees.</summary><remarks>Angles are measured counterclockwise
+            from due East</remarks>
+            <returns>floating point angle in degrees</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.Orientation">
+            <summary>
+            Return rotation of bot avatar in degrees clockwise from Due North</summary>
+            <remarks>(due North is zero, results are from 0 to 360)
+            </remarks>
+        </member>
+        <member name="M:ALIVE.SmartDog.ObjectsAround(System.Single)">
+            <summary>Return a list of AliveObjects found within a specified radius</summary>
+            <param name="radius">The radius (in meters) within which to look</param>
+            <returns>A List of Prim objects</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.ObjectsAround">
+            <summary>Return a List of AliveObjects within a radius of 10 meters</summary>
+            <returns>List of Prims</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.DropObject(ALIVE.AliveObject)">
+            <summary>Drop the specified object near where the avatar is standing</summary>
+            <param name="item">The AliveObject to drop</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.DropObject">
+            <summary>Drop the currently-carried object near where the avatar is standing</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.PickupObject(ALIVE.AliveObject)">
+            We will use "attach" to <summary>pick up an object by
+            carrying it by hand, i.e. attach to left hand
+            so long as the object is within 5 meters of the avatar</summary>
+            <param name="item">AliveObject to be picked up</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GetMessage">
+            <summary>Get all the instant messages from the World Master since last checking</summary>
+            <returns>The message(s) as a string</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.SayMessage(System.String)">
+            <summary>Send the specified message to the World Master</summary>
+            <param name="message">The message to send World Master</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GetChat">
+            <summary>Get the messages in local chat since last checking</summary>
+            <remarks>Local chat is within a 20 meter radius</remarks>
+            <returns>A string containing messages seen in local chat, including your own.
+            </returns><remarks>Messages include your own chat, and begin with avatar name and a colon</remarks>
+        </member>
+        <member name="M:ALIVE.SmartDog.SayChat(System.String)">
+            <summary>Say the specified message in local chat</summary>
+            <remarks>Local chat is heard within a 20 meter radius</remarks>
+            <param name="message">The message to say</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GetObjectProps(ALIVE.AliveObject)">
+            <summary>List the names of ALIVE properties of object
+            </summary>
+            <param name="p">Primitive whose properties are to be returned</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GetObjProp(ALIVE.AliveObject,System.String)">
+            <summary>Return the value of the named property for this Prim</summary>
+            <param name="p">The Prim of interest</param>
+            <param name="propName">The property to be returned</param>
         </member>
     </members>
 </doc>
