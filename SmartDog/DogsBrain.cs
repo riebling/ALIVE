@@ -40,7 +40,6 @@ namespace DogsBrain
             myContext = new Context();
             knownObjects = new Hashtable();
             update_explored();
-            dogGrammars.buildDogGrammars(this);
             ParseMachine = pm;
             myDog.PlayAnimation(AliveAnimation.HELLO);
             mySynth.SpeakAsync("I am ready master!");
