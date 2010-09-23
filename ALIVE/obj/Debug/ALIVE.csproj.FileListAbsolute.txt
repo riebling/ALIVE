@@ -21,7 +21,6 @@ D:\Projects\MyBot\ALIVE\obj\Debug\ALIVE.dll
 D:\Projects\MyBot\ALIVE\obj\Debug\ALIVE.pdb
 D:\Projects\ALIVE\ALIVE\bin\Debug\ALIVE.dll
 D:\Projects\ALIVE\ALIVE\bin\Debug\ALIVE.pdb
-D:\Projects\ALIVE\ALIVE\bin\Debug\log4net.dll
 D:\Projects\ALIVE\ALIVE\obj\Debug\ResolveAssemblyReference.cache
 D:\Projects\ALIVE\ALIVE\obj\Debug\ALIVE.dll
 D:\Projects\ALIVE\ALIVE\obj\Debug\ALIVE.pdb
@@ -47,7 +46,4 @@ C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverseTypes.
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\obj\Debug\ALIVE.dll
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\obj\Debug\ALIVE.pdb
-D:\Projects\ALIVE\ALIVE\bin\Debug\XMLRPC.dll
-D:\Projects\ALIVE\ALIVE\bin\Debug\Mono.Security.dll
-D:\Projects\ALIVE\ALIVE\bin\Debug\HttpServer.dll
 D:\Projects\ALIVE\ALIVE\bin\Debug\ALIVE.XML

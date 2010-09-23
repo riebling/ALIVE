@@ -158,8 +158,8 @@ namespace ALIVE
     {
         // naughty 'globals'
 
-        public string AliveVersion = "4/28/2010";
-        const string ALIVE_SERVER = "http://ohio.pc.cs.cmu.edu:9000";
+        public string AliveVersion = "8/19/2010";
+        public string ALIVE_SERVER = "http://ohio.pc.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         //const string WORLD_MASTER_NAME = "World Master";
         const int SEARCH_RADIUS = 10;
@@ -256,7 +256,10 @@ namespace ALIVE
             }
 
             // This is what seems to have solved the cloud avatar problem
-            client.Appearance.SetPreviousAppearance(false);
+            // Unfortunately it causes another problem: creating the cache
+            // folder wherever the EXE is run, which has permission problems
+            // which case appearance data to go away
+            //client.Appearance.SetPreviousAppearance(false);
 
             //client.Network.CurrentSim.ObjectsAvatars.ForEach(OpenMetaverse.Avatar.AvatarProperties.Equals);
 
