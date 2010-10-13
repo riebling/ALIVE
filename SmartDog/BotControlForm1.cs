@@ -118,6 +118,7 @@ namespace MyBot
                 try
                 {
                     myAvatar = new ALIVE.SmartDog(FNtextBox.Text, LNtextBox.Text, PWtextBox.Text, URIbox.Text);
+                    myAvatar.ALIVE_SERVER = "http://127.0.0.1:9000";
                     LoginSuccess = myAvatar.Login();
                     if (LoginSuccess) startEngines();
                 }
