@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Text;
 using OpenMetaverse;
+using OpenMetaverse.Packets;
+using OpenMetaverse.Utilities;
 using System.Reflection;
 
 namespace ALIVE
@@ -89,7 +91,7 @@ namespace ALIVE
         /// ALIVE object representing an avatar
         /// </summary>
         /// <param name="av"></param>
-        private AliveObject(Avatar av)
+        public AliveObject(Avatar av)
         {
             ID = av.ID.GetULong();
             LocalID = av.LocalID;
@@ -158,7 +160,7 @@ namespace ALIVE
     {
         // naughty 'globals'
 
-        public string AliveVersion = "8/19/2010";
+        public string AliveVersion = "11/17/2010";
         public string ALIVE_SERVER = "http://ohio.pc.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         //const string WORLD_MASTER_NAME = "World Master";
@@ -181,7 +183,11 @@ namespace ALIVE
         private string Simulator;
         private Boolean loggedIn = false;
 
-        private GridClient client;
+        public GridClient client;
+
+        public InventoryFolder CurrentDirectory = null;
+        public Dictionary<UUID, AvatarAppearancePacket> Appearances = new Dictionary<UUID, AvatarAppearancePacket>();
+
 
         /// <summary>Construct a new SmartDog avatar</summary>
         /// <param name='fn'>first name</param>
@@ -196,18 +202,113 @@ namespace ALIVE
             Simulator = sim;
 
             AvatarNames = new Dictionary<uint, Avatar>();
+
             client = new GridClient();
+            Settings.LOG_LEVEL = Helpers.LogLevel.Debug;
+            client.Settings.USE_LLSD_LOGIN = true;
+            client.Settings.LOG_RESENDS = false;
+            client.Settings.STORE_LAND_PATCHES = true;
+            client.Settings.ALWAYS_DECODE_OBJECTS = true;
+            client.Settings.ALWAYS_REQUEST_OBJECTS = true;
+            client.Settings.SEND_AGENT_UPDATES = true;
+            client.Settings.USE_ASSET_CACHE = true;
+ 
+            NetworkManager Network = client.Network;
 
-            client.Network.OnConnected += new NetworkManager.ConnectedCallback(Network_OnConnected);
-            client.Self.OnChat += new AgentManager.ChatCallback(Self_OnChat);
-            client.Self.OnInstantMessage += new AgentManager.InstantMessageCallback(Self_OnInstantMessage);
+            Network.RegisterCallback(PacketType.AgentDataUpdate, AgentDataUpdateHandler);
+            Network.LoginProgress += LoginHandler;
+            client.Self.IM += Self_IM;
+            client.Self.ChatFromSimulator += Self_OnChat;
+            //client.Groups.GroupMembersReply += GroupMembersHandler;
+            //Inventory.InventoryObjectOffered += Inventory_OnInventoryObjectReceived;
 
-            client.Objects.OnNewAvatar += new ObjectManager.NewAvatarCallback(Self_OnNewAvatar);
-            client.Objects.OnObjectKilled += new ObjectManager.KillObjectCallback(Objects_OnObjectKilled);
-            //client.Self.OnMeanCollision += new AgentManager.MeanCollisionCallback(Self_OnMeanCollision);
+            Network.RegisterCallback(PacketType.AvatarAppearance, AvatarAppearanceHandler);
+            Network.RegisterCallback(PacketType.AlertMessage, AlertMessageHandler);
+
+            //client.Network.OnConnected += new NetworkManager.ConnectedCallback(Network_OnConnected);
+
+            client.Objects.KillObject += Objects_OnObjectKilled;
+            client.Objects.AvatarUpdate += Self_OnNewAvatar;
+                //client.Self.OnMeanCollision += new AgentManager.MeanCollisionCallback(Self_OnMeanCollision);
 
             // Register callback to catch Object properties events
-            client.Objects.OnObjectProperties += new ObjectManager.ObjectPropertiesCallback(Objects_OnObjectProperties);
+            client.Objects.ObjectProperties += Objects_OnObjectProperties;
+        }
+
+        private void AvatarAppearanceHandler(object sender, PacketReceivedEventArgs e)
+        {
+            Packet packet = e.Packet;
+
+            AvatarAppearancePacket appearance = (AvatarAppearancePacket)packet;
+
+            lock (Appearances) Appearances[appearance.Sender.ID] = appearance;
+        }
+
+        private void AlertMessageHandler(object sender, PacketReceivedEventArgs e)
+        {
+            Packet packet = e.Packet;
+
+            AlertMessagePacket message = (AlertMessagePacket)packet;
+
+            Console.WriteLine("[AlertMessage] " + Utils.BytesToString(message.AlertData.Message), Helpers.LogLevel.Info, this);
+        }
+
+        void Self_IM(object sender, InstantMessageEventArgs e)
+        {
+            InstantMessage im = e.IM;
+            System.Console.WriteLine("Instant Message: " + im.Message);
+            if (im.Message != "typing")
+                imb = imb + im.FromAgentName + ": " + im.Message + "\r\n";
+        }
+
+        private void AgentDataUpdateHandler(object sender, PacketReceivedEventArgs e)
+        {
+            AgentDataUpdatePacket p = (AgentDataUpdatePacket)e.Packet;
+            if (p.AgentData.AgentID == e.Simulator.Client.Self.AgentID)
+            {
+                //GroupID = p.AgentData.ActiveGroupID;
+
+                //GroupMembersRequestID = e.Simulator.Client.Groups.RequestGroupMembers(GroupID);
+            }
+        }
+
+        /// <summary>
+        /// Initialize everything that needs to be initialized once we're logged in.
+        /// </summary>
+        /// <param name="login">The status of the login</param>
+        /// <param name="message">Error message on failure, MOTD on success.</param>
+        public void LoginHandler(object sender, LoginProgressEventArgs e)
+        {
+            if (e.Status == LoginStatus.Success)
+            {
+                // Start in the inventory root folder.
+                CurrentDirectory = client.Inventory.Store.RootFolder;
+
+                    // update location, avatars, objects nearby here?
+                    loggedIn = true;
+
+                // This is what seems to have solved the cloud avatar problem
+                // Unfortunately it causes another problem: creating the cache
+                // folder wherever the EXE is run, which has permission problems
+                // which case appearance data to go away
+                //client.Appearance.SetPreviousAppearance(false);
+
+                //client.Network.CurrentSim.ObjectsAvatars.ForEach(OpenMetaverse.Avatar.AvatarProperties.Equals);
+
+                // This takes some time to ensure prims show up
+                // otherwise the carried item hasn't appeared yet in the sim
+                // dictionary (how do we know when all objects nearby have apeared?
+                // possibly never, as movement within the sim is always causing new
+                // ones to appear asynchronously)
+                this.ObjectsAround();
+
+                // Now that we have a pretty good sense the objects are present,
+                // drop anything whose parent ID is the avatar, and is held in
+                // left hand
+                dropCarriedItem();
+
+                logThis("");
+            }
         }
 
         // methods
@@ -239,44 +340,13 @@ namespace ALIVE
             loginParams = client.Network.DefaultLoginParams(FirstName, LastName, Password, "ALIVE", "Bot");
             loginParams.Start = "uri:" + Simulator + "&128&128&0"; // specify start location.  We set avatars homes at 128,128
             loginParams.URI = ALIVE_SERVER;
-            LoginSuccess = client.Network.Login(loginParams);
+            LoginSuccess = 
+                client.Network.Login(loginParams);
 
             //client.Network.CurrentSim.ObjectsAvatars.ForEach();
             //client.Network.CurrentSim.ObjectsPrimitives.ForEach();
 
-            if (LoginSuccess)
-            {
-                // update location, avatars, objects nearby here?
-                loggedIn = true;
-            }
-            else
-            {
-                Console.WriteLine("Din't work! " + client.Network.LoginMessage);
-                return false;
-            }
-
-            // This is what seems to have solved the cloud avatar problem
-            // Unfortunately it causes another problem: creating the cache
-            // folder wherever the EXE is run, which has permission problems
-            // which case appearance data to go away
-            //client.Appearance.SetPreviousAppearance(false);
-
-            //client.Network.CurrentSim.ObjectsAvatars.ForEach(OpenMetaverse.Avatar.AvatarProperties.Equals);
-
-            // This takes some time to ensure prims show up
-            // otherwise the carried item hasn't appeared yet in the sim
-            // dictionary (how do we know when all objects nearby have apeared?
-            // possibly never, as movement within the sim is always causing new
-            // ones to appear asynchronously)
-            this.ObjectsAround();
-
-            // Now that we have a pretty good sense the objects are present,
-            // drop anything whose parent ID is the avatar, and is held in
-            // left hand
-            dropCarriedItem();
-
-            logThis("");
-            return true;
+                return true;
         }
 
         /// <summary>Log the avatar out</summary>
@@ -637,13 +707,29 @@ namespace ALIVE
             return attachments;
         }
 
-        // Drop whatever is attached to the avatar's left hand
+        // Drop whatever is attached to the avatar's spine
         private bool dropCarriedItem()
         {
             List<Primitive> heldItems = getAttachments();
             foreach (Primitive p in heldItems)
             {
-                if (Helpers.StateToAttachmentPoint(p.PrimData.State) == AttachmentPoint.LeftHand)
+                if (p.PrimData.AttachmentPoint == AttachmentPoint.Spine)
+                {
+                    //Console.Out.WriteLine("Dropping " + p.LocalID);
+                    client.Objects.DropObject(client.Network.CurrentSim, p.LocalID);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Drop whatever is attached to specified point
+        private bool dropCarriedItem(AttachmentPoint point)
+        {
+            List<Primitive> heldItems = getAttachments();
+            foreach (Primitive p in heldItems)
+            {
+                if (p.PrimData.AttachmentPoint == point)
                 {
                     //Console.Out.WriteLine("Dropping " + p.LocalID);
                     client.Objects.DropObject(client.Network.CurrentSim, p.LocalID);
@@ -856,7 +942,33 @@ namespace ALIVE
 
             if (Vector3.Distance(avatarPosition, objectPosition) < 5)
             {
-                client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.LeftHand, Quaternion.Identity);
+                client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, AttachmentPoint.Spine, Quaternion.Identity);
+                carriedObject = item;
+                return true;
+            }
+            else
+                return false;
+        }
+
+        /// We will use "attach" to <summary>pick up an object by
+        /// attaching to specified AttachmentPoint
+        /// so long as the object is within 5 meters of the avatar</summary>
+        /// <param name="item">AliveObject to be picked up</param>
+        /// <param name="point">AttachmentPoint to use</param>
+        public bool PickupObject(AliveObject item, AttachmentPoint point)
+        {
+            logThis(item.ToString());
+
+            if (item.movable == false)
+                return false;
+
+            // Don't let avatar pick up objects farther away than 5m
+            Vector3 avatarPosition = client.Self.SimPosition;
+            Vector3 objectPosition = new Vector3(item.X, item.Y, avatarPosition.Z);
+
+            if (Vector3.Distance(avatarPosition, objectPosition) < 5)
+            {
+                client.Objects.AttachObject(client.Network.CurrentSim, item.LocalID, point, Quaternion.Identity);
                 carriedObject = item;
                 return true;
             }
@@ -1051,15 +1163,16 @@ namespace ALIVE
         Dictionary<UUID, Primitive> PrimsWaiting = new Dictionary<UUID, Primitive>();
         AutoResetEvent AllPropertiesReceived = new AutoResetEvent(false);
 
-        void Objects_OnObjectProperties(Simulator simulator, Primitive.ObjectProperties properties)
+        void Objects_OnObjectProperties(Object sender,  ObjectPropertiesEventArgs properties)
         {
+            UUID ObjectID = properties.Properties.ObjectID;
             lock (PrimsWaiting)
             {
                 Primitive prim;
-                if (PrimsWaiting.TryGetValue(properties.ObjectID, out prim))
+                if (PrimsWaiting.TryGetValue(ObjectID, out prim))
                 {
-                    prim.Properties = properties;
-                    PrimsWaiting.Remove(properties.ObjectID);
+                    prim.Properties = properties.Properties;
+                    PrimsWaiting.Remove(ObjectID);
                     //Console.Out.WriteLine("Name: " + properties.Name + " Desc: " + properties.Description);
                 }
                 else
@@ -1158,12 +1271,14 @@ namespace ALIVE
             Console.WriteLine("Got an attachment!" + prim.PrimData.AttachmentPoint.ToString() + "\r\n" + prim.ToString());
         }
 
-        private void Self_OnNewAvatar(Simulator sim, Avatar av, ulong regionHandle, ushort timeDilation)
+        private void Self_OnNewAvatar(Object sender, AvatarUpdateEventArgs e)
+            //Simulator sim, Avatar av, ulong regionHandle, ushort timeDilation)
         {
+            Avatar av = e.Avatar;
             string avatarName = av.FirstName + " " + av.LastName;
 
             // DEBUG
-            //Console.WriteLine("Self_OnNewAvatar: " + avatarName);
+            Console.WriteLine("Self_OnNewAvatar: " + avatarName);
 
             if (AvatarNames.ContainsKey(av.LocalID))
                 return;
@@ -1178,19 +1293,20 @@ namespace ALIVE
 
         // Strangely there's no event for Avatars leaving, it's bundled with
         // objects.
-        private void Objects_OnObjectKilled(Simulator simulator, uint objectID)
+        private void Objects_OnObjectKilled(Object sender, KillObjectEventArgs args)
         {
             // DEBUG
-            //Console.WriteLine("OnObjectKilled: ");
+            Console.WriteLine("OnObjectKilled: ");
+            uint objectID = args.ObjectLocalID;
 
             lock (AvatarNames)
             {
                 if (AvatarNames.ContainsKey(objectID))
                 {
                     // DEBUG
-                    //Avatar av;
-                    //AvatarNames.TryGetValue(objectID, out av);
-                    //Console.WriteLine("Removing " + av.Name);
+                    Avatar av;
+                    AvatarNames.TryGetValue(objectID, out av);
+                    Console.WriteLine("Removing " + av.Name);
                     AvatarNames.Remove(objectID);
                 }
             }
@@ -1204,8 +1320,14 @@ namespace ALIVE
         private static string cb;
         private static string imb;
 
-        private void Self_OnChat(string message, ChatAudibleLevel audible, ChatType type, ChatSourceType sourceType, string fromName, UUID id, UUID ownerid, Vector3 position)
+        private void Self_OnChat(Object sender, ChatEventArgs chatArgs)
         {
+            String message = chatArgs.Message;
+            ChatType type = chatArgs.Type;
+            String fromName = chatArgs.FromName;
+            ChatAudibleLevel audible = chatArgs.AudibleLevel;
+            ChatSourceType sourceType = chatArgs.SourceType;
+
             System.Console.WriteLine("Chat message: " + message);
             //if (ChatType.OwnerSay == type && sourceType == ChatSourceType.Object)
             //// scripted object in world talking; we assume object scanner

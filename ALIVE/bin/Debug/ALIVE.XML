@@ -550,6 +550,13 @@
             <param name='pw'>password</param>>
             <param name='sim'>Region name to log into</param>
         </member>
+        <member name="M:ALIVE.SmartDog.LoginHandler(System.Object,OpenMetaverse.LoginProgressEventArgs)">
+            <summary>
+            Initialize everything that needs to be initialized once we're logged in.
+            </summary>
+            <param name="login">The status of the login</param>
+            <param name="message">Error message on failure, MOTD on success.</param>
+        </member>
         <member name="M:ALIVE.SmartDog.Login">
             <summary>Attempt to log the avatar into the default region</summary>
         </member>
@@ -670,6 +677,13 @@
             carrying it by hand, i.e. attach to left hand
             so long as the object is within 5 meters of the avatar</summary>
             <param name="item">AliveObject to be picked up</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.PickupObject(ALIVE.AliveObject,OpenMetaverse.AttachmentPoint)">
+            We will use "attach" to <summary>pick up an object by
+            attaching to specified AttachmentPoint
+            so long as the object is within 5 meters of the avatar</summary>
+            <param name="item">AliveObject to be picked up</param>
+            <param name="point">AttachmentPoint to use</param>
         </member>
         <member name="M:ALIVE.SmartDog.GetMessage">
             <summary>Get all the instant messages from the World Master since last checking</summary>

@@ -46,4 +46,12 @@ C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\bin\Debug\OpenMetaverseTypes.
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\obj\Debug\ALIVE.dll
 C:\Documents and Settings\er1k\Desktop\ALIVE\ALIVE\obj\Debug\ALIVE.pdb
+D:\Projects\ALIVE\ALIVE\bin\Debug\OpenMetaverse.dll
+D:\Projects\ALIVE\ALIVE\bin\Debug\OpenMetaverse.StructuredData.dll
+D:\Projects\ALIVE\ALIVE\bin\Debug\OpenMetaverse.Utilities.dll
+D:\Projects\ALIVE\ALIVE\bin\Debug\OpenMetaverseTypes.dll
+D:\Projects\ALIVE\ALIVE\bin\Debug\OpenMetaverse.xml
+D:\Projects\ALIVE\ALIVE\bin\Debug\OpenMetaverse.StructuredData.xml
+D:\Projects\ALIVE\ALIVE\bin\Debug\OpenMetaverse.Utilities.xml
+D:\Projects\ALIVE\ALIVE\bin\Debug\OpenMetaverseTypes.xml
 D:\Projects\ALIVE\ALIVE\bin\Debug\ALIVE.XML
