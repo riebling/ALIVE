@@ -60,6 +60,19 @@ namespace MyBot
 
         public delegate void objectsTextBoxUpdater(string nvalue);
 
+        public void objectBoxUpdate(string text)
+        {
+            if (this.objectsBox.InvokeRequired)
+            {
+                objectsTextBoxUpdater d = new objectsTextBoxUpdater(objectBoxUpdate);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.objectsBox.Text = text;
+            }
+        }
+
 
         public BotControlForm1()
         {
@@ -106,6 +119,7 @@ namespace MyBot
         {
             e.Cancel = true;
             if (myAvatar != null)
+                abortDogThread();
                 myAvatar.Logout();
             Environment.Exit(0);
         }
@@ -118,9 +132,11 @@ namespace MyBot
                 try
                 {
                     myAvatar = new ALIVE.SmartDog(FNtextBox.Text, LNtextBox.Text, PWtextBox.Text, URIbox.Text);
-                    myAvatar.ALIVE_SERVER = "http://127.0.0.1:9000";
+                    //myAvatar.ALIVE_SERVER = "http://OHIO.LTI.CS.CMU.EDU";
+                    if (URIbox.Text == "ALIVE-local") myAvatar.ALIVE_SERVER = "http://127.0.0.1:9000";
                     LoginSuccess = myAvatar.Login();
                     if (LoginSuccess) startEngines();
+                    else Console.WriteLine("Login failed");
                 }
                 catch (System.Exception ex)
                 {
@@ -177,12 +193,14 @@ namespace MyBot
                 mySynth.SelectVoice(selectVoiceComboBox.Text);
             }
             myMind = new DogsMind(myAvatar, mySynth, myRecog, Machine);
-            myMind.oboxSay += delegate(string x) { objectsBox.Text = x; };
+            myMind.form = this;
+            //myMind.oboxSay += delegate(string x) { objectsBox.Text = x; };
         }
 
  
         private void stopEngines()
         {
+            abortDogThread();
             QuitButton.Text = "Login";
             ChatBox.Visible = false;
             InputBox.Visible = false;
@@ -201,6 +219,14 @@ namespace MyBot
             selectVoiceComboBox.Visible = false;
         }
 
+        private void abortDogThread()
+        {
+            if (myMind != null && myMind.dogThread != null && myMind.dogThread.IsAlive)
+            {
+                myAvatar.stopMoving();
+                myMind.dogThread.Abort();
+            }
+        }
 
         //Puts the dog into the autonomous mode where it only listens to the Master through chat
         private void AutoButton_Click(object sender, EventArgs e)
@@ -218,6 +244,7 @@ namespace MyBot
                 if (status == "Voice Command")
                 {
                     SayButton.Text = "Done speaking";
+                    abortDogThread();
                     myRecog.RecognizeAsync();
                 }
                 else
@@ -268,12 +295,14 @@ namespace MyBot
         private void textButton_Click(object sender, EventArgs e)
         {
             if (InputBox.Text == "") return;
+            abortDogThread();
             DogsBrain.DogTalk.obeyText(myMind, InputBox.Text);
         }
 
 
         private void commandButton1_Click(object sender, EventArgs e)
         {
+            abortDogThread();
             string command = commandSelectBox1.Text;
             objectsBox.Text = "";
             try
@@ -411,20 +440,20 @@ namespace MyBot
             Prims = myAvatar.ObjectsAround();
             for (int i = 0; i < Prims.Count; i++)
                 message += i + " " + Prims[i].toString() + "\r\n";
-            textBoxUpdate(objectsBox, message);
+            objectBoxUpdate(message);
         }
 
         private void myCoordiantes()
         {
             float x, y;
             myAvatar.Coordinates(out x, out y);
-            textBoxUpdate(objectsBox, "<" + x.ToString("0.0") + "," + y.ToString("0.0") + ">");
+            objectBoxUpdate("<" + x.ToString("0.0") + "," + y.ToString("0.0") + ">");
         }
 
         private void myRotation()
         {
             float rot = myAvatar.Orientation();
-            textBoxUpdate(objectsBox, rot.ToString());
+            objectBoxUpdate(rot.ToString());
         }
 
         private void runAnimation()

@@ -21,6 +21,11 @@ namespace DogsBrain
             head = (concept)concept.all_concepts[str];
             if (head == null) throw (new System.Exception("New CD: attempt to create from unkown concept: " + str));
             PropList = new Hashtable();
+            if (str == "me" || str == "master")
+            {
+                head = (concept)concept.all_concepts["avatar"];
+                PropList.Add("name:", concept.master_name);
+            }
         }
 
         public CD(SimpleGrammar.ParseNode pn)
@@ -64,6 +69,13 @@ namespace DogsBrain
             }
             string phrase = (string)concept.all_phrases[pn_value];
             if (phrase == null) phrase = pn_value;
+            if (phrase == "me" || phrase == "master")
+            {
+                cd.head = (concept)concept.all_concepts["avatar"];
+                cd.PropList = new Hashtable();
+                cd.PropList.Add("name:", concept.master_name);
+                return;
+            }
             cd.head = (concept)concept.all_concepts[phrase];
             if (cd.head == null) throw (new Exception("make_cd_head: unrecognized concept: " + phrase));
         }
@@ -176,6 +188,7 @@ namespace DogsBrain
     public class concept
     {
         public static Hashtable all_concepts, all_phrases, all_nums;
+        public static string master_name = "Master Anatole";
         public string concept_name;
         public concept is_a;
         public Hashtable properties; // in case we want to further specify a concept
@@ -211,37 +224,44 @@ namespace DogsBrain
         {
             concept.all_concepts = new Hashtable();
             concept x;
-            x = new concept("Anything");
-            x = new concept("PhysObj", "Anything");
-            x = new concept("Action", "Anything");
-            x = new concept("AnimateObj", "PhysObj");
-            x = new concept("InanimateObj", "PhysObj");
-            x = new concept("avatar", "AnimateObj");
+            x = new concept("anything");
+            x = new concept("physObj", "anything");
+            x = new concept("action", "anything");
+            x = new concept("animateObj", "physObj");
+            x = new concept("inanimateObj", "physObj");
+            x = new concept("avatar", "animateObj");
             x = new concept("master", "avatar");
             x = new concept("you", "avatar");
             x = new concept("me", "master");
-            x = new concept("turn", "Action");
-            x = new concept("turn_to_object", "Action");
-            x = new concept("turn_around", "Action");
+            x = new concept("turn", "action");
+            x = new concept("turn_to_object", "action");
+            x = new concept("turn_around", "action");
             x = new concept("go", "Action");
-            x = new concept("go_to_object", "Action");
-            x = new concept("go_to_center", "Action");
-            x = new concept("pick_up_object", "Action");
-            x = new concept("drop", "Action");
-            x = new concept("report", "Action");
-            x = new concept("it", "PhysObj");
-            x = new concept("cube", "PhysObj");
+            x = new concept("go_to_object", "action");
+            x = new concept("go_to_center", "action");
+            x = new concept("pick_up_object", "action");
+            x = new concept("drop", "action");
+            x = new concept("report", "action");
+            x = new concept("chase", "action");
+            x = new concept("it", "physObj");
+            x = new concept("cube", "physObj");
             x.properties.Add("average_height", 1.0F);
-            x = new concept("house", "PhysObj");
+            x = new concept("house", "physObj");
             x.properties.Add("average_height", 8.0F);
-            x = new concept("tree", "PhysObj");
+            x = new concept("tree", "physObj");
             x.properties.Add("average_height", 6.0F);
             x = new concept("pine", "tree");
+            x = new concept("maple", "tree");
+            x = new concept("palm", "tree");
             x.properties.Add("average_height", 6.0F);
-            x = new concept("ball", "PhysObj");
+            x = new concept("ball", "physObj");
             x.properties.Add("average_height", .6F);
             x = new concept("wall", "PhysObj");
             x.properties.Add("average_height", 3.0F);
+            x = new concept("sheep", "animateObj");
+            x = new concept("wolf", "animateObj");
+            x = new concept("cow", "animateObj");
+            x = new concept("horse", "animateObj");
 
             concept.all_phrases = new Hashtable();
             concept.all_phrases.Add("turn to", "turn_to_object");

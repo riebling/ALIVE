@@ -18,7 +18,7 @@ namespace DogsBrain
         public DogsMind myMind;
         public CD taskArgs;
         public ArrayList target_objects;
-        public static List<string> tasks = new List<string> { "turn", "turn_to_object", "turn_around", "go", "go_to_object", "go_to_center", "report", "pick_up_object", "drop"};
+        public static List<string> tasks = new List<string> { "turn", "turn_to_object", "turn_around", "go", "go_to_object", "go_to_center", "report", "pick_up_object", "drop", "chase"};
         public dogTask(DogsMind dm, string t_name)
         {
             task_name = t_name;
@@ -69,7 +69,7 @@ namespace DogsBrain
         {
             CD target_CD = (CD)taskArgs.PropList["object:"];
             AliveObject target;
-            float conf = dogTricks.selectKnowObject(myMind, target_CD, out target);
+            float conf = dogTricks.selectKnownObject(myMind, target_CD, out target);
             if (conf > .5F)
             {
                 myMind.myDog.TurnTo(target.X, target.Y);
@@ -106,7 +106,7 @@ namespace DogsBrain
         {
             CD target_CD = (CD)taskArgs.PropList["object:"];
             AliveObject target;
-            float conf = dogTricks.selectKnowObject(myMind, target_CD, out target);
+            float conf = dogTricks.selectKnownObject(myMind, target_CD, out target);
             if (conf > .5F)
             {
                 float xx = (float)target.X;
@@ -124,6 +124,34 @@ namespace DogsBrain
         public void go_to_center()
         {
             dogTricks.walk_to_point(myMind, 128, 128);
+        }
+
+        public void chase()
+        {
+            float xc, yc, xx, yy;
+            CD target_CD = (CD)taskArgs.PropList["object:"];
+            AliveObject target;
+            myMind.update_explored();
+            float conf = dogTricks.selectKnownObject(myMind, target_CD, out target);
+            if (conf <= .5F)
+            {
+                myMind.mySynth.SpeakAsync("I don't see the right target to chase");
+                return;
+            }
+            for (int i = 0; i < 150; i++)
+            {
+                xx = (float)target.X;
+                yy = (float)target.Y;
+                dogTricks.walkTo(myMind, xx, yy, 7);
+                myMind.update_explored();
+                myMind.myDog.Coordinates(out xc, out yc);
+                if (dogTricks.distance(target.X, target.Y, xc, yc) < 2)
+                {
+                    myMind.myContext.last_focus = target;
+                    return;
+                }
+            }
+            myMind.mySynth.SpeakAsync("I give up chasing");
         }
 
         public void report()
@@ -152,7 +180,7 @@ namespace DogsBrain
                     message = message + "   " + name + " " + color + " at (" + x + " , " + y + ")  height = " + height + " width = " + width + "\r\n";
                 }
             }
-            myMind.oboxSay(message);
+            myMind.form.objectBoxUpdate(message);
         }
 
         public void pick_up_object()
@@ -164,7 +192,7 @@ namespace DogsBrain
                 myMind.mySynth.SpeakAsync("Sorry master, my hands are full");
                 return;
             }
-            float conf = dogTricks.selectKnowObject(myMind, target_CD, out target);
+            float conf = dogTricks.selectKnownObject(myMind, target_CD, out target);
             if (conf > .3F)
             {
                 if (target.movable == false)

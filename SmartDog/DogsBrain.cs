@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Threading;
 using ALIVE;
 using System.Speech.Synthesis;
 using System.Speech.Recognition;
@@ -25,6 +26,8 @@ namespace DogsBrain
         public SpeechSynthesizer mySynth;
         public SpeechRecognitionEngine myRecog;
         public MyBot.BotControlForm1.objectsTextBoxUpdater oboxSay;
+        public MyBot.BotControlForm1 form;
+        public Thread dogThread;
 
         public DogsMind(ALIVE.SmartDog dog, SpeechSynthesizer myS, SpeechRecognitionEngine myR, sgrMachine pm)
         {
@@ -41,7 +44,7 @@ namespace DogsBrain
             knownObjects = new Hashtable();
             update_explored();
             ParseMachine = pm;
-            myDog.PlayAnimation(AliveAnimation.HELLO);
+            //myDog.PlayAnimation(AliveAnimation.HELLO);
             mySynth.SpeakAsync("I am ready master!");
         }
 
@@ -94,7 +97,7 @@ namespace DogsBrain
                 if (fam == "" || concept.all_concepts[fam] == null)
                 {
                     Console.WriteLine("The family of " + fob.name + " = " + fam + " is not a known concept");
-                    break;
+                    continue;
                 }
                 lid = fob.LocalID;
                 xx = (int)Math.Round(fob.X);

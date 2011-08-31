@@ -107,6 +107,7 @@
             this.PWtextBox.PasswordChar = '*';
             this.PWtextBox.Size = new System.Drawing.Size(100, 20);
             this.PWtextBox.TabIndex = 5;
+            this.PWtextBox.Text = "alive";
             this.PWtextBox.UseSystemPasswordChar = true;
             // 
             // LNtextBox
@@ -117,6 +118,7 @@
             this.LNtextBox.Name = "LNtextBox";
             this.LNtextBox.Size = new System.Drawing.Size(100, 20);
             this.LNtextBox.TabIndex = 4;
+            this.LNtextBox.Text = "Anatole";
             // 
             // QuitButton
             // 
@@ -245,7 +247,7 @@
             this.URIbox.Name = "URIbox";
             this.URIbox.Size = new System.Drawing.Size(100, 20);
             this.URIbox.TabIndex = 24;
-            this.URIbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.URIbox.Text = "Anatole";
             // 
             // groupBox1
             // 

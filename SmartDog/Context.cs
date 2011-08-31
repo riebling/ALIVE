@@ -17,8 +17,10 @@ namespace DogsBrain
     {
         public float start_pos_x, start_pos_y, start_angle; //dog's position at the start of each task
         public CD last_command;
+        public string last_cmd;
         public AliveObject last_focus;
         public List<AliveObject> new_objects;
         public AliveObject carried_object = null;
+        public dogTask dt;
     }
 }

@@ -16,6 +16,8 @@ namespace DogsBrain
 
     public class walkPath
     {
+        //builds a Dijkstra path from the nearest free grid point of <xc,yc> to the location of the target or to <xt,yt>
+        //path is a sequence of <x,y> pairs of integers - grid-point steps along the path
         public ArrayList path;
         public float[,] distmap;
         public int[,] backmapX, backmapY;
@@ -222,9 +224,10 @@ namespace DogsBrain
             int x, y, t;
             float cx, cy, dist, tf;
             bool res = true;
+            if (lim < path.Count) res = false;
             x = -1;
             y = -1;
-            int count = 1;
+            int count = 0;
             foreach (int[] nd in path)
             {
                 x = nd[0];
@@ -250,6 +253,7 @@ namespace DogsBrain
                     myMind.myDog.TurnTo(x, y);
                     myMind.myDog.WalkForward(t);
                 }
+                count++;
                 if (count >= lim) break;
             }
             myMind.myDog.Coordinates(out cx, out cy);

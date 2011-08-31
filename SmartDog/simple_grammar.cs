@@ -33,14 +33,14 @@ namespace SimpleGrammar
             rule("S", "|", "cd>SIMPLE_COMMAND", "cd>COMMAND+OBJECT", "cd>GO+DIR+DIST", "cd>TURN+DIR+DEGREES");
             rule("cd>SIMPLE_COMMAND", "|", "turn around", "drop", "go to center", "report");
             rule("cd>COMMAND+OBJECT", "+", "head>COMMAND2", "cd>object:");
-            rule("head>COMMAND2", "|", "go to", "turn to", "pick up");
+            rule("head>COMMAND2", "|", "go to", "turn to", "pick up", "chase");
             rule("cd>object:", "|", "cd>ME", "cd>OBJECT_DESCRIPTION");
-            rule("cd>ME", "|", "me");
+            rule("cd>ME", "|", "me", "master");
             rule("cd>OBJECT_DESCRIPTION", "+", "[1]art:", "[1]size:", "[1]color:", "head>NOUN", "[1]skip>location:");
             rule("art:", "|", "a", "the");
             rule("size:", "|", "big", "small", "tall");
             rule("color:", "|", "red", "blue", "yellow", "green", "purple");
-            rule("head>NOUN", "|", "ball", "tree", "box", "cube", "house", "wall", "pine");
+            rule("head>NOUN", "|", "ball", "tree", "box", "cube", "house", "wall", "pine", "maple", "palm", "wolf", "sheep", "cow", "horse");
             rule("skip>location:", "|", "LOC_SPEC", "pvp>LOC+REF_OBJECT");
             rule("LOC_SPEC", "|", "on your right", "on your left", "to the east", "to the west", "to the north", "to the south");
             rule("pvp>LOC+REF_OBJECT", "+", "propn>spec:", "cd>ref:");

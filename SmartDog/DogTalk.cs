@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Threading;
 using ALIVE;
 using System.Speech.Synthesis;
 using System.Speech.Recognition;
@@ -27,7 +28,7 @@ namespace DogsBrain
             ParseTree pt = new ParseTree(myMind.ParseMachine, sentence); //This calls the parser
             if (pt == null || pt.root == null)
             {
-                myMind.oboxSay("Parse failed");
+                myMind.form.objectBoxUpdate("Parse failed");
                 Console.WriteLine("Parse of failed");
                 return;
             }
@@ -42,23 +43,34 @@ namespace DogsBrain
                 //Save the command arguments in the fields of the new dog task and invoke the command method
                 dogTask dt = new dogTask(myMind, cmd);
                 dt.taskArgs = commandCD;
+                myMind.myContext.dt = dt;
                 myMind.myContext.last_command = commandCD;
+                myMind.myContext.last_cmd = cmd;
                 float x, y;
                 myMind.myDog.Coordinates(out x, out y);
                 myMind.myContext.start_pos_x = x;
                 myMind.myContext.start_pos_y = y;
                 myMind.myContext.start_angle = myMind.myDog.Orientation();
-                Type myType = dt.GetType();
-                MethodInfo myInfo = myType.GetMethod(cmd);
-                myInfo.Invoke(dt, null);
-                myMind.myDog.PlayAnimation(AliveAnimation.HELLO);
-                myMind.mySynth.SpeakAsync("Done, master!");
+                myMind.dogThread = new Thread(DogTalk.doTaskThread);
+                myMind.dogThread.Start(myMind);
             }
             else
             {
                 Console.WriteLine("Unknown command: " + cmd);
                 myMind.mySynth.SpeakAsync("Sorry, master, I don't know this command");
             }
+        }
+
+        public static void doTaskThread(object data)
+        {
+            DogsMind myMind = (DogsMind)data;
+            dogTask dt = myMind.myContext.dt;
+            string cmd = myMind.myContext.last_cmd;
+            Type myType = dt.GetType();
+            MethodInfo myInfo = myType.GetMethod(cmd);
+            myInfo.Invoke(dt, null);
+            myMind.myDog.PlayAnimation(AliveAnimation.HELLO);
+            myMind.mySynth.SpeakAsync("Done, master!");
         }
 
         //This is the old code to obey text commands through the chat box

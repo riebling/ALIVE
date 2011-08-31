@@ -1,0 +1,723 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ALIVE</name>
+    </assembly>
+    <members>
+        <member name="T:ALIVE.AliveAnimation">
+            <summary>
+            Static pre-defined animations available to all agents
+            </summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.AFRAID">
+            <summary>Agent with afraid expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.AIM_BAZOOKA_R">
+            <summary>Agent aiming a bazooka (right handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.AIM_BOW_L">
+            <summary>Agent aiming a bow (left handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.AIM_HANDGUN_R">
+            <summary>Agent aiming a hand gun (right handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.AIM_RIFLE_R">
+            <summary>Agent aiming a rifle (right handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.ANGRY">
+            <summary>Agent with angry expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.AWAY">
+            <summary>Agent hunched over (away)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.BACKFLIP">
+            <summary>Agent doing a backflip</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.BELLY_LAUGH">
+            <summary>Agent laughing while holding belly</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.BLOW_KISS">
+            <summary>Agent blowing a kiss</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.BORED">
+            <summary>Agent with bored expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.BOW">
+            <summary>Agent bowing to audience</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.BRUSH">
+            <summary>Agent brushing himself/herself off</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.BUSY">
+            <summary>Agent in busy mode</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.CLAP">
+            <summary>Agent clapping hands</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.COURTBOW">
+            <summary>Agent doing a curtsey bow</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.CROUCH">
+            <summary>Agent crouching</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.CROUCHWALK">
+            <summary>Agent crouching while walking</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.CRY">
+            <summary>Agent crying</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.CUSTOMIZE">
+            <summary>Agent unanimated with arms out (e.g. setting appearance)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.CUSTOMIZE_DONE">
+            <summary>Agent re-animated after set appearance finished</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DANCE1">
+            <summary>Agent dancing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DANCE2">
+            <summary>Agent dancing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DANCE3">
+            <summary>Agent dancing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DANCE4">
+            <summary>Agent dancing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DANCE5">
+            <summary>Agent dancing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DANCE6">
+            <summary>Agent dancing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DANCE7">
+            <summary>Agent dancing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DANCE8">
+            <summary>Agent dancing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DEAD">
+            <summary>Agent on ground unanimated</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.DRINK">
+            <summary>Agent boozing it up</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EMBARRASSED">
+            <summary>Agent with embarassed expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_AFRAID">
+            <summary>Agent with afraid expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_ANGER">
+            <summary>Agent with angry expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_BORED">
+            <summary>Agent with bored expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_CRY">
+            <summary>Agent crying</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_DISDAIN">
+            <summary>Agent showing disdain (dislike) for something</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_EMBARRASSED">
+            <summary>Agent with embarassed expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_FROWN">
+            <summary>Agent with frowning expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_KISS">
+            <summary>Agent with kissy face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_LAUGH">
+            <summary>Agent expressing laughgter</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_OPEN_MOUTH">
+            <summary>Agent with open mouth</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_REPULSED">
+            <summary>Agent with repulsed expression on face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_SAD">
+            <summary>Agent expressing sadness</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_SHRUG">
+            <summary>Agent shrugging shoulders</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_SMILE">
+            <summary>Agent with a smile</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_SURPRISE">
+            <summary>Agent expressing surprise</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_TONGUE_OUT">
+            <summary>Agent sticking tongue out</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_TOOTHSMILE">
+            <summary>Agent with big toothy smile</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_WINK">
+            <summary>Agent winking</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.EXPRESS_WORRY">
+            <summary>Agent expressing worry</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.FALLDOWN">
+            <summary>Agent falling down</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.FEMALE_WALK">
+            <summary>Agent walking (feminine version)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.FINGER_WAG">
+            <summary>Agent wagging finger (disapproval)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.FIST_PUMP">
+            <summary>I'm not sure I want to know</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.FLY">
+            <summary>Agent in superman position</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.FLYSLOW">
+            <summary>Agent in superman position</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.HELLO">
+            <summary>Agent greeting another</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.HOLD_BAZOOKA_R">
+            <summary>Agent holding bazooka (right handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.HOLD_BOW_L">
+            <summary>Agent holding a bow (left handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.HOLD_HANDGUN_R">
+            <summary>Agent holding a handgun (right handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.HOLD_RIFLE_R">
+            <summary>Agent holding a rifle (right handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.HOLD_THROW_R">
+            <summary>Agent throwing an object (right handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.HOVER">
+            <summary>Agent in static hover</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.HOVER_DOWN">
+            <summary>Agent hovering downward</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.HOVER_UP">
+            <summary>Agent hovering upward</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.IMPATIENT">
+            <summary>Agent being impatient</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.JUMP">
+            <summary>Agent jumping</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.JUMP_FOR_JOY">
+            <summary>Agent jumping with fervor</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.KISS_MY_BUTT">
+            <summary>Agent point to lips then rear end</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.LAND">
+            <summary>Agent landing from jump, finished flight, etc</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.LAUGH_SHORT">
+            <summary>Agent laughing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.MEDIUM_LAND">
+            <summary>Agent landing from jump, finished flight, etc</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.MOTORCYCLE_SIT">
+            <summary>Agent sitting on a motorcycle</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.MUSCLE_BEACH">
+            <summary></summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.NO">
+            <summary>Agent moving head side to side</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.NO_UNHAPPY">
+            <summary>Agent moving head side to side with unhappy expression</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.NYAH_NYAH">
+            <summary>Agent taunting another</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.ONETWO_PUNCH">
+            <summary></summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.PEACE">
+            <summary>Agent giving peace sign</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.POINT_ME">
+            <summary>Agent pointing at self</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.POINT_YOU">
+            <summary>Agent pointing at another</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.PRE_JUMP">
+            <summary>Agent preparing for jump (bending knees)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.PUNCH_LEFT">
+            <summary>Agent punching with left hand</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.PUNCH_RIGHT">
+            <summary>Agent punching with right hand</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.REPULSED">
+            <summary>Agent acting repulsed</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.ROUNDHOUSE_KICK">
+            <summary>Agent trying to be Chuck Norris</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.RPS_COUNTDOWN">
+            <summary>Rocks, Paper, Scissors 1, 2, 3</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.RPS_PAPER">
+            <summary>Agent with hand flat over other hand</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.RPS_ROCK">
+            <summary>Agent with fist over other hand</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.RPS_SCISSORS">
+            <summary>Agent with two fingers spread over other hand</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.RUN">
+            <summary>Agent running</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SAD">
+            <summary>Agent appearing sad</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SALUTE">
+            <summary>Agent saluting</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SHOOT_BOW_L">
+            <summary>Agent shooting bow (left handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SHOUT">
+            <summary>Agent cupping mouth as if shouting</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SHRUG">
+            <summary>Agent shrugging shoulders</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SIT">
+            <summary>Agent in sit position</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SIT_FEMALE">
+            <summary>Agent in sit position (feminine)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SIT_GENERIC">
+            <summary>Agent in sit position (generic)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SIT_GROUND">
+            <summary>Agent sitting on ground</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SIT_GROUND_staticRAINED">
+            <summary>Agent sitting on ground</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SIT_TO_STAND">
+            <summary></summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SLEEP">
+            <summary>Agent sleeping on side</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SMOKE_IDLE">
+            <summary>Agent smoking</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SMOKE_INHALE">
+            <summary>Agent inhaling smoke</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SMOKE_THROW_DOWN">
+            <summary></summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SNAPSHOT">
+            <summary>Agent taking a picture</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.STAND">
+            <summary>Agent standing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.STANDUP">
+            <summary>Agent standing up</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.STAND_1">
+            <summary>Agent standing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.STAND_2">
+            <summary>Agent standing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.STAND_3">
+            <summary>Agent standing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.STAND_4">
+            <summary>Agent standing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.STRETCH">
+            <summary>Agent stretching</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.STRIDE">
+            <summary>Agent in stride (fast walk)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SURF">
+            <summary>Agent surfing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SURPRISE">
+            <summary>Agent acting surprised</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.SWORD_STRIKE">
+            <summary>Agent striking with a sword</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.TALK">
+            <summary>Agent talking (lips moving)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.TANTRUM">
+            <summary>Agent throwing a tantrum</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.THROW_R">
+            <summary>Agent throwing an object (right handed)</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.TRYON_SHIRT">
+            <summary>Agent trying on a shirt</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.TURNLEFT">
+            <summary>Agent turning to the left</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.TURNRIGHT">
+            <summary>Agent turning to the right</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.TYPE">
+            <summary>Agent typing</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.WALK">
+            <summary>Agent walking</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.WHISPER">
+            <summary>Agent whispering</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.WHISTLE">
+            <summary>Agent whispering with fingers in mouth</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.WINK">
+            <summary>Agent winking</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.WINK_HOLLYWOOD">
+            <summary>Agent winking</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.WORRY">
+            <summary>Agent worried</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.YES">
+            <summary>Agent nodding yes</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.YES_HAPPY">
+            <summary>Agent nodding yes with happy face</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.YOGA_FLOAT">
+            <summary>Agent floating with legs and arms crossed</summary>
+        </member>
+        <member name="F:ALIVE.AliveAnimation.animationNames">
+            <summary>
+            List of all possible animation names, as strings
+            </summary>
+        </member>
+        <member name="T:ALIVE.primType">
+            <returns></returns>
+        </member>
+        <member name="F:ALIVE.primType.Unknown">
+            <summary>Unknown primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Box">
+            <summary>Box primitive type</summary> 
+        </member>
+        <member name="F:ALIVE.primType.Cylinder">
+            <summary>Cylinder primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Prism">
+            <summary>Prism primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Sphere">
+            <summary>Sphere primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Torus">
+            <summary>Torus primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Tube">
+            <summary>Tube primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Ring">
+            <summary>Ring primitive type</summary>
+        </member>
+        <member name="F:ALIVE.primType.Sculpt">
+            <summary>Sculpted primitive type</summary>
+        </member>
+        <member name="T:ALIVE.AliveObject">
+            <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.family">
+             <summary>
+            This represents the kind of AliveObject this is, 
+             for example Tree, House, Wall, Ball, Cube. 
+             It is stored on the Description slot of the object as
+             created in the virtual world
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.ID">
+             <summary>
+            64 bit Global ID (unique across the virtual world)
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.LocalID">
+             <summary>
+            32 bit Local ID (unique within the current region)
+             Although public, this is for internal use only.
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.X">
+             <summary>
+            X coordinate within current region
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.Y">
+             <summary>
+            Y coordinate within current region
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.shape">
+             <summary>
+            Primitive type (see primType)
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.movable">
+             <summary>
+            Can the Prim be picked up or moved?
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.color">
+             <summary>
+            String representing one of the colors: red, blue, green, yellow, aqua, purple, black, white.
+            Other colors are not represented here and appear as "unknown"
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.name">
+             <summary>
+            Name of the AliveObject as it appears in-world, for example $ball3
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.angle">
+             <summary>
+            Rotation of the primary face of the Prim around the vertical axis 
+                     in degrees, measured counter-clockwise from due East.
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.width">
+             <summary>
+            Size of the Primitive in 3 dimensions
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.depth">
+             <summary>
+            Size of the Primitive in 3 dimensions
+             </summary>
+        </member>
+        <member name="F:ALIVE.AliveObject.height">
+             <summary>
+            Size of the Primitive in 3 dimensions
+             </summary>
+        </member>
+        <member name="M:ALIVE.AliveObject.#ctor(OpenMetaverse.Avatar)">
+            <summary>
+            ALIVE object representing an avatar
+            </summary>
+            <param name="av"></param>
+        </member>
+        <member name="M:ALIVE.AliveObject.#ctor(OpenMetaverse.Primitive)">
+            <summary>The most basic type of ALIVE object, akin to a Second Life Primitive</summary>
+        </member>
+        <member name="M:ALIVE.AliveObject.toString">
+            <summary>Returns a printable description of Prim attributes</summary>
+        </member>
+        <member name="T:ALIVE.SmartDog">
+            <summary>Object which represents an avatar in ALIVE/OpenMetaverse/SecondLife</summary>
+        </member>
+        <member name="F:ALIVE.SmartDog.carriedObject">
+            <summary>
+            if not null, the AliveObject currently held by the avatar
+            </summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>Construct a new SmartDog avatar</summary>
+            <param name='fn'>first name</param>
+            <param name='ln'>last name</param>
+            <param name='pw'>password</param>>
+            <param name='sim'>Region name to log into</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.LoginHandler(System.Object,OpenMetaverse.LoginProgressEventArgs)">
+            <summary>
+            Initialize everything that needs to be initialized once we're logged in.
+            </summary>
+            <param name="login">The status of the login</param>
+            <param name="message">Error message on failure, MOTD on success.</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.Login">
+            <summary>Attempt to log the avatar into the default region</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.Logout">
+            <summary>Log the avatar out</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.PlayAnimation(OpenMetaverse.UUID)">
+            <summary>Play an animation (sleeps 5 seconds while playing)</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.PlayAnimation(System.String)">
+            <summary>Play an animation (sleeps 5 seconds while playing)</summary>
+            <param name="animName">One of the possible AliveAnimation.animationNames (case insensitive)</param>
+            <returns>true if succeeded, false if named animation doesn't exist</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.StartAnimation(OpenMetaverse.UUID)">
+            <summary>Start playing an animation, then return immediately</summary>
+            <param name="anim">OpenMetaverse.UUID of the animation to play (see AliveAnimation)</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.StopAnimation(OpenMetaverse.UUID)">
+            <summary>Stop playing an animation (the one started with StartAnimation)</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.TurnTo(System.Single,System.Single)">
+            <summary>Rotate the avatar to face a specified location at the avatar's current Z elevation</summary>
+            <param name='x'>X coordinate</param>
+            <param name='y'>Y coordinate</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.TurnTo(System.Single,System.Single,System.Single)">
+            <summary>Rotate the avatar to face a specified 3d location</summary>
+            <param name='x'>X coordinate</param>
+            <param name='y'>Y coordinate</param>
+            <param name="z">Z coordinate</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.TurnLeft(System.Int64)">
+            <summary>Rotate the avatar counter-clockwise</summary>
+            <param name='degrees'>degrees to rotate</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.TurnRight(System.Int64)">
+            <summary>Rotate the avatar clockwise</summary>
+            <param name='degrees'>degrees to rotate</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.stopMoving">
+            <summary>
+            Stop moving
+            </summary>     
+        </member>
+        <member name="M:ALIVE.SmartDog.WalkForward(System.Int32)">
+            <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend walking</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.WalkBackward(System.Int32)">
+            <summary>Attempt to walk the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend walking</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.NudgeForward(System.Int32)">
+            <summary>Attempt to nudge the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend being nudged</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.NudgeBackward(System.Int32)">
+            <summary>Attempt to nudge the avatar backward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='milliseconds'>Time to spend being nudged</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GoForward(System.Single)">
+            <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='meters'>Distance to walk in meters</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GoBackward(System.Single)">
+            <summary>Attempt to walk the avatar backwards in a straight line.  Obstacles may prevent this from completing as expected</summary>
+            <param name='meters'>Distance to walk in meters</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GoTo(System.Int32,System.Int32)">
+             <summary>Go to the specified location.</summary>
+             <remarks>This is not very reliable, in Second Life, or in ALIVE, and can 
+            result in the avatar getting stuck.  Use with caution.  This routine returns
+            after the time taken to travel this distance,
+            assuming a travel speed of 3 meters per second.</remarks>
+            
+             <param name="x">X coordinate of location to attempt to travel to</param>
+             <param name="y">Y coordinate of location to attempt to travel to</param>
+             <returns>True or false depending on whether the location was reached (within a margin of error of 0.8 meters - from experimental data)</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.Coordinates(System.Single@,System.Single@)">
+            <summary>
+            Return the coordinates of the avatar (in meters) within a 256 by 256 meter
+            Simulator region as floating point values.  X is due East, and Y is due North.
+            </summary>
+            <param name="x">X coordinate of avatar</param>
+            <param name="y">Y coordinate of avatar</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.getAttachments">
+            UTILITY FUNCTIONS
+            
+        </member>
+        <member name="M:ALIVE.SmartDog.ZrotFromQuaternion(OpenMetaverse.Quaternion)">
+            <summary>Given a Quaternion, return the rotation around the Z
+            (vertical) axis in degrees.</summary><remarks>Angles are measured counterclockwise
+            from due East</remarks>
+            <returns>floating point angle in degrees</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.Orientation">
+            <summary>
+            Return rotation of bot avatar in degrees clockwise from Due North</summary>
+            <remarks>(due North is zero, results are from 0 to 360)
+            </remarks>
+        </member>
+        <member name="M:ALIVE.SmartDog.ObjectsAround(System.Single)">
+            <summary>Return a list of AliveObjects found within a specified radius</summary>
+            <param name="radius">The radius (in meters) within which to look</param>
+            <returns>A List of Prim objects</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.ObjectsAround">
+            <summary>Return a List of AliveObjects within a radius of 10 meters</summary>
+            <returns>List of Prims</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.DropObject(ALIVE.AliveObject)">
+            <summary>Drop the specified object near where the avatar is standing</summary>
+            <param name="item">The AliveObject to drop</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.DropObject">
+            <summary>Drop the currently-carried object near where the avatar is standing</summary>
+        </member>
+        <member name="M:ALIVE.SmartDog.PickupObject(ALIVE.AliveObject)">
+            We will use "attach" to <summary>pick up an object by
+            carrying it by hand, i.e. attach to left hand
+            so long as the object is within 5 meters of the avatar</summary>
+            <param name="item">AliveObject to be picked up</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.PickupObject(ALIVE.AliveObject,OpenMetaverse.AttachmentPoint)">
+            We will use "attach" to <summary>pick up an object by
+            attaching to specified AttachmentPoint
+            so long as the object is within 5 meters of the avatar</summary>
+            <param name="item">AliveObject to be picked up</param>
+            <param name="point">AttachmentPoint to use</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GetMessage">
+            <summary>Get all the instant messages from the World Master since last checking</summary>
+            <returns>The message(s) as a string</returns>
+        </member>
+        <member name="M:ALIVE.SmartDog.SayMessage(System.String)">
+            <summary>Send the specified message to the World Master</summary>
+            <param name="message">The message to send World Master</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GetChat">
+            <summary>Get the messages in local chat since last checking</summary>
+            <remarks>Local chat is within a 20 meter radius</remarks>
+            <returns>A string containing messages seen in local chat, including your own.
+            </returns><remarks>Messages include your own chat, and begin with avatar name and a colon</remarks>
+        </member>
+        <member name="M:ALIVE.SmartDog.SayChat(System.String)">
+            <summary>Say the specified message in local chat</summary>
+            <remarks>Local chat is heard within a 20 meter radius</remarks>
+            <param name="message">The message to say</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GetObjectProps(ALIVE.AliveObject)">
+            <summary>List the names of ALIVE properties of object
+            </summary>
+            <param name="p">Primitive whose properties are to be returned</param>
+        </member>
+        <member name="M:ALIVE.SmartDog.GetObjProp(ALIVE.AliveObject,System.String)">
+            <summary>Return the value of the named property for this Prim</summary>
+            <param name="p">The Prim of interest</param>
+            <param name="propName">The property to be returned</param>
+        </member>
+    </members>
+</doc>

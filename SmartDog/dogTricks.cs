@@ -113,6 +113,9 @@ namespace DogsBrain
                     case "size:":
                         res = res * matchSize(obj, (string)i.Value, myMind);
                         break;
+                    case "name:":
+                        res = res * matchName(obj, (string)i.Value, myMind);
+                        break;
                     default:
                         break;
                 }
@@ -145,6 +148,15 @@ namespace DogsBrain
                 }
             }
             Console.WriteLine("Result of matching " + obj.name + " to " + descr.ToSexp() + " is " + res.ToString());
+            return res;
+        }
+
+        //names are matched literally
+        private static float matchName(AliveObject obj, string d, DogsMind myMind)
+        {
+            float res = 1F;
+            if (d != obj.name) res = 0;
+            Console.WriteLine("Matching name of " + obj.name + " to " + d + " Result: " + res.ToString());
             return res;
         }
 
@@ -265,7 +277,7 @@ namespace DogsBrain
 
         private static float matchDirOf(AliveObject obj, CD descr, DogsMind myMind, string dir)
         {
-            float dog_x, dog_y, delta_x, delta_y;
+            float dog_x, dog_y, sin_a, cos_a;
             Console.WriteLine("Matching " + dir);
             concept descr_concept = descr.head;
             if (descr_concept == null) { Console.WriteLine("Reference concept = null, result of matching " + dir + " = 0"); return 0; }
@@ -284,24 +296,26 @@ namespace DogsBrain
                     {
                         AliveObject obj2 = (AliveObject)j.Value;
                         float zz = matchObj(obj2, descr, myMind); //match the reference object to its description
-                        //delta_x is the x'*dist(dog's starting position,obj2), where x' is the x coordinate (east) when the origin is at the center of obj2
-                        //and north is aligned with the direction from the dog's starting position and obj2
-                        //Only the sign of deltas is important and we use it only for front, behind, left and right
-                        delta_x = (obj.X - obj2.X) * (obj2.Y - dog_y) - (obj.Y - obj2.Y) * (obj2.X = dog_x);
-                        delta_y = (obj.X - obj2.X) * (obj2.X - dog_x) + (obj.Y - obj2.Y) * (obj2.Y - dog_y);
+                        //assume a is an angle between the dog and the object looking from the center of obj2
+                        //Only the signs of sin_a and cos_a are important and we use it only for front, behind, left and right
+                        //that's why we use the inner produc without normalizing it
+                        //Rotate the dog relative to ob2 clockwise: sin(a) = cos(a - 90) x' = y, y' = -x
+                        sin_a = (obj.X - obj2.X) * (dog_y - obj2.Y) - (obj.Y - obj2.Y) * (dog_x - obj2.X);
+                        //inner product: cos of the angle between the dog and the object with 0bj2 as origine
+                        cos_a = (obj.X - obj2.X) * (dog_x - obj2.X) + (obj.Y - obj2.Y) * (dog_y - obj2.Y);
                         switch (dir)
                         {
                             case "behind":
-                                if (delta_y > 0) zz = 0;
+                                if (cos_a > 0) zz = 0;
                                 break;
                             case "front":
-                                if (delta_y < 0) zz = 0;
+                                if (cos_a < 0) zz = 0;
                                 break;
                             case "left":
-                                if (delta_x > 0) zz = 0;
+                                if (sin_a < 0) zz = 0;
                                 break;
                             case "right":
-                                if (delta_x < 0) zz = 0;
+                                if (sin_a > 0) zz = 0;
                                 break;
                             case "north":
                                 if (obj.Y < obj2.Y) zz = 0;
@@ -369,7 +383,7 @@ namespace DogsBrain
 //===========================================================================================
         // Selecting objects that match the description
 
-        public static float selectKnowObject(DogsMind dm, CD descr, out AliveObject res)
+        public static float selectKnownObject(DogsMind dm, CD descr, out AliveObject res)
         {
             res = null;
             concept descr_concept = descr.head;
@@ -381,6 +395,7 @@ namespace DogsBrain
             foreach (DictionaryEntry i in dm.knownObjects)
             {
                 string fam = (string)i.Key;
+                fam = fam.ToLower();
                 concept obj_concept = (concept)concept.all_concepts[fam];
                 if (obj_concept.test_isa(descr_concept) || descr_concept.test_isa(obj_concept))
                 {
