@@ -167,7 +167,7 @@ namespace ALIVE
     {
         // naughty 'globals'
 
-        public string AliveVersion = "6/4/2011";
+        public string AliveVersion = "8/31/2011";
         public string ALIVE_SERVER = "http://ohio.lti.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         //const string WORLD_MASTER_NAME = "World Master";
