@@ -118,10 +118,17 @@ namespace ALIVE
             depth = p.Scale.Y;
             height = p.Scale.Z;
 
-            color = SmartDog.color2String(
-                p.Textures.DefaultTexture.RGBA.R,
-                p.Textures.DefaultTexture.RGBA.G,
-                p.Textures.DefaultTexture.RGBA.B);
+            if (p.Textures != null)
+            {
+                color = SmartDog.color2String(
+                    p.Textures.DefaultTexture.RGBA.R,
+                    p.Textures.DefaultTexture.RGBA.G,
+                    p.Textures.DefaultTexture.RGBA.B);
+            }
+            else
+            {
+                color = "undefined";
+            }
 
             movable = (p.Flags & PrimFlags.ObjectMove) != 0;
             shape = p.Type.ToString();
@@ -160,11 +167,11 @@ namespace ALIVE
     {
         // naughty 'globals'
 
-        public string AliveVersion = "11/17/2010";
-        public string ALIVE_SERVER = "http://ohio.pc.cs.cmu.edu:9000";
+        public string AliveVersion = "6/4/2011";
+        public string ALIVE_SERVER = "http://ohio.lti.cs.cmu.edu:9000";
         const string SECONDLIFE_SERVER = "https://login.agni.lindenlab.com/cgi-bin/login.cgi";
         //const string WORLD_MASTER_NAME = "World Master";
-        const int SEARCH_RADIUS = 10;
+        const int SEARCH_RADIUS = 25;
         const int walkSpeed = 320; // msec per meter
 
         private Dictionary<uint, Avatar> AvatarNames;
@@ -338,7 +345,7 @@ namespace ALIVE
 
             LoginParams loginParams = new LoginParams();
             loginParams = client.Network.DefaultLoginParams(FirstName, LastName, Password, "ALIVE", "Bot");
-            loginParams.Start = "uri:" + Simulator + "&128&128&0"; // specify start location.  We set avatars homes at 128,128
+            loginParams.Start = "uri:" + Simulator + "&128&128&26"; // specify start location.  We set avatars homes at 128,128
             loginParams.URI = ALIVE_SERVER;
             LoginSuccess = 
                 client.Network.Login(loginParams);
@@ -463,6 +470,17 @@ namespace ALIVE
             client.Self.Movement.SendUpdate(true);
 
             return true;
+        }
+
+        /// <summary>
+        /// Stop moving
+        /// </summary>     
+        public void stopMoving()
+        {
+            client.Self.Movement.AtPos = false;
+            client.Self.Movement.SendUpdate(true);
+            client.Self.AutoPilotCancel();
+            client.Self.Fly(false);
         }
 
         /// <summary>Attempt to walk the avatar forward in a straight line.  Obstacles may prevent this from completing as expected</summary>
